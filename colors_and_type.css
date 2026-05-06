@@ -1,0 +1,181 @@
+/* EDURYX — Brand Foundations */
+/* Derived from: EDURYX - LEARN AI - BUILD THE FUTURE V2.png (finalised logo) */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ── Primary ── */
+  --ex-navy: #0B1929;           /* EDURYX Navy — titles, body text, dark sections */
+  --ex-amber: #F5A623;          /* EDURYX Amber — arrow accent, metrics, emphasis */
+
+  /* ── Neutrals ── */
+  --ex-white: #FFFFFF;          /* Always the page background */
+  --ex-grey: #6B7280;           /* Soft Grey — secondary text */
+  --ex-grey-50: #F7F8FA;        /* Subtle section alt bg */
+  --ex-grey-100: #EEF0F3;       /* Dividers / hairlines */
+  --ex-grey-200: #D8DCE2;       /* Borders */
+
+  /* ── Tonal variants (derived, brand-consistent) ── */
+  --ex-navy-80: rgba(11, 25, 41, 0.80);
+  --ex-navy-10: rgba(11, 25, 41, 0.10);
+  --ex-navy-05: rgba(11, 25, 41, 0.05);
+  --ex-amber-10: rgba(245, 166, 35, 0.10);
+  --ex-amber-20: rgba(245, 166, 35, 0.20);
+  --ex-amber-40: rgba(245, 166, 35, 0.40);
+
+  /* ── Dark surface (used on navy sections) ── */
+  --ex-dark-surface: #0F2235;   /* Slightly lighter than navy for cards on dark bg */
+  --ex-dark-border: rgba(245, 166, 35, 0.15);
+
+  /* ── Foreground / semantic text ── */
+  --fg-primary: var(--ex-navy);
+  --fg-secondary: var(--ex-grey);
+  --fg-emphasis: var(--ex-amber);
+  --fg-on-navy: var(--ex-white);
+  --bg-primary: var(--ex-white);
+  --bg-alt: var(--ex-grey-50);
+  --bg-inverse: var(--ex-navy);
+  --border: var(--ex-grey-100);
+  --border-strong: var(--ex-grey-200);
+
+  /* ── Typography ── */
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Scale — optimised for web (logo-derived 40 title / 28–32 section / 18 body / 14 caption) */
+  --fs-display: 60px;           /* hero / billboard */
+  --fs-h1: 40px;
+  --fs-h2: 32px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-body-lg: 20px;
+  --fs-body: 18px;
+  --fs-body-sm: 16px;
+  --fs-caption: 14px;
+  --fs-micro: 12px;
+
+  --lh-tight: 1.1;
+  --lh-heading: 1.25;
+  --lh-body: 1.65;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;      /* uppercase eyebrows */
+  --tracking-xwide: 0.14em;     /* tagline "LEARN AI. BUILD THE FUTURE." */
+
+  /* ── Spacing (4pt grid) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ── Radii — slightly more rounded than Kodryx (Gen Z / friendly) ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* ── Borders — hairline over shadows ── */
+  --hairline: 1px solid var(--border);
+  --hairline-strong: 1px solid var(--border-strong);
+  --divider-amber: 2px solid var(--ex-amber);
+
+  /* ── Shadows: minimal — border-based design ── */
+  --shadow-none: none;
+  --shadow-subtle: 0 1px 3px rgba(11, 25, 41, 0.06);
+
+  /* ── Motion ── */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 350ms;
+}
+
+/* ─────────────────────────────────────────────────────
+   Base elements
+   ───────────────────────────────────────────────────── */
+
+html {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--fg-primary);
+  background: var(--bg-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--fg-primary);
+  margin: 0;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-heading);
+  font-weight: 700;
+}
+
+h1 { font-size: var(--fs-h1); font-weight: 800; line-height: var(--lh-tight); }
+h2 { font-size: var(--fs-h2); font-weight: 700; }
+h3 { font-size: var(--fs-h3); font-weight: 600; }
+h4 { font-size: var(--fs-h4); font-weight: 600; }
+
+p { margin: 0; color: var(--fg-primary); }
+
+small, .caption {
+  font-size: var(--fs-caption);
+  color: var(--fg-secondary);
+}
+
+a {
+  color: var(--fg-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur-fast) var(--ease-standard),
+              border-color var(--dur-fast) var(--ease-standard);
+}
+a:hover { color: var(--ex-amber); border-bottom-color: var(--ex-amber); }
+
+/* ── Utility classes ── */
+.ex-display  { font-family: var(--font-display); font-size: var(--fs-display); line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); font-weight: 800; }
+.ex-h1       { font-family: var(--font-display); font-size: var(--fs-h1);  font-weight: 800; line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); }
+.ex-h2       { font-family: var(--font-display); font-size: var(--fs-h2);  font-weight: 700; line-height: var(--lh-heading); }
+.ex-h3       { font-family: var(--font-display); font-size: var(--fs-h3);  font-weight: 600; line-height: var(--lh-heading); }
+.ex-h4       { font-family: var(--font-display); font-size: var(--fs-h4);  font-weight: 600; line-height: var(--lh-heading); }
+.ex-body-lg  { font-family: var(--font-body); font-size: var(--fs-body-lg); line-height: var(--lh-body); }
+.ex-body     { font-family: var(--font-body); font-size: var(--fs-body);    line-height: var(--lh-body); }
+.ex-body-sm  { font-family: var(--font-body); font-size: var(--fs-body-sm); line-height: var(--lh-body); }
+.ex-caption  { font-family: var(--font-body); font-size: var(--fs-caption); color: var(--fg-secondary); }
+.ex-eyebrow  { font-family: var(--font-body); font-size: var(--fs-micro); letter-spacing: var(--tracking-wide); text-transform: uppercase; font-weight: 600; color: var(--fg-secondary); }
+.ex-tagline  { font-family: var(--font-body); font-size: var(--fs-caption); letter-spacing: var(--tracking-xwide); text-transform: uppercase; font-weight: 500; }
+
+.ex-navy     { color: var(--ex-navy); }
+.ex-amber    { color: var(--ex-amber); }
+.ex-grey     { color: var(--ex-grey); }
+.ex-white    { color: var(--ex-white); }
+
+.ex-metric   { font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--ex-amber); line-height: 1; letter-spacing: var(--tracking-tight); }
+
+.ex-divider-amber {
+  border: 0;
+  border-top: var(--divider-amber);
+  width: 48px;
+  margin: var(--space-4) 0;
+}

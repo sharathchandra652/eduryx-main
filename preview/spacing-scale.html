@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Spacing Scale</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .wrap { padding: 28px; }
+  .section-label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 16px; display: block; }
+  .row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .bar-wrap { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .bar { background: #0B1929; border-radius: 3px; height: 20px; }
+  .amber-bar { background: #F5A623; }
+  .token { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6B7280; width: 80px; flex-shrink: 0; }
+  .px { font-family: Inter; font-size: 12px; color: #9CA3AF; width: 40px; flex-shrink: 0; }
+  .use { font-family: Inter; font-size: 12px; color: #0B1929; }
+  hr { border: 0; border-top: 1px solid #EEF0F3; margin: 20px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="section-label">4pt grid — spacing tokens</span>
+
+  <div class="row"><span class="token">--space-1</span><span class="px">4px</span><div class="bar-wrap"><div class="bar" style="width:4px;"></div><span class="use">Icon gap, hairline offset</span></div></div>
+  <div class="row"><span class="token">--space-2</span><span class="px">8px</span><div class="bar-wrap"><div class="bar" style="width:8px;"></div><span class="use">Tag padding, button icon gap</span></div></div>
+  <div class="row"><span class="token">--space-3</span><span class="px">12px</span><div class="bar-wrap"><div class="bar" style="width:12px;"></div><span class="use">List item gap, eyebrow margin</span></div></div>
+  <div class="row"><span class="token">--space-4</span><span class="px">16px</span><div class="bar-wrap"><div class="bar" style="width:16px;"></div><span class="use">Card padding (sm), button pad</span></div></div>
+  <div class="row"><span class="token">--space-5</span><span class="px">20px</span><div class="bar-wrap"><div class="bar" style="width:20px;"></div><span class="use">Input padding, nav gap</span></div></div>
+  <div class="row"><span class="token">--space-6</span><span class="px">24px</span><div class="bar-wrap"><div class="bar" style="width:24px;"></div><span class="use">Card padding (default), section gap</span></div></div>
+  <div class="row"><span class="token">--space-8</span><span class="px">32px</span><div class="bar-wrap"><div class="bar" style="width:32px;"></div><span class="use">Between card groups</span></div></div>
+  <div class="row"><span class="token">--space-10</span><span class="px">40px</span><div class="bar-wrap"><div class="bar amber-bar" style="width:40px;"></div><span class="use">Section header bottom</span></div></div>
+  <div class="row"><span class="token">--space-12</span><span class="px">48px</span><div class="bar-wrap"><div class="bar amber-bar" style="width:48px;"></div><span class="use">Between major sections (mobile)</span></div></div>
+  <div class="row"><span class="token">--space-16</span><span class="px">64px</span><div class="bar-wrap"><div class="bar amber-bar" style="width:64px;"></div><span class="use">Section spacing (desktop)</span></div></div>
+  <div class="row"><span class="token">--space-20</span><span class="px">80px</span><div class="bar-wrap"><div class="bar amber-bar" style="width:80px;"></div><span class="use">Hero section padding</span></div></div>
+  <div class="row"><span class="token">--space-24</span><span class="px">96px</span><div class="bar-wrap"><div class="bar amber-bar" style="width:96px;"></div><span class="use">Page top padding</span></div></div>
+
+  <hr />
+  <span class="section-label">Density rule</span>
+  <p style="font-family:Inter;font-size:14px;color:#6B7280;line-height:1.6;">Cards: 24px internal padding. Grid gap: 16px. Section breaks: 64px on desktop, 48px on mobile. Never below 8px between interactive elements.</p>
+</div>
+</body>
+</html>

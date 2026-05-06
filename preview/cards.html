@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Cards</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #F7F8FA; }
+  .wrap { padding: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  .card {
+    background: #fff;
+    border: 1px solid #EEF0F3;
+    border-radius: 12px;
+    padding: 22px;
+    transition: border-color 200ms cubic-bezier(.2,0,0,1);
+  }
+  .card:hover { border-color: #F5A623; }
+
+  /* Accent-top card */
+  .card.feat { border-top: 3px solid #F5A623; }
+
+  /* Dark card */
+  .card.dark { background: #0B1929; border-color: rgba(245,166,35,0.15); }
+
+  .eyebrow {
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6B7280;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .card.dark .eyebrow { color: rgba(255,255,255,0.4); }
+
+  .title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #0B1929;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+  .card.dark .title { color: #fff; }
+
+  .body {
+    font-family: Inter;
+    font-size: 14px;
+    color: #6B7280;
+    line-height: 1.6;
+  }
+  .card.dark .body { color: rgba(255,255,255,0.6); }
+
+  .metric {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #F5A623;
+    margin-top: 10px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: Inter;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-top: 10px;
+  }
+  .tag.navy { background: rgba(11,25,41,0.08); color: #0B1929; }
+  .tag.amber { background: rgba(245,166,35,0.12); color: #b87d10; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Standard card -->
+  <div class="card">
+    <span class="eyebrow">Module · Week 03</span>
+    <h3 class="title">RAG & Vector Databases</h3>
+    <p class="body">Build a production-grade retrieval pipeline with chunking, embeddings, and hybrid search.</p>
+    <span class="tag navy">Hands-on Project</span>
+  </div>
+
+  <!-- Featured card with amber top border -->
+  <div class="card feat">
+    <span class="eyebrow">Featured · Pricing</span>
+    <h3 class="title">AI Builder Program</h3>
+    <p class="body">Live online · 8 weeks · Certificate of Completion</p>
+    <div class="metric">₹20,000</div>
+    <span class="tag amber">Summer Offer</span>
+  </div>
+
+  <!-- Metric stat card -->
+  <div class="card">
+    <span class="eyebrow">Placement Rate</span>
+    <div class="metric">78%</div>
+    <p class="body" style="margin-top:8px">of graduates land AI roles within 3 months of completing the program.</p>
+  </div>
+
+  <!-- Dark card -->
+  <div class="card dark">
+    <span class="eyebrow">What you'll build</span>
+    <h3 class="title">Real AI Products</h3>
+    <p class="body">RAG pipelines, agents, fine-tuned models — shipped to production with your GitHub portfolio.</p>
+  </div>
+
+  <!-- Icon card -->
+  <div class="card">
+    <div style="width:40px;height:40px;background:rgba(245,166,35,0.10);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.951-.951a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+    </div>
+    <span class="eyebrow">Support</span>
+    <h3 class="title">1-on-1 Mentorship</h3>
+    <p class="body">Weekly office hours with industry practitioners building AI at scale.</p>
+  </div>
+
+  <!-- Minimal list card -->
+  <div class="card">
+    <span class="eyebrow">Curriculum highlights</span>
+    <h3 class="title" style="margin-bottom:14px">8-Week Roadmap</h3>
+    <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
+      <li style="font-family:Inter;font-size:14px;color:#0B1929;display:flex;gap:8px;align-items:flex-start;">
+        <span style="color:#F5A623;font-weight:700;flex-shrink:0;">01</span> LLM Foundations & Prompt Engineering
+      </li>
+      <li style="font-family:Inter;font-size:14px;color:#0B1929;display:flex;gap:8px;align-items:flex-start;">
+        <span style="color:#F5A623;font-weight:700;flex-shrink:0;">02</span> RAG Systems & Vector DBs
+      </li>
+      <li style="font-family:Inter;font-size:14px;color:#0B1929;display:flex;gap:8px;align-items:flex-start;">
+        <span style="color:#F5A623;font-weight:700;flex-shrink:0;">03</span> AI Agents & Tool Use
+      </li>
+      <li style="font-family:Inter;font-size:14px;color:#6B7280;display:flex;gap:8px;align-items:flex-start;">
+        <span style="color:#6B7280;font-weight:700;flex-shrink:0;">+5</span> more modules...
+      </li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

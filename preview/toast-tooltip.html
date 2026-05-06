@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Toast & Tooltip</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #F7F8FA; }
+  .wrap { padding: 28px; display: flex; flex-direction: column; gap: 16px; max-width: 480px; }
+  .section-label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; }
+
+  /* Toast */
+  .toast {
+    background: #fff;
+    border: 1px solid #EEF0F3;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(11,25,41,0.08);
+  }
+  .toast-icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; }
+  .toast-content { flex: 1; }
+  .toast-title { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: 14px; color: #0B1929; margin-bottom: 2px; }
+  .toast-body { font-family: Inter; font-size: 13px; color: #6B7280; line-height: 1.5; }
+  .toast-close { color: #9CA3AF; cursor: pointer; flex-shrink: 0; }
+
+  /* Toast types */
+  .toast-success { border-left: 3px solid #22c55e; }
+  .toast-warning { border-left: 3px solid #F5A623; }
+  .toast-error   { border-left: 3px solid #ef4444; }
+  .toast-info    { border-left: 3px solid #0B1929; }
+
+  /* Dark toast */
+  .toast-dark { background: #0B1929; border-color: rgba(255,255,255,0.08); }
+  .toast-dark .toast-title { color: #fff; }
+  .toast-dark .toast-body { color: rgba(255,255,255,0.6); }
+
+  /* Tooltip */
+  .tooltip-wrap { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .tooltip {
+    background: #0B1929;
+    color: #fff;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(11,25,41,0.20);
+    line-height: 1.4;
+  }
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 16px;
+    width: 8px;
+    height: 5px;
+    background: #0B1929;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+  .tooltip-amber { background: #F5A623; color: #0B1929; }
+  .tooltip-amber::after { background: #F5A623; }
+  .trigger { font-family: Inter; font-size: 14px; color: #0B1929; border-bottom: 1px dashed #6B7280; cursor: help; display: inline-block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="section-label">Toast notifications</div>
+
+  <div class="toast toast-success">
+    <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="toast-content">
+      <div class="toast-title">Enrollment confirmed!</div>
+      <div class="toast-body">You're in Batch 07 starting Jun 14. Check your email for next steps.</div>
+    </div>
+    <svg class="toast-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </div>
+
+  <div class="toast toast-warning">
+    <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div class="toast-content">
+      <div class="toast-title">Only 4 seats left</div>
+      <div class="toast-body">Batch 07 is nearly full. Enroll now to secure your spot.</div>
+    </div>
+  </div>
+
+  <div class="toast toast-error">
+    <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div class="toast-content">
+      <div class="toast-title">Payment failed</div>
+      <div class="toast-body">Your card was declined. Try a different card or contact support.</div>
+    </div>
+  </div>
+
+  <div class="toast toast-info toast-dark">
+    <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div class="toast-content">
+      <div class="toast-title">New module unlocked</div>
+      <div class="toast-body">Week 04: AI Agents & Tool Use is now available in your dashboard.</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:8px;">Tooltips</div>
+
+  <div style="display:flex;gap:32px;align-items:flex-end;padding:20px 0 10px;">
+    <div class="tooltip-wrap">
+      <div class="tooltip">RAG = Retrieval-Augmented Generation</div>
+      <span class="trigger">What is RAG?</span>
+    </div>
+    <div class="tooltip-wrap">
+      <div class="tooltip tooltip-amber">Early bird — 50% off until May 31</div>
+      <span class="trigger" style="color:#F5A623;border-bottom-color:#F5A623;">₹20,000</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Badges & Tags</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .wrap { padding: 28px; display: flex; flex-direction: column; gap: 20px; }
+  .section-label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 10px; display: block; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .divider { border: 0; border-top: 1px solid #EEF0F3; }
+
+  /* Pill / tag base */
+  .tag {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    border-radius: 999px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Variants */
+  .tag-navy    { background: rgba(11,25,41,0.08); color: #0B1929; }
+  .tag-amber   { background: rgba(245,166,35,0.12); color: #b87d10; }
+  .tag-filled-navy  { background: #0B1929; color: #fff; }
+  .tag-filled-amber { background: #F5A623; color: #0B1929; }
+  .tag-outline  { background: transparent; color: #0B1929; border: 1px solid #D8DCE2; }
+  .tag-success { background: rgba(22,163,74,0.10); color: #15803d; }
+  .tag-warning { background: rgba(245,158,11,0.10); color: #b45309; }
+  .tag-error   { background: rgba(239,68,68,0.10); color: #b91c1c; }
+
+  /* Dot indicator */
+  .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .dot-green  { background: #22c55e; }
+  .dot-amber  { background: #F5A623; }
+  .dot-red    { background: #ef4444; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div>
+    <span class="section-label">Brand tags</span>
+    <div class="row">
+      <span class="tag tag-navy">AI Builder</span>
+      <span class="tag tag-navy">8 Weeks</span>
+      <span class="tag tag-amber">Summer Offer</span>
+      <span class="tag tag-amber">New Batch</span>
+      <span class="tag tag-filled-navy">NASSCOM Certified</span>
+      <span class="tag tag-filled-amber">Limited Seats</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div>
+    <span class="section-label">Status badges</span>
+    <div class="row">
+      <span class="tag tag-success"><span class="dot dot-green"></span>Enrollment Open</span>
+      <span class="tag tag-warning"><span class="dot dot-amber"></span>Closing Soon</span>
+      <span class="tag tag-error"><span class="dot dot-red"></span>Sold Out</span>
+      <span class="tag tag-navy"><span class="dot" style="background:#6B7280;"></span>Coming Soon</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div>
+    <span class="section-label">Module / week tags</span>
+    <div class="row">
+      <span class="tag tag-outline">Week 01</span>
+      <span class="tag tag-outline">Week 02</span>
+      <span class="tag tag-outline">Week 03</span>
+      <span class="tag tag-amber">Week 04 — Current</span>
+      <span class="tag tag-navy">Week 05</span>
+      <span class="tag tag-navy">Week 06</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div>
+    <span class="section-label">Number badges</span>
+    <div class="row">
+      <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;background:#F5A623;color:#0B1929;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;">1</span>
+      <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;background:#0B1929;color:#fff;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;">2</span>
+      <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;background:#EEF0F3;color:#6B7280;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;">3</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

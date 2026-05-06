@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Link States</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .wrap { padding: 28px; max-width: 560px; display: flex; flex-direction: column; gap: 20px; }
+  .section-label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; }
+  .row { display: flex; flex-direction: column; gap: 10px; }
+  .link-ex { font-family: Inter; font-size: 16px; }
+  .desc { font-family: Inter; font-size: 11px; color: #9CA3AF; }
+
+  /* States */
+  .link-default { color: #0B1929; text-decoration: none; border-bottom: 1px solid transparent; }
+  .link-hover   { color: #F5A623; text-decoration: none; border-bottom: 1px solid #F5A623; }
+  .link-visited { color: #6B7280; text-decoration: none; border-bottom: 1px solid #D8DCE2; }
+  .link-amber   { color: #F5A623; text-decoration: none; font-weight: 600; }
+  .link-amber-hover { color: #e09518; text-decoration: none; font-weight: 600; border-bottom: 1px solid #F5A623; }
+  .link-nav     { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 600; font-size: 14px; color: #0B1929; text-decoration: none; }
+  .link-nav-active { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: 14px; color: #F5A623; text-decoration: none; }
+  .link-arrow   { color: #0B1929; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .link-arrow:hover { color: #F5A623; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="section-label">Inline link states</div>
+  <div class="row">
+    <div>
+      <a class="link-default link-ex">View the curriculum</a>
+      <div class="desc">Default — navy, no underline</div>
+    </div>
+    <div>
+      <a class="link-hover link-ex">View the curriculum</a>
+      <div class="desc">Hover — amber with amber underline</div>
+    </div>
+    <div>
+      <a class="link-visited link-ex">View the curriculum</a>
+      <div class="desc">Visited — grey with hairline</div>
+    </div>
+  </div>
+
+  <div class="section-label">Amber emphasis links</div>
+  <div class="row">
+    <div>
+      <a class="link-amber link-ex">Download syllabus →</a>
+      <div class="desc">Amber link — CTA in body copy, used sparingly</div>
+    </div>
+    <div>
+      <a class="link-amber-hover link-ex">Download syllabus →</a>
+      <div class="desc">Amber hover — slightly darker + underline</div>
+    </div>
+  </div>
+
+  <div class="section-label">Navigation links</div>
+  <div style="display:flex;gap:24px;align-items:center;padding:12px 16px;background:#fff;border:1px solid #EEF0F3;border-radius:8px;">
+    <a class="link-nav">Program</a>
+    <a class="link-nav-active">Curriculum</a>
+    <a class="link-nav">Mentors</a>
+    <a class="link-nav">Pricing</a>
+    <a class="link-nav">FAQ</a>
+  </div>
+
+  <div class="section-label">Arrow links</div>
+  <div class="row">
+    <a class="link-arrow link-ex">
+      Learn about RAG
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+    <a class="link-arrow link-ex" style="color:#F5A623;">
+      View all modules
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Elevation & Borders</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #F7F8FA; }
+  .wrap { padding: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: #fff; border-radius: 12px; padding: 22px; }
+  .label { font-family: Inter; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #9CA3AF; margin-bottom: 6px; display: block; }
+  .desc { font-family: Inter; font-size: 13px; color: #6B7280; line-height: 1.6; }
+  .rule { font-family: Inter; font-size: 12px; color: #0B1929; margin-top: 10px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card" style="border: 1px solid #EEF0F3;">
+    <span class="label">Level 0 — flat</span>
+    <div class="desc">Default card. Hairline border only. No shadow.</div>
+    <div class="rule">border: 1px solid #EEF0F3</div>
+  </div>
+
+  <div class="card" style="border: 1px solid #D8DCE2;">
+    <span class="label">Level 1 — raised</span>
+    <div class="desc">Input focus rings, modal borders, hover states on interactive items.</div>
+    <div class="rule">border: 1px solid #D8DCE2</div>
+  </div>
+
+  <div class="card" style="border: 1px solid #F5A623; border-top: 3px solid #F5A623;">
+    <span class="label">Level 2 — featured</span>
+    <div class="desc">Featured / selected card. Amber border, accent top.</div>
+    <div class="rule">border-top: 3px solid #F5A623</div>
+  </div>
+
+  <div class="card" style="border: 1px solid #EEF0F3; box-shadow: 0 1px 3px rgba(11,25,41,0.06);">
+    <span class="label">Subtle shadow (optional)</span>
+    <div class="desc">Only when floating above layered content — modals, dropdowns, tooltips.</div>
+    <div class="rule">box-shadow: 0 1px 3px rgba(11,25,41,0.06)</div>
+  </div>
+
+  <div class="card" style="background: #0B1929; border: 1px solid rgba(245,166,35,0.15);">
+    <span class="label" style="color:rgba(255,255,255,0.35);">Dark card</span>
+    <div class="desc" style="color:rgba(255,255,255,0.55);">Inverted surface. Amber border tint. No shadow needed.</div>
+    <div class="rule" style="color:rgba(245,166,35,0.9);">background: #0B1929</div>
+  </div>
+
+  <div class="card" style="border: 1px solid #EEF0F3; background: #F7F8FA;">
+    <span class="label">Alt background</span>
+    <div class="desc">Quiet sections — pricing tables, testimonials, alt-row stripes.</div>
+    <div class="rule">background: #F7F8FA</div>
+  </div>
+
+</div>
+<div style="padding: 0 28px 28px; font-family:Inter;font-size:13px;color:#6B7280;max-width:600px;">
+  <strong style="color:#0B1929;">Rule:</strong> EDURYX uses borders, not shadows, as the primary depth signal. Shadows are reserved for floating UI (modals, dropdowns). Amber borders signal selection or emphasis — use sparingly.
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Dividers</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .wrap { padding: 28px; max-width: 560px; display: flex; flex-direction: column; gap: 28px; }
+  .section-label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 12px; display: block; }
+  .ex { display: flex; flex-direction: column; gap: 8px; }
+  .desc { font-family: Inter; font-size: 12px; color: #9CA3AF; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="ex">
+    <span class="section-label">Hairline (default)</span>
+    <hr style="border:0;border-top:1px solid #EEF0F3;margin:0;" />
+    <div class="desc">1px · #EEF0F3 — sections, list rows, card internals</div>
+  </div>
+
+  <div class="ex">
+    <span class="section-label">Strong hairline</span>
+    <hr style="border:0;border-top:1px solid #D8DCE2;margin:0;" />
+    <div class="desc">1px · #D8DCE2 — footer top, modal dividers</div>
+  </div>
+
+  <div class="ex">
+    <span class="section-label">Amber accent divider</span>
+    <hr style="border:0;border-top:2px solid #F5A623;width:48px;margin:0;" />
+    <div class="desc">2px · #F5A623 · 48px wide — under section headings, card feature accent</div>
+  </div>
+
+  <div class="ex">
+    <span class="section-label">Amber in context</span>
+    <div>
+      <p style="font-family:Inter;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#6B7280;margin:0 0 10px;">Program Highlights</p>
+      <hr style="border:0;border-top:2px solid #F5A623;width:48px;margin:0 0 14px;" />
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;font-weight:700;color:#0B1929;line-height:1.25;letter-spacing:-0.02em;margin:0;">Build. Ship. Get Hired.</h2>
+    </div>
+    <div class="desc">The amber divider sits between the eyebrow and the heading — the logo's arrow energy, grounded.</div>
+  </div>
+
+  <div class="ex" style="background:#0B1929;padding:20px;border-radius:12px;">
+    <span class="section-label" style="color:rgba(255,255,255,0.4);">On dark background</span>
+    <hr style="border:0;border-top:1px solid rgba(255,255,255,0.10);margin:0;" />
+    <div class="desc" style="color:rgba(255,255,255,0.4);margin-top:8px;">1px · rgba(255,255,255,0.10) — section dividers on navy backgrounds</div>
+    <hr style="border:0;border-top:2px solid #F5A623;width:48px;margin:12px 0 0;" />
+    <div class="desc" style="color:rgba(255,255,255,0.4);margin-top:8px;">Amber accent works the same on dark</div>
+  </div>
+
+</div>
+</body>
+</html>

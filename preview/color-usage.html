@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Color Usage</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .wrap { padding: 28px; display: grid; gap: 16px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .usage-card { border: 1px solid #EEF0F3; border-radius: 10px; padding: 20px; }
+  .label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 10px; display: block; }
+  .rule { font-family: Inter; font-size: 13px; color: #0B1929; line-height: 1.55; }
+  .example { margin-top: 14px; padding: 14px; border-radius: 8px; }
+
+  /* DO examples */
+  .do { border: 1.5px solid #22c55e; }
+  .do-label { font-family: Inter; font-size: 11px; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; display: block; }
+  /* DON'T examples */
+  .dont { border: 1.5px solid #ef4444; }
+  .dont-label { font-family: Inter; font-size: 11px; font-weight: 700; color: #dc2626; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="row">
+    <div class="usage-card">
+      <span class="label">Amber usage — DO</span>
+      <p class="rule">Use amber for metrics, the arrow accent, key numbers, divider lines, and emphasis elements only.</p>
+      <div class="example do">
+        <span class="do-label">✓ Correct</span>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:#0B1929;">Graduates earning <span style="color:#F5A623;font-weight:700;">₹8–15L/year</span> in AI roles</p>
+        <div style="border:0;border-top:2px solid #F5A623;width:40px;margin:12px 0 0;"></div>
+      </div>
+    </div>
+    <div class="usage-card">
+      <span class="label">Amber usage — DON'T</span>
+      <p class="rule">Don't use amber for body text, large backgrounds, or decorative gradients. It loses meaning if overused.</p>
+      <div class="example dont">
+        <span class="dont-label">✗ Incorrect</span>
+        <p style="font-family:Inter;font-size:13px;color:#F5A623;">Build real AI products in 8 weeks. Join thousands of learners who have transformed their careers.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="usage-card">
+      <span class="label">Navy on backgrounds — DO</span>
+      <p class="rule">Use navy as the primary text color on white/light backgrounds, and white text on navy backgrounds.</p>
+      <div class="example do" style="background:#0B1929;padding:16px;">
+        <span class="do-label" style="color:#F5A623;">✓ Correct — navy bg</span>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:#fff;font-weight:700;">Learn AI. Build the Future.</p>
+      </div>
+    </div>
+    <div class="usage-card">
+      <span class="label">Gradients — DON'T</span>
+      <p class="rule">No gradients. The palette is intentionally flat. Gradients dilute the premium, technical brand identity.</p>
+      <div class="example dont">
+        <span class="dont-label">✗ Incorrect</span>
+        <div style="height:48px;border-radius:6px;background:linear-gradient(135deg,#F5A623,#0B1929);display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:Inter;color:#fff;font-size:13px;">Never use gradients</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

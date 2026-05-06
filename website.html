@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EDURYX — Learn AI. Build the Future.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ── Reset ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #fff; color: #0A1423; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* ── Tokens ───────────────────────────────────────────── */
+:root {
+  --navy: #0A1423;
+  --gold: #D4A017;
+  --gold-light: #F4C542;
+  --g50: #F8FAFC; --g100: #EEF2F7; --g200: #D7DEE7; --grey: #667085;
+  --r-md: 8px; --r-lg: 12px; --r-pill: 999px;
+}
+
+/* ── Helpers ──────────────────────────────────────────── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: var(--r-pill); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+.pill-amber { background: rgba(212,160,23,.1); color: #8B6914; }
+.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: var(--r-lg); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .15s, transform .15s; white-space: nowrap; }
+.btn:hover { opacity: .88; transform: translateY(-1px); }
+.btn-primary { background: var(--navy); color: #fff; }
+.btn-amber   { background: var(--gold); color: var(--navy); box-shadow: 0 8px 24px rgba(212,160,23,.22); }
+.btn-ghost   { background: transparent; color: var(--navy); border: 1.5px solid var(--g200); }
+.btn-ghost-inv { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.25); }
+.btn-sm { padding: 9px 18px; font-size: 13px; }
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+section { padding: 80px 0; }
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(26px, 3.5vw, 36px); font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-top: 10px; }
+.section-sub { font-size: 15px; color: var(--grey); margin-top: 8px; line-height: 1.65; }
+
+/* ════ NAV ═══════════════════════════════════════════════ */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--g100); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 20px; }
+.nav-logo { display: block; height: 32px; width: auto; flex-shrink: 0; }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--grey); text-decoration: none; padding: 6px 11px; border-radius: var(--r-md); transition: color .15s, background .15s; }
+.nav-links a:hover { color: var(--navy); background: var(--g50); }
+@media (max-width: 680px) { .nav-links { display: none; } }
+
+/* ════ HERO ══════════════════════════════════════════════ */
+.hero { background: #fff; padding: 76px 0 68px; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -5%, rgba(212,160,23,.05), transparent 70%); pointer-events: none; }
+.hero-logo { margin: 0 auto 28px; display: block; height: 68px; width: auto; }
+.hero-headline { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; font-size: clamp(40px, 6.5vw, 70px); color: var(--navy); margin-bottom: 10px; }
+.hero-headline span { color: var(--gold); }
+.hero-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(16px, 2.2vw, 22px); font-weight: 700; color: var(--navy); opacity: .6; letter-spacing: -.01em; margin-bottom: 14px; }
+.hero-desc { font-size: 15px; color: var(--grey); max-width: 500px; margin: 0 auto 32px; line-height: 1.65; }
+.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-price-row { display: inline-flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.hero-price-main { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
+.hero-price-old { font-size: 16px; color: var(--grey); text-decoration: line-through; }
+.hero-price-badge { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-pill); letter-spacing: .06em; }
+.hero-meta { font-size: 12px; color: var(--grey); margin-bottom: 44px; }
+.stats-strip { display: flex; justify-content: center; border: 1px solid var(--g100); border-radius: var(--r-lg); overflow: hidden; max-width: 620px; margin: 0 auto; }
+.stat-item { flex: 1; padding: 18px 12px; text-align: center; border-right: 1px solid var(--g100); }
+.stat-item:last-child { border-right: 0; }
+.stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 800; color: var(--gold-light); letter-spacing: -.02em; line-height: 1; margin-bottom: 3px; }
+.stat-label { font-size: 11px; font-weight: 500; color: var(--grey); }
+
+/* ════ TICKER ════════════════════════════════════════════ */
+.ticker-wrap { background: var(--navy); padding: 12px 0; overflow: hidden; white-space: nowrap; }
+.ticker-track { display: inline-flex; animation: ticker 30s linear infinite; }
+.ticker-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 32px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.65); letter-spacing: .07em; text-transform: uppercase; }
+.ticker-item .sep { color: var(--gold); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ════ PROBLEM ═══════════════════════════════════════════ */
+.problem { background: var(--g50); }
+.problem-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+@media (max-width: 760px) { .problem-grid { grid-template-columns: repeat(2,1fr); } }
+.problem-card { background: #fff; border: 1px solid var(--g100); border-left: 3px solid var(--gold); border-radius: var(--r-lg); padding: 22px 18px; }
+.problem-icon { width: 34px; height: 34px; background: rgba(212,160,23,.08); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.problem-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.problem-card p { font-size: 13px; color: var(--grey); line-height: 1.5; }
+.problem-stat { margin-top: 36px; background: var(--navy); border-radius: var(--r-lg); padding: 20px 28px; display: flex; align-items: center; gap: 20px; }
+.problem-stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 44px; font-weight: 800; color: var(--gold-light); letter-spacing: -.03em; white-space: nowrap; }
+.problem-stat-text { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.55; }
+.problem-stat-text strong { color: #fff; }
+
+/* ════ PROGRAMS ══════════════════════════════════════════ */
+.programs { background: #fff; }
+.prog-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+.prog-tab { padding: 9px 20px; border-radius: var(--r-pill); font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid var(--g200); color: var(--grey); background: #fff; transition: all .2s; }
+.prog-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.prog-panel { display: none; }
+.prog-panel.active { display: block; }
+.bento { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+@media (max-width: 860px) { .bento { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 480px) { .bento { grid-template-columns: 1fr; } }
+.bento-card { background: var(--g50); border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 26px 20px; position: relative; overflow: hidden; transition: border-color .2s, transform .2s; }
+.bento-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.bento-card.featured { background: linear-gradient(135deg, rgba(212,160,23,.1), rgba(212,160,23,.03)); border-color: rgba(212,160,23,.35); }
+.bento-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 60px; font-weight: 800; color: var(--g100); line-height: 1; position: absolute; right: 14px; top: 14px; letter-spacing: -.04em; pointer-events: none; user-select: none; }
+.bento-card.featured .bento-num { color: rgba(212,160,23,.12); }
+.bento-week { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
+.bento-card.featured .bento-week { color: rgba(212,160,23,.7); }
+.bento-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 6px; letter-spacing: -.01em; }
+.bento-card.featured .bento-title { color: var(--navy); }
+.bento-card p { font-size: 13px; color: var(--grey); line-height: 1.5; margin-top: 4px; }
+.bento-card.featured p { color: var(--grey); }
+.bento-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+.bento-tag { font-size: 11px; font-weight: 500; background: var(--g100); color: var(--grey); padding: 3px 8px; border-radius: var(--r-pill); }
+.bento-card.featured .bento-tag { background: rgba(212,160,23,.12); color: #8B6914; border: 1px solid rgba(212,160,23,.2); }
+
+/* ════ BUILD ══════════════════════════════════════════════ */
+.build { background: var(--g50); }
+.build-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+@media (max-width: 580px) { .build-grid { grid-template-columns: 1fr; } }
+.build-card { background: #fff; border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 26px 22px; transition: border-color .2s; }
+.build-card:hover { border-color: var(--gold); }
+.build-num { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
+.build-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 7px; letter-spacing: -.01em; }
+.build-card p { font-size: 13px; color: var(--grey); line-height: 1.6; margin-bottom: 14px; }
+.build-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack-tag { font-size: 11px; font-weight: 500; color: var(--navy); background: var(--g50); border: 1px solid var(--g100); padding: 3px 8px; border-radius: var(--r-pill); }
+
+/* ════ WHAT YOU GET ══════════════════════════════════════ */
+.get { background: var(--navy); }
+.get-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+@media (max-width: 680px) { .get-grid { grid-template-columns: 1fr; } }
+.get-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: var(--r-lg); padding: 22px 18px; display: flex; gap: 12px; align-items: flex-start; }
+.get-check { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: rgba(212,160,23,.12); border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.get-card-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.get-card-sub   { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.5; }
+
+/* ════ WHY ════════════════════════════════════════════════ */
+.why { background: #fff; }
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+@media (max-width: 680px) { .why-grid { grid-template-columns: 1fr; } }
+.why-card { background: var(--g50); border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 26px 22px; transition: border-color .2s, transform .2s; }
+.why-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.why-num { font-size: 11px; font-weight: 700; color: var(--grey); letter-spacing: .1em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.why-num::after { content: ''; flex: 1; height: 1px; background: var(--g100); }
+.why-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 8px; letter-spacing: -.01em; }
+.why-card p { font-size: 13px; color: var(--grey); line-height: 1.65; }
+
+/* ════ INSTRUCTOR ════════════════════════════════════════ */
+.instructor { background: var(--g50); }
+.instructor-inner { display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: center; }
+@media (max-width: 700px) { .instructor-inner { grid-template-columns: 1fr; text-align: center; } .instructor-avatar { margin: 0 auto; } .instructor-tags { justify-content: center; } .instructor-stats { justify-content: center; } }
+.instructor-avatar { width: 220px; height: 220px; border-radius: 50%; border: 3px solid var(--g200); overflow: hidden; position: relative; flex-shrink: 0; }
+.instructor-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.instructor-avatar-ring { position: absolute; inset: -7px; border-radius: 50%; border: 2px dashed rgba(212,160,23,.35); pointer-events: none; }
+.instructor-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 800; color: var(--navy); letter-spacing: -.02em; margin: 8px 0 4px; }
+.instructor-role { font-size: 14px; color: var(--grey); margin-bottom: 18px; line-height: 1.55; }
+.instructor-stats { display: flex; gap: 28px; margin-bottom: 18px; flex-wrap: wrap; }
+.i-stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 800; color: var(--gold); letter-spacing: -.02em; line-height: 1; }
+.i-stat-lbl { font-size: 11px; color: var(--grey); margin-top: 2px; }
+.instructor-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.i-tag { font-size: 12px; font-weight: 500; color: var(--navy); background: #fff; border: 1px solid var(--g100); padding: 4px 11px; border-radius: var(--r-pill); }
+
+/* ════ PRICING ═══════════════════════════════════════════ */
+.pricing { background: var(--navy); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 0; }
+@media (max-width: 860px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+.price-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 28px 24px; display: flex; flex-direction: column; gap: 0; position: relative; }
+.price-card.featured { background: linear-gradient(160deg, rgba(212,160,23,.08), rgba(212,160,23,.02)); border-color: rgba(212,160,23,.4); }
+.price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: var(--r-pill); letter-spacing: .06em; white-space: nowrap; }
+.price-who { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+.price-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 4px; letter-spacing: -.01em; }
+.price-desc { font-size: 13px; color: rgba(255,255,255,.45); margin-bottom: 20px; line-height: 1.5; }
+.price-amount { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.price-main { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 42px; font-weight: 800; color: var(--gold-light); letter-spacing: -.04em; line-height: 1; }
+.price-strike { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 600; color: rgba(255,255,255,.2); text-decoration: line-through; }
+.price-off { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-pill); }
+.price-includes { font-size: 13px; color: rgba(255,255,255,.45); margin-bottom: 4px; }
+.price-includes strong { color: rgba(255,255,255,.75); font-weight: 500; }
+.price-list { list-style: none; margin: 16px 0 24px; display: flex; flex-direction: column; gap: 8px; }
+.price-list li { font-size: 13px; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 8px; }
+.price-list li::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: rgba(212,160,23,.12); border: 1px solid rgba(212,160,23,.35); display: flex; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23D4A017' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+.price-seats { font-size: 12px; color: rgba(255,255,255,.35); display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
+.seats-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: pulse 1.5s ease-in-out infinite; flex-shrink: 0; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.8); } }
+.price-btn { display: block; text-align: center; padding: 13px; border-radius: var(--r-lg); font-size: 14px; font-weight: 700; text-decoration: none; margin-top: auto; transition: opacity .15s, transform .15s; }
+.price-btn:hover { opacity: .88; transform: translateY(-1px); }
+.price-btn-primary { background: var(--gold); color: var(--navy); box-shadow: 0 8px 24px rgba(212,160,23,.22); }
+.price-btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.2); }
+
+/* ════ ENROLLMENT FORM ═══════════════════════════════════ */
+.enroll { background: var(--g50); }
+.enroll-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+@media (max-width: 760px) { .enroll-inner { grid-template-columns: 1fr; } }
+.enroll-left h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: var(--navy); letter-spacing: -.02em; margin: 10px 0 12px; line-height: 1.15; }
+.enroll-left p { font-size: 14px; color: var(--grey); line-height: 1.65; margin-bottom: 24px; }
+.enroll-perks { display: flex; flex-direction: column; gap: 12px; }
+.enroll-perk { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--navy); }
+.enroll-perk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.enroll-form { background: #fff; border: 1px solid var(--g100); border-radius: 16px; padding: 32px 28px; }
+.enroll-form h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.enroll-form .form-sub { font-size: 13px; color: var(--grey); margin-bottom: 24px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: .03em; display: block; margin-bottom: 6px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 11px 14px; border-radius: var(--r-md); border: 1.5px solid var(--g200);
+  font-family: 'Inter', sans-serif; font-size: 14px; color: var(--navy); background: #fff;
+  outline: none; transition: border-color .15s;
+  -webkit-appearance: none; appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--navy); }
+.form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+.form-textarea { resize: vertical; min-height: 80px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+.form-submit { width: 100%; padding: 14px; background: var(--navy); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; border: none; border-radius: var(--r-lg); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 6px; transition: opacity .15s, transform .15s; letter-spacing: -.01em; }
+.form-submit:hover { opacity: .88; transform: translateY(-1px); }
+.form-success { display: none; text-align: center; padding: 20px; }
+.form-success .success-icon { width: 52px; height: 52px; background: rgba(212,160,23,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; border: 2px solid var(--gold); }
+.form-success h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.form-success p { font-size: 14px; color: var(--grey); }
+
+/* ════ FOOTER ════════════════════════════════════════════ */
+footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); padding: 36px 0 28px; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-logo { display: block; height: 28px; width: auto; flex-shrink: 0; }
+.footer-tagline { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: 5px; }
+.footer-right { text-align: right; }
+.footer-links { display: flex; gap: 18px; margin-bottom: 6px; justify-content: flex-end; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,.4); text-decoration: none; transition: color .15s; }
+.footer-links a:hover { color: rgba(255,255,255,.8); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+
+/* ════ CHATBOT ═══════════════════════════════════════════ */
+.chat-fab { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: var(--navy); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(11,25,41,.35); transition: transform .2s, box-shadow .2s; }
+.chat-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(11,25,41,.45); }
+.chat-fab-ring { position: absolute; inset: -3px; border-radius: 50%; border: 2px solid rgba(212,160,23,.4); animation: fabring 2s ease-in-out infinite; }
+@keyframes fabring { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.12); opacity:.5; } }
+.chat-panel { position: fixed; bottom: 98px; right: 28px; z-index: 998; width: 340px; max-height: 520px; background: #fff; border: 1px solid var(--g100); border-radius: 16px; box-shadow: 0 8px 40px rgba(11,25,41,.18); display: flex; flex-direction: column; transform: scale(.92) translateY(12px); opacity: 0; pointer-events: none; transition: transform .2s, opacity .2s; }
+.chat-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+.chat-header { background: var(--navy); border-radius: 14px 14px 0 0; padding: 14px 18px; display: flex; align-items: center; gap: 10px; }
+.chat-header-logo { height: 24px; width: auto; display: block; }
+.chat-header-info { flex: 1; }
+.chat-header-name { font-size: 13px; font-weight: 700; color: #fff; }
+.chat-header-status { font-size: 11px; color: rgba(255,255,255,.5); display: flex; align-items: center; gap: 5px; margin-top: 1px; }
+.chat-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+.chat-close { background: rgba(255,255,255,.1); border: none; color: rgba(255,255,255,.7); cursor: pointer; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+.chat-close:hover { background: rgba(255,255,255,.2); }
+.chat-messages { flex: 1; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-track { background: transparent; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--g200); border-radius: 4px; }
+.msg { max-width: 88%; line-height: 1.5; }
+.msg-bot { background: var(--g50); border: 1px solid var(--g100); border-radius: 4px 12px 12px 12px; padding: 10px 13px; font-size: 13px; color: var(--navy); align-self: flex-start; }
+.msg-user { background: var(--navy); color: #fff; border-radius: 12px 12px 4px 12px; padding: 10px 13px; font-size: 13px; align-self: flex-end; }
+.chat-quick { padding: 8px 14px 6px; display: flex; flex-wrap: wrap; gap: 6px; border-top: 1px solid var(--g100); }
+.quick-btn { font-size: 11px; font-weight: 500; padding: 5px 11px; border-radius: var(--r-pill); border: 1.5px solid var(--g200); background: #fff; color: var(--navy); cursor: pointer; transition: all .15s; }
+.quick-btn:hover { border-color: var(--navy); background: var(--g50); }
+.chat-input-row { padding: 10px 14px 14px; display: flex; gap: 8px; }
+.chat-input { flex: 1; padding: 9px 13px; border-radius: var(--r-pill); border: 1.5px solid var(--g200); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--navy); outline: none; transition: border-color .15s; }
+.chat-input:focus { border-color: var(--navy); }
+.chat-send { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: opacity .15s; }
+.chat-send:hover { opacity: .8; }
+.typing { display: flex; gap: 4px; align-items: center; padding: 12px 14px; }
+.typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--g200); animation: bounce .9s ease-in-out infinite; }
+.typing span:nth-child(2) { animation-delay: .15s; }
+.typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes bounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-5px); background: var(--grey); } }
+@media (max-width: 400px) { .chat-panel { width: calc(100vw - 32px); right: 16px; } .chat-fab { right: 16px; bottom: 20px; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <img class="nav-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png" alt="EDURYX" />
+      <ul class="nav-links">
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#build">Projects</a></li>
+        <li><a href="#instructor">Instructor</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#enroll">Enroll</a></li>
+      </ul>
+      <a href="#enroll" class="btn btn-amber btn-sm">Apply Now →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <img class="hero-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png" alt="EDURYX" />
+    <div class="fade-up" style="margin-bottom:10px;">
+      <span style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);">An AI Education Initiative by <span style="color:var(--navy);font-weight:700;">KODRYX AI</span></span>
+    </div>
+    <div class="fade-up" style="margin-bottom:18px;margin-top:10px;">
+      <span class="pill pill-amber"><span class="dot"></span>🔥 Next Batch · June 2026 · Only 25 Seats Left</span>
+    </div>
+    <h1 class="hero-headline fade-up" style="transition-delay:.05s">Learn AI.<br><span>Build the Future.</span></h1>
+    <p class="hero-sub fade-up" style="transition-delay:.1s">Go from student → AI Engineer. No gatekeeping.</p>
+    <p class="hero-desc fade-up" style="transition-delay:.15s">
+      Real skills. Real projects. Real results. Built for B.Tech &amp; graduation students who want to actually <em>build</em> with AI — not just sit through lectures about it.
+    </p>
+    <div class="hero-ctas fade-up" style="transition-delay:.2s">
+      <a href="#enroll" class="btn btn-amber" style="font-size:15px;padding:14px 30px;">
+        Claim My Seat — Free
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#programs" class="btn btn-ghost">Explore Programs ↓</a>
+    </div>
+    <div class="fade-up" style="transition-delay:.25s">
+      <div class="hero-price-row">
+        <span class="hero-price-main">Starting ₹3,000</span>
+        <span class="hero-price-badge">50% OFF</span>
+      </div>
+      <p class="hero-meta">3 Programs · All Levels · Certification Included</p>
+    </div>
+    <div class="stats-strip fade-up" style="transition-delay:.3s">
+      <div class="stat-item"><div class="stat-num">100K+</div><div class="stat-label">Learners Trained</div></div>
+      <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-item"><div class="stat-num">56K+</div><div class="stat-label">Subscribers</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Programs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">AI Foundations <span class="sep">✦</span></span>
+    <span class="ticker-item">Prompt Engineering <span class="sep">✦</span></span>
+    <span class="ticker-item">LLMs &amp; RAG <span class="sep">✦</span></span>
+    <span class="ticker-item">Build AI Apps <span class="sep">✦</span></span>
+    <span class="ticker-item">GitHub Portfolio <span class="sep">✦</span></span>
+    <span class="ticker-item">Industry Certification <span class="sep">✦</span></span>
+    <span class="ticker-item">Career Guidance <span class="sep">✦</span></span>
+    <span class="ticker-item">NASSCOM Aligned <span class="sep">✦</span></span>
+    <span class="ticker-item">B.Tech Ready <span class="sep">✦</span></span>
+    <span class="ticker-item">Graduation Program <span class="sep">✦</span></span>
+    <span class="ticker-item">AI Foundations <span class="sep">✦</span></span>
+    <span class="ticker-item">Prompt Engineering <span class="sep">✦</span></span>
+    <span class="ticker-item">LLMs &amp; RAG <span class="sep">✦</span></span>
+    <span class="ticker-item">Build AI Apps <span class="sep">✦</span></span>
+    <span class="ticker-item">GitHub Portfolio <span class="sep">✦</span></span>
+    <span class="ticker-item">Industry Certification <span class="sep">✦</span></span>
+    <span class="ticker-item">Career Guidance <span class="sep">✦</span></span>
+    <span class="ticker-item">NASSCOM Aligned <span class="sep">✦</span></span>
+    <span class="ticker-item">B.Tech Ready <span class="sep">✦</span></span>
+    <span class="ticker-item">Graduation Program <span class="sep">✦</span></span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">The Problem</span>
+      <h2 class="section-title">Your Degree Won't Get You the Job. This Will.</h2>
+      <p class="section-sub">90% of graduates leave college with zero portfolio. Companies don't care about your GPA — they care what you've built.</p>
+    </div>
+    <div class="problem-grid fade-up">
+      <div class="problem-card">
+        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="#D4A017"/></svg></div>
+        <h3>No Practical Skills</h3><p>Theory without hands-on experience with real tools</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>No Real Projects</h3><p>Graduate without a portfolio demonstrating skills</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3>No AI Exposure</h3><p>Missing AI/ML knowledge essential in every industry</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg></div>
+        <h3>Not Job-Ready</h3><p>Lacks industry-relevant skills employers want</p>
+      </div>
+    </div>
+    <div class="problem-stat fade-up">
+      <div class="problem-stat-num">90%</div>
+      <div class="problem-stat-text"><strong>of students graduate without a portfolio.</strong><br>EDURYX gives you 4+ live AI projects you can show any employer, from day one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS / CURRICULUM -->
+<section class="programs" id="programs">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Choose Your Path</span>
+      <h2 class="section-title">3 Programs. Every Level.</h2>
+      <p class="section-sub">From first-year BTech to serious AI engineering — we have the right program for you.</p>
+    </div>
+    <div class="prog-tabs fade-up">
+      <button class="prog-tab active" onclick="switchProgram('btech',this)">4 Weeks · B.Tech Students</button>
+      <button class="prog-tab" onclick="switchProgram('grad',this)">4 Weeks · Graduation Programs</button>
+      <button class="prog-tab" onclick="switchProgram('eight',this)">8 Weeks · AI Engineer ★</button>
+    </div>
+
+    <!-- B.TECH -->
+    <div class="prog-panel active" id="panel-btech">
+      <div style="text-align:center;margin-bottom:28px;" class="fade-up">
+        <span class="pill pill-amber" style="margin-bottom:10px;"><span class="dot"></span>Get Ahead Before College Starts · ₹8,000</span>
+        <p style="font-size:14px;color:var(--grey);margin-top:6px;">Ideal for incoming or current B.Tech students with zero prior experience.</p>
+      </div>
+      <div class="bento fade-up">
+        <div class="bento-card">
+          <div class="bento-num">01</div>
+          <div class="bento-week">Week 1</div>
+          <div class="bento-title">Python Fundamentals</div>
+          <p>Core programming concepts to build a strong technical foundation.</p>
+          <div class="bento-tags"><span class="bento-tag">Python</span><span class="bento-tag">Syntax</span></div>
+        </div>
+        <div class="bento-card featured">
+          <div class="bento-num">02</div>
+          <div class="bento-week">Week 2</div>
+          <div class="bento-title">Logic Building &amp; Problem Solving</div>
+          <p>Develop structured thinking to solve real-world problems efficiently.</p>
+          <div class="bento-tags"><span class="bento-tag">Algorithms</span><span class="bento-tag">DSA</span></div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-num">03</div>
+          <div class="bento-week">Week 3</div>
+          <div class="bento-title">Intro to AI &amp; Machine Learning</div>
+          <p>Understand how intelligent systems work in the real world.</p>
+          <div class="bento-tags"><span class="bento-tag">AI Basics</span><span class="bento-tag">ML</span></div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-num">04</div>
+          <div class="bento-week">Week 4</div>
+          <div class="bento-title">Prompt Engineering</div>
+          <p>Learn to interact with AI models effectively and get accurate results.</p>
+          <div class="bento-tags"><span class="bento-tag">ChatGPT</span><span class="bento-tag">Prompts</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRADUATION -->
+    <div class="prog-panel" id="panel-grad">
+      <div style="text-align:center;margin-bottom:28px;">
+        <span class="pill pill-amber" style="margin-bottom:10px;"><span class="dot"></span>BA · BSc · BCom · ₹3,000</span>
+        <p style="font-size:14px;color:var(--grey);margin-top:6px;">Designed for regular graduation students — no coding background needed.</p>
+      </div>
+      <div class="bento">
+        <div class="bento-card">
+          <div class="bento-num">01</div>
+          <div class="bento-week">Week 1</div>
+          <div class="bento-title">Introduction to AI</div>
+          <p>Understand AI fundamentals and how it works in real-world applications.</p>
+          <div class="bento-tags"><span class="bento-tag">AI Concepts</span></div>
+        </div>
+        <div class="bento-card featured">
+          <div class="bento-num">02</div>
+          <div class="bento-week">Week 2</div>
+          <div class="bento-title">Basics of Python</div>
+          <p>Core programming concepts to start building with AI — no experience needed.</p>
+          <div class="bento-tags"><span class="bento-tag">Python</span></div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-num">03</div>
+          <div class="bento-week">Week 3</div>
+          <div class="bento-title">ChatGPT &amp; AI Tools</div>
+          <p>Explore powerful tools to automate tasks and boost your productivity.</p>
+          <div class="bento-tags"><span class="bento-tag">ChatGPT</span><span class="bento-tag">Tools</span></div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-num">04</div>
+          <div class="bento-week">Week 4</div>
+          <div class="bento-title">Simple AI Projects</div>
+          <p>Apply your knowledge by creating practical, real-world AI projects.</p>
+          <div class="bento-tags"><span class="bento-tag">Projects</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 WEEK -->
+    <div class="prog-panel" id="panel-eight">
+      <div style="text-align:center;margin-bottom:28px;">
+        <span class="pill pill-amber" style="margin-bottom:10px;"><span class="dot"></span>AI Engineer Track · ₹20,000 · Most Complete</span>
+        <p style="font-size:14px;color:var(--grey);margin-top:6px;">Build production-grade AI systems using Agents, RAG, Automation &amp; LLMs.</p>
+      </div>
+      <div class="bento">
+        <div class="bento-card">
+          <div class="bento-num">01</div>
+          <div class="bento-week">Week 1–2</div>
+          <div class="bento-title">AI Foundations</div>
+          <p>Core ML, Python for AI, data pipelines and problem framing.</p>
+          <div class="bento-tags"><span class="bento-tag">Python</span><span class="bento-tag">ML Basics</span></div>
+        </div>
+        <div class="bento-card featured">
+          <div class="bento-num">02</div>
+          <div class="bento-week">Week 3–4</div>
+          <div class="bento-title">Prompt Engineering</div>
+          <p>Master LLMs, RAG architecture and advanced AI interactions.</p>
+          <div class="bento-tags"><span class="bento-tag">LLMs</span><span class="bento-tag">RAG</span></div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-num">03</div>
+          <div class="bento-week">Week 5–6</div>
+          <div class="bento-title">Build AI Apps</div>
+          <p>Ship real applications using APIs, automation and multi-agent systems.</p>
+          <div class="bento-tags"><span class="bento-tag">APIs</span><span class="bento-tag">Automation</span></div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-num">04</div>
+          <div class="bento-week">Week 7–8</div>
+          <div class="bento-title">Projects &amp; Career</div>
+          <p>Build your GitHub portfolio, interview prep and job placement support.</p>
+          <div class="bento-tags"><span class="bento-tag">Portfolio</span><span class="bento-tag">Interview</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD -->
+<section class="build" id="build">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Real Projects</span>
+      <h2 class="section-title">What You Will Build</h2>
+      <p class="section-sub">4 production-grade AI systems that go straight into your portfolio.</p>
+    </div>
+    <div class="build-grid fade-up">
+      <div class="build-card">
+        <div class="build-num">PROJECT 01</div>
+        <h3>AI Chatbot with RAG</h3>
+        <p>A smart assistant that retrieves and responds with context — the core pattern behind every enterprise AI product.</p>
+        <div class="build-stack"><span class="stack-tag">Python</span><span class="stack-tag">OpenAI</span><span class="stack-tag">LangChain</span></div>
+      </div>
+      <div class="build-card">
+        <div class="build-num">PROJECT 02</div>
+        <h3>Resume Analyzer for ATS</h3>
+        <p>An AI system that reads resumes, matches job descriptions and suggests improvements — real NLP in production.</p>
+        <div class="build-stack"><span class="stack-tag">NLP</span><span class="stack-tag">ML</span><span class="stack-tag">FastAPI</span></div>
+      </div>
+      <div class="build-card">
+        <div class="build-num">PROJECT 03</div>
+        <h3>Healthcare AI System</h3>
+        <p>Symptom triage and health insight engine — deploying ML in a high-stakes vertical with real data.</p>
+        <div class="build-stack"><span class="stack-tag">TensorFlow</span><span class="stack-tag">Flask</span><span class="stack-tag">React</span></div>
+      </div>
+      <div class="build-card">
+        <div class="build-num">PROJECT 04</div>
+        <h3>Automation Workflows</h3>
+        <p>Intelligent agents that automate repetitive business tasks end-to-end using Python, Celery and Docker.</p>
+        <div class="build-stack"><span class="stack-tag">Python</span><span class="stack-tag">Celery</span><span class="stack-tag">Docker</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="get" id="get">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label" style="color:rgba(255,255,255,.35);">Included</span>
+      <h2 class="section-title" style="color:#fff;">What You Get</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.45);">Everything you need to go from zero to AI engineer.</p>
+    </div>
+    <div class="get-grid fade-up">
+      <div class="get-card"><div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="get-card-title">Full Program Access</div><div class="get-card-sub">Live online sessions with lifetime replay access</div></div></div>
+      <div class="get-card"><div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="get-card-title">4+ Real Projects</div><div class="get-card-sub">GitHub-ready portfolio that impresses recruiters</div></div></div>
+      <div class="get-card"><div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="get-card-title">Industry Certification</div><div class="get-card-sub">NASSCOM-recognised — add it to LinkedIn today</div></div></div>
+      <div class="get-card"><div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="get-card-title">Internship Opportunity</div><div class="get-card-sub">Top performers get direct industry placement support</div></div></div>
+      <div class="get-card"><div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="get-card-title">Industry Mentorship</div><div class="get-card-sub">Direct access to AI practitioners and career coaches</div></div></div>
+      <div class="get-card"><div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="get-card-title">Career &amp; Interview Prep</div><div class="get-card-sub">Resume review, mock interviews, job-hunt strategy</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Why EDURYX</span>
+      <h2 class="section-title">Not Your Usual Course. Built Different.</h2>
+      <p class="section-sub">Every other AI course gives you slides. We give you shipped projects, a GitHub, and a cert that actually means something.</p>
+    </div>
+    <div class="why-grid fade-up">
+      <div class="why-card"><div class="why-num">01</div><h3>Execution Over Theory</h3><p>We don't just teach AI — we build real-world AI systems. Every student graduates with live projects and deployable skills, not slides.</p></div>
+      <div class="why-card"><div class="why-num">02</div><h3>Global Ecosystem</h3><p>Collaborations with AI for All Global and World AI Governance Foundation. Industry alignment through NASSCOM — your certificate means something.</p></div>
+      <div class="why-card"><div class="why-num">03</div><h3>Campus to Career Pipeline</h3><p>Active university partnerships across India. A direct talent funnel from your campus straight into the AI industry.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="instructor" id="instructor">
+  <div class="container">
+    <div class="instructor-inner">
+      <div style="position:relative;width:220px;height:220px;flex-shrink:0;">
+        <div class="instructor-avatar">
+          <img src="assets/Sonu pic V1.png" alt="Sonu Kumar" />
+        </div>
+        <div class="instructor-avatar-ring"></div>
+      </div>
+      <div>
+        <span class="label">Your Instructor</span>
+        <h2 class="instructor-name">Sonu Kumar</h2>
+        <p class="instructor-role">Founder, EDURYX · Serial AI Entrepreneur · AI Researcher · Corporate AI Trainer<br>Published in <em>Nature</em> &amp; <em>Frontiers</em></p>
+        <div class="instructor-stats">
+          <div><div class="i-stat-num">10+</div><div class="i-stat-lbl">Years in AI</div></div>
+          <div><div class="i-stat-num">100K+</div><div class="i-stat-lbl">Learners</div></div>
+          <div><div class="i-stat-num">56K+</div><div class="i-stat-lbl">Subscribers</div></div>
+        </div>
+        <div class="instructor-tags">
+          <span class="i-tag">GenAI Solutions</span><span class="i-tag">AI Agents</span><span class="i-tag">RAG</span>
+          <span class="i-tag">LLM Fine-tuning</span><span class="i-tag">LangChain</span><span class="i-tag">AWS Bedrock</span>
+          <span class="i-tag">PyCon Lithuania '25</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label" style="color:rgba(255,255,255,.35);">Pricing</span>
+      <h2 class="section-title" style="color:#fff;">Simple, Transparent Pricing</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.45);">One-time payment. No subscription. Lifetime access.</p>
+    </div>
+    <div class="pricing-grid fade-up">
+
+      <!-- GRAD -->
+      <div class="price-card">
+        <div class="price-who">BA · BSc · BCom</div>
+        <div class="price-name">Graduation Program</div>
+        <div class="price-desc">4 weeks · Perfect intro to AI for non-tech graduates</div>
+        <div class="price-amount">
+          <span class="price-main">₹3,000</span>
+          <span class="price-strike">₹6,000</span>
+          <span class="price-off">50% OFF</span>
+        </div>
+        <p class="price-includes"><strong>Full Program · Certification</strong></p>
+        <ul class="price-list">
+          <li>4-week live program</li>
+          <li>Introduction to AI</li>
+          <li>ChatGPT &amp; AI Tools</li>
+          <li>Simple AI Projects</li>
+          <li>EDURYX Certification</li>
+          <li>Lifetime access</li>
+        </ul>
+        <div class="price-seats"><span class="seats-dot"></span>25 seats · Next batch June 2026</div>
+        <a href="#enroll" class="price-btn price-btn-outline" onclick="preselectProgram('4-Week Graduation Program (BA/BSc/BCom)')">Enroll Now →</a>
+      </div>
+
+      <!-- BTECH -->
+      <div class="price-card">
+        <div class="price-who">B.Tech Students</div>
+        <div class="price-name">B.Tech AI Program</div>
+        <div class="price-desc">4 weeks · Get ahead before college starts</div>
+        <div class="price-amount">
+          <span class="price-main">₹8,000</span>
+          <span class="price-strike">₹16,000</span>
+          <span class="price-off">50% OFF</span>
+        </div>
+        <p class="price-includes"><strong>Full Program · Projects · Certification</strong></p>
+        <ul class="price-list">
+          <li>4-week live program</li>
+          <li>Python Fundamentals</li>
+          <li>Intro to AI &amp; ML</li>
+          <li>Prompt Engineering</li>
+          <li>Real AI Projects</li>
+          <li>EDURYX Certification</li>
+        </ul>
+        <div class="price-seats"><span class="seats-dot"></span>25 seats · Next batch June 2026</div>
+        <a href="#enroll" class="price-btn price-btn-outline" onclick="preselectProgram('4-Week B.Tech AI Program')">Enroll Now →</a>
+      </div>
+
+      <!-- 8 WEEK FEATURED -->
+      <div class="price-card featured">
+        <div class="price-badge">★ Most Complete</div>
+        <div class="price-who" style="color:rgba(255,255,255,.4);">AI Engineer Track</div>
+        <div class="price-name">8-Week AI Engineer</div>
+        <div class="price-desc" style="color:rgba(255,255,255,.4);">8 weeks · Build production AI systems + internship</div>
+        <div class="price-amount">
+          <span class="price-main">₹20,000</span>
+          <span class="price-strike">₹40,000</span>
+          <span class="price-off">50% OFF</span>
+        </div>
+        <p class="price-includes" style="color:rgba(255,255,255,.45);"><strong style="color:rgba(255,255,255,.8);">Full Program · 4+ Projects · Certification · Internship</strong></p>
+        <ul class="price-list">
+          <li>8-week intensive program</li>
+          <li>4+ production AI projects</li>
+          <li>GitHub portfolio</li>
+          <li>Industry mentorship</li>
+          <li>Internship opportunity</li>
+          <li>Career &amp; interview prep</li>
+        </ul>
+        <div class="price-seats" style="color:rgba(255,255,255,.35);"><span class="seats-dot"></span>25 seats · Next batch June 2026</div>
+        <a href="#enroll" class="price-btn price-btn-primary" onclick="preselectProgram('8-Week AI Engineer Program')">Enroll Now →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ENROLLMENT FORM -->
+<section class="enroll" id="enroll">
+  <div class="container">
+    <div class="enroll-inner">
+      <div class="enroll-left fade-up">
+        <span class="label">Enrollment</span>
+        <h2>Start Your AI Journey Today.</h2>
+        <p>Fill in the form and our team will reach out within 24 hours to confirm your seat and share batch details.</p>
+        <div class="enroll-perks">
+          <div class="enroll-perk"><span class="enroll-perk-dot"></span>No prior coding experience required</div>
+          <div class="enroll-perk"><span class="enroll-perk-dot"></span>Flexible timing — live + recorded sessions</div>
+          <div class="enroll-perk"><span class="enroll-perk-dot"></span>Industry-recognised NASSCOM certification</div>
+          <div class="enroll-perk"><span class="enroll-perk-dot"></span>Only 25 seats per batch — act fast</div>
+          <div class="enroll-perk"><span class="enroll-perk-dot"></span>EMI options available on request</div>
+        </div>
+      </div>
+
+      <div class="enroll-form fade-up" style="transition-delay:.1s">
+        <h3>Reserve Your Seat</h3>
+        <p class="form-sub">Next batch starts June 2026 · Limited to 25 students</p>
+        <form id="enrollForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">First Name *</label>
+              <input class="form-input" id="fname" type="text" placeholder="Riya" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Last Name *</label>
+              <input class="form-input" id="lname" type="text" placeholder="Sharma" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input class="form-input" id="email" type="email" placeholder="riya@gmail.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number *</label>
+            <input class="form-input" id="phone" type="tel" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="program">Select Program *</label>
+            <select class="form-select" id="program" required>
+              <option value="" disabled selected>Choose your program</option>
+              <option>4-Week Graduation Program (BA/BSc/BCom) — ₹3,000</option>
+              <option>4-Week B.Tech AI Program — ₹8,000</option>
+              <option>8-Week AI Engineer Program — ₹20,000</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="college">College / University</label>
+            <input class="form-input" id="college" type="text" placeholder="Delhi University" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Anything you'd like us to know?</label>
+            <textarea class="form-textarea" id="message" placeholder="E.g. I'm a 2nd year B.Tech student with no coding background…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            Reserve My Seat
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h4>You're on the list!</h4>
+          <p>We'll reach out within 24 hours to confirm your seat and share batch details. Check your email.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <img class="footer-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Dark Removed Background.png" alt="EDURYX" />
+        <div class="footer-tagline">Education &amp; Skilling by KODRYX AI · Built for the AI Generation</div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="#programs">Programs</a>
+          <a href="#instructor">Instructor</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#enroll">Enroll</a>
+        </div>
+        <div class="footer-copy">© 2026 EDURYX · A KODRYX AI Initiative · All rights reserved</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT FAB -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Open chat">
+  <div class="chat-fab-ring"></div>
+  <svg id="chatIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <svg id="closeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+
+<!-- CHATBOT PANEL -->
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <img class="chat-header-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Dark Removed Background.png" alt="EDURYX" />
+    <div class="chat-header-info">
+      <div class="chat-header-name">EDURYX AI Assistant</div>
+      <div class="chat-header-status"><span class="chat-status-dot"></span>Online · replies instantly</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg msg-bot">Hi! 👋 I'm the EDURYX assistant. Ask me anything about our programs, fees, curriculum, or how to enroll.</div>
+  </div>
+  <div class="chat-quick" id="chatQuick">
+    <button class="quick-btn" onclick="sendQuick('What programs do you offer?')">Programs</button>
+    <button class="quick-btn" onclick="sendQuick('What is the fee?')">Fees</button>
+    <button class="quick-btn" onclick="sendQuick('When does the next batch start?')">Batch dates</button>
+    <button class="quick-btn" onclick="sendQuick('Do I get a certificate?')">Certificate</button>
+    <button class="quick-btn" onclick="sendQuick('How do I enroll?')">Enroll</button>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Ask anything…" onkeydown="if(event.key==='Enter') sendMessage()" />
+    <button class="chat-send" onclick="sendMessage()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+/* ── Scroll animation ─────────────────────────────────── */
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+/* ── Program tabs ─────────────────────────────────────── */
+function switchProgram(id, btn) {
+  document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.prog-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── Pre-select program in form ───────────────────────── */
+function preselectProgram(name) {
+  const sel = document.getElementById('program');
+  for(let i = 0; i < sel.options.length; i++) {
+    if(sel.options[i].text.startsWith(name.split(' ').slice(0,3).join(' '))) {
+      sel.selectedIndex = i; break;
+    }
+  }
+  setTimeout(() => document.getElementById('enroll').scrollIntoView({ behavior:'smooth' }), 10);
+}
+
+/* ── Form submit ──────────────────────────────────────── */
+function submitForm(e) {
+  e.preventDefault();
+  document.getElementById('enrollForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+/* ── Chatbot ──────────────────────────────────────────── */
+const KB = [
+  { q: ['program','offer','course','what do you','which program'], a: 'We offer <strong>3 programs</strong>:<br>① 4-Week Graduation Program (BA/BSc/BCom) — ₹3,000<br>② 4-Week B.Tech AI Program — ₹8,000<br>③ 8-Week AI Engineer Track — ₹20,000<br><br>All include a certification. Which one interests you?' },
+  { q: ['fee','price','cost','how much','₹','rupee'], a: '💰 <strong>Program fees:</strong><br>• Graduation (4 wk): ₹3,000 (was ₹6,000)<br>• B.Tech (4 wk): ₹8,000 (was ₹16,000)<br>• AI Engineer (8 wk): ₹20,000 (was ₹40,000)<br><br>All 50% OFF. EMI available on request!' },
+  { q: ['batch','start','when','june','date','schedule'], a: '📅 The next batch starts <strong>June 2026</strong>. Only 25 seats per batch — we recommend enrolling early to secure your spot!' },
+  { q: ['certif','nasscom','certificate'], a: '✅ Yes! You receive an <strong>industry-recognised EDURYX certification</strong> aligned with NASSCOM standards. You can add it to your LinkedIn right after completing the program.' },
+  { q: ['enroll','apply','register','join','sign up'], a: 'To enroll, just scroll up to the <strong>"Reserve Your Seat"</strong> form and fill in your details. Our team will reach out within 24 hours to confirm your seat. <a href="#enroll" style="color:var(--gold);font-weight:600;">Go to form →</a>' },
+  { q: ['project','build','portfolio','github'], a: '🛠️ You\'ll build <strong>4+ real AI projects</strong> including an AI Chatbot with RAG, a Resume Analyzer, a Healthcare AI System and Automation Workflows — all hosted on GitHub for your portfolio.' },
+  { q: ['internship','job','placement','career'], a: '🎯 Top performers in the 8-Week program get <strong>internship opportunities</strong> and career placement support, including resume review and mock interviews.' },
+  { q: ['instructor','trainer','teacher','sonu','who'], a: '👨‍💻 Your instructor is <strong>Sonu Kumar</strong> — Founder of EDURYX, AI Researcher, Corporate AI Trainer with 10+ years experience, 100K+ learners, and research published in Nature & Frontiers.' },
+  { q: ['btech','b.tech','engineering student','1st year','2nd year'], a: 'The <strong>4-Week B.Tech AI Program</strong> (₹8,000) is perfect for you! It covers Python fundamentals, logic building, intro to AI/ML, and prompt engineering. Great way to get ahead before or during college.' },
+  { q: ['graduation','ba','bsc','bcom','arts','commerce','science'], a: 'The <strong>4-Week Graduation Program</strong> (₹3,000) is designed exactly for BA/BSc/BCom students — no coding background needed. You\'ll learn AI tools, Python basics and build simple AI projects.' },
+  { q: ['8 week','eight week','advanced','engineer','ai engineer'], a: 'The <strong>8-Week AI Engineer Track</strong> (₹20,000) is our most complete program. You\'ll master RAG, LLMs, automation, build 4+ projects, get a GitHub portfolio, mentorship and internship support.' },
+  { q: ['hi','hello','hey','hii','helo'], a: 'Hello! 👋 How can I help you today? You can ask about our programs, fees, batch dates, or anything else about EDURYX.' },
+];
+
+function getBotReply(text) {
+  const t = text.toLowerCase();
+  for(const item of KB) { if(item.q.some(k => t.includes(k))) return item.a; }
+  return "I'm not sure about that, but our team can help! Please use the <a href='#enroll' style='color:var(--gold);font-weight:600;'>enrollment form</a> or email us directly. We respond within 24 hours. 😊";
+}
+
+let chatOpen = false;
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatPanel').classList.toggle('open', chatOpen);
+  document.getElementById('chatIcon').style.display = chatOpen ? 'none' : 'block';
+  document.getElementById('closeIcon').style.display = chatOpen ? 'block' : 'none';
+}
+
+function addMsg(text, type) {
+  const box = document.getElementById('chatMessages');
+  const d = document.createElement('div');
+  d.className = 'msg msg-' + type;
+  d.innerHTML = text;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+function showTyping() {
+  const box = document.getElementById('chatMessages');
+  const d = document.createElement('div');
+  d.className = 'msg msg-bot typing'; d.id = 'typing';
+  d.innerHTML = '<span></span><span></span><span></span>';
+  box.appendChild(d); box.scrollTop = box.scrollHeight;
+}
+
+function removeTyping() { const t = document.getElementById('typing'); if(t) t.remove(); }
+
+function sendMessage() {
+  const inp = document.getElementById('chatInput');
+  const text = inp.value.trim();
+  if(!text) return;
+  inp.value = '';
+  addMsg(text, 'user');
+  document.getElementById('chatQuick').style.display = 'none';
+  showTyping();
+  setTimeout(() => { removeTyping(); addMsg(getBotReply(text), 'bot'); }, 700 + Math.random() * 500);
+}
+
+function sendQuick(text) {
+  if(!chatOpen) toggleChat();
+  addMsg(text, 'user');
+  document.getElementById('chatQuick').style.display = 'none';
+  showTyping();
+  setTimeout(() => { removeTyping(); addMsg(getBotReply(text), 'bot'); }, 700 + Math.random() * 400);
+}
+</script>
+</body>
+</html>

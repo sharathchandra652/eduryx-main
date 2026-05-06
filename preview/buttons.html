@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .section { padding: 24px 28px; }
+  .section-label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; margin-bottom: 14px; display: block; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 6px; }
+  .divider { border: 0; border-top: 1px solid #EEF0F3; margin: 0; }
+
+  /* ── Button base ── */
+  .btn {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(.2,0,0,1);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+  }
+
+  /* Primary — Navy fill */
+  .primary { background: #0B1929; color: #fff; }
+  .primary:hover { background: #162d46; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(11,25,41,0.20); }
+
+  /* Secondary — bordered */
+  .secondary { background: #fff; color: #0B1929; border-color: #D8DCE2; }
+  .secondary:hover { border-color: #0B1929; background: #F7F8FA; }
+
+  /* Accent — Amber fill */
+  .accent { background: #F5A623; color: #0B1929; }
+  .accent:hover { background: #e09518; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,166,35,0.30); }
+
+  /* Ghost */
+  .ghost { background: transparent; color: #0B1929; border-color: transparent; padding: 11px 8px; }
+  .ghost:hover { color: #F5A623; }
+  .ghost .arr { color: #F5A623; margin-left: 4px; }
+
+  /* Amber outline */
+  .amber-outline { background: transparent; color: #F5A623; border-color: #F5A623; }
+  .amber-outline:hover { background: rgba(245,166,35,0.08); }
+
+  /* Sizes */
+  .btn-sm { font-size: 13px; padding: 8px 16px; border-radius: 6px; }
+  .btn-lg { font-size: 16px; padding: 14px 30px; border-radius: 10px; }
+
+  /* Dark section */
+  .dark { background: #0B1929; padding: 24px 28px; }
+  .dark .section-label { color: rgba(255,255,255,0.4); }
+  .btn-on-dark { background: #fff; color: #0B1929; }
+  .btn-on-dark:hover { background: #f0f0f0; }
+</style>
+</head>
+<body>
+<div class="section">
+  <span class="section-label">Primary actions</span>
+  <div class="row">
+    <button class="btn primary btn-sm">Enroll Now</button>
+    <button class="btn primary">Enroll Now</button>
+    <button class="btn primary btn-lg">Enroll Now</button>
+  </div>
+</div>
+<hr class="divider" />
+<div class="section">
+  <span class="section-label">Variants</span>
+  <div class="row">
+    <button class="btn primary">Start Learning</button>
+    <button class="btn secondary">Learn More</button>
+    <button class="btn accent">Download Syllabus</button>
+    <button class="btn ghost">View Details <span class="arr">→</span></button>
+    <button class="btn amber-outline">View Curriculum</button>
+  </div>
+</div>
+<hr class="divider" />
+<div class="section">
+  <span class="section-label">With icon</span>
+  <div class="row">
+    <button class="btn primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+      Start Building
+    </button>
+    <button class="btn accent">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Brochure
+    </button>
+  </div>
+</div>
+<hr class="divider" />
+<div class="dark">
+  <span class="section-label">On dark backgrounds</span>
+  <div class="row">
+    <button class="btn btn-on-dark">Enroll Now</button>
+    <button class="btn accent">Get Started</button>
+    <button class="btn amber-outline">Learn More</button>
+  </div>
+</div>
+</body>
+</html>

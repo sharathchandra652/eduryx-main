@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EDURYX — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --ex-navy:     #0B1929;
+    --ex-amber:    #F5A623;
+    --ex-white:    #FFFFFF;
+    --ex-grey:     #6B7280;
+    --ex-grey-50:  #F7F8FA;
+    --ex-grey-100: #EEF0F3;
+    --ex-grey-200: #D8DCE2;
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--ex-white);
+    color: var(--ex-navy);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ex-white);
+    border-bottom: 1px solid var(--ex-grey-100);
+    padding: 0 40px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .navbar-left { display: flex; align-items: center; gap: 14px; }
+  .navbar-tag {
+    font-family: Inter; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--ex-grey);
+    border-left: 1px solid var(--ex-grey-100); padding-left: 14px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ex-white);
+    padding: 72px 40px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--ex-grey-100);
+  }
+  .hero-eyebrow {
+    font-family: Inter; font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--ex-amber);
+    margin-bottom: 28px; display: block;
+  }
+  .hero-tagline {
+    font-family: Inter; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ex-grey);
+    margin-top: 14px; margin-bottom: 32px; display: block;
+  }
+  .hero-desc {
+    font-family: Inter; font-size: 18px; color: var(--ex-grey);
+    max-width: 520px; margin: 0 auto 44px; line-height: 1.7;
+  }
+
+  /* Palette chips */
+  .palette { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .chip {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--ex-grey-50); border: 1px solid var(--ex-grey-100);
+    border-radius: 8px; padding: 8px 14px;
+  }
+  .chip-swatch { width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; }
+  .chip-label  { font-family: Inter; font-size: 12px; color: var(--ex-navy); font-weight: 500; }
+  .chip-hex    { font-family: 'Courier New', monospace; font-size: 11px; color: var(--ex-grey); }
+
+  /* ── LOGO VARIANTS BAND ── */
+  .logo-band {
+    display: flex; align-items: stretch; flex-wrap: wrap;
+  }
+  .logo-half {
+    flex: 1; min-width: 280px;
+    padding: 56px 48px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .logo-half-light { background: var(--ex-white); border-top: 1px solid var(--ex-grey-100); border-bottom: 1px solid var(--ex-grey-100); }
+  .logo-half-dark  { background: var(--ex-navy); }
+  .logo-half-label {
+    font-family: Inter; font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .tagline-light { font-family: Inter; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ex-navy); }
+  .tagline-dark  { font-family: Inter; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-header { margin-bottom: 40px; }
+  .section-eyebrow {
+    font-family: Inter; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--ex-grey);
+    margin-bottom: 8px; display: block;
+  }
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 700;
+    color: var(--ex-navy); letter-spacing: -0.02em; margin: 0 0 4px; line-height: 1.2;
+  }
+  .section-divider { border: 0; border-top: 2px solid var(--ex-amber); width: 40px; margin: 12px 0 0; }
+  .divider-full { border: 0; border-top: 1px solid var(--ex-grey-100); margin: 0; }
+
+  /* ── PREVIEW GRID ── */
+  .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .preview-card {
+    border: 1px solid var(--ex-grey-100); border-radius: 12px;
+    overflow: hidden; text-decoration: none; display: block;
+    transition: border-color 200ms ease, transform 160ms ease;
+    background: var(--ex-white);
+  }
+  .preview-card:hover { border-color: var(--ex-amber); transform: translateY(-2px); }
+  .preview-frame { width: 100%; height: 200px; border: none; display: block; background: var(--ex-grey-50); }
+  .preview-label {
+    padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--ex-grey-100);
+  }
+  .preview-label-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 14px; color: var(--ex-navy); }
+  .preview-label-arrow { color: var(--ex-amber); font-size: 16px; }
+
+  /* ── TOKEN TABLE ── */
+  .tokens-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .token-table { width: 100%; border-collapse: collapse; font-family: Inter; font-size: 13px; }
+  .token-table th {
+    text-align: left; font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--ex-grey);
+    border-bottom: 1px solid var(--ex-grey-100); padding: 8px 12px;
+  }
+  .token-table td { padding: 10px 12px; border-bottom: 1px solid var(--ex-grey-100); color: var(--ex-navy); vertical-align: middle; }
+  .token-table td:first-child { font-family: 'Courier New', monospace; font-size: 12px; color: var(--ex-grey); }
+  .swatch-cell { display: flex; align-items: center; gap: 10px; }
+  .swatch-sm { width: 24px; height: 24px; border-radius: 5px; border: 1px solid var(--ex-grey-100); flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ex-navy); padding: 36px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-text { font-family: Inter; font-size: 13px; color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR — transparent logo on white bg ── -->
+<nav class="navbar">
+  <div class="navbar-left">
+    <img src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png"
+         height="34" style="width:auto;display:block;" alt="EDURYX" />
+    <span class="navbar-tag">Design System</span>
+  </div>
+  <div style="font-family:Inter;font-size:13px;color:var(--ex-grey);">v1.0 · May 2026</div>
+</nav>
+
+<!-- ── HERO — transparent logo on white bg, large ── -->
+<section class="hero">
+  <span class="hero-eyebrow">Brand Foundations · v1.0</span>
+
+  <img src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png"
+       height="80" style="width:auto;display:block;margin:0 auto;" alt="EDURYX" />
+
+  <span class="hero-tagline">— Learn AI. Build the Future. —</span>
+  <p class="hero-desc">Color, typography, spacing, and components — the complete visual language for the EDURYX brand.</p>
+
+  <div class="palette">
+    <div class="chip"><div class="chip-swatch" style="background:#0B1929;"></div><div><div class="chip-label">EDURYX Navy</div><div class="chip-hex">#0B1929</div></div></div>
+    <div class="chip"><div class="chip-swatch" style="background:#F5A623;"></div><div><div class="chip-label">EDURYX Amber</div><div class="chip-hex">#F5A623</div></div></div>
+    <div class="chip"><div class="chip-swatch" style="background:#fff;border:1px solid #EEF0F3;"></div><div><div class="chip-label">White</div><div class="chip-hex">#FFFFFF</div></div></div>
+    <div class="chip"><div class="chip-swatch" style="background:#6B7280;"></div><div><div class="chip-label">Soft Grey</div><div class="chip-hex">#6B7280</div></div></div>
+    <div class="chip" style="gap:10px;">
+      <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px;color:#0B1929;letter-spacing:-0.02em;">Plus Jakarta Sans</div>
+      <div class="chip-label" style="border-left:1px solid #EEF0F3;padding-left:10px;">+ Inter</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOTH LOGO VARIANTS SIDE BY SIDE ── -->
+<div class="logo-band">
+
+  <div class="logo-half logo-half-light">
+    <span class="logo-half-label" style="color:var(--ex-grey);">Light — on white / light backgrounds</span>
+    <img src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png"
+         height="60" style="width:auto;display:block;" alt="EDURYX light" />
+    <span class="tagline-light">— Learn AI. Build the Future. —</span>
+  </div>
+
+  <div class="logo-half logo-half-dark">
+    <span class="logo-half-label" style="color:rgba(255,255,255,0.4);">Dark — on navy / dark backgrounds</span>
+    <img src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Dark Removed Background.png"
+         height="60" style="width:auto;display:block;" alt="EDURYX dark" />
+    <span class="tagline-dark">— Learn AI. Build the Future. —</span>
+  </div>
+
+</div>
+
+<!-- ── PREVIEW PAGES ── -->
+<hr class="divider-full" />
+<div class="section">
+  <div class="section-header">
+    <span class="section-eyebrow">Component Library</span>
+    <h2 class="section-title">Preview Pages</h2>
+    <hr class="section-divider" />
+  </div>
+  <div class="preview-grid">
+
+    <a class="preview-card" href="preview/logo-usage.html" target="_blank">
+      <iframe class="preview-frame" src="preview/logo-usage.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Logo Usage</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/type-display.html" target="_blank">
+      <iframe class="preview-frame" src="preview/type-display.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Display Typography</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/type-headings.html" target="_blank">
+      <iframe class="preview-frame" src="preview/type-headings.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Heading Scale</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/type-body.html" target="_blank">
+      <iframe class="preview-frame" src="preview/type-body.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Body Typography</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/color-primary.html" target="_blank">
+      <iframe class="preview-frame" src="preview/color-primary.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Primary Colors</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/color-neutrals.html" target="_blank">
+      <iframe class="preview-frame" src="preview/color-neutrals.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Neutral Colors</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/color-usage.html" target="_blank">
+      <iframe class="preview-frame" src="preview/color-usage.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Color Usage Rules</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/buttons.html" target="_blank">
+      <iframe class="preview-frame" src="preview/buttons.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Buttons</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/cards.html" target="_blank">
+      <iframe class="preview-frame" src="preview/cards.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Cards</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/badges.html" target="_blank">
+      <iframe class="preview-frame" src="preview/badges.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Badges & Tags</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/form-inputs.html" target="_blank">
+      <iframe class="preview-frame" src="preview/form-inputs.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Form Inputs</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/metric-style.html" target="_blank">
+      <iframe class="preview-frame" src="preview/metric-style.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Metric Style</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/spacing-scale.html" target="_blank">
+      <iframe class="preview-frame" src="preview/spacing-scale.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Spacing Scale</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/radii.html" target="_blank">
+      <iframe class="preview-frame" src="preview/radii.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Border Radii</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/divider.html" target="_blank">
+      <iframe class="preview-frame" src="preview/divider.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Dividers</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/elevation.html" target="_blank">
+      <iframe class="preview-frame" src="preview/elevation.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Elevation & Borders</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/shadows-vs-borders.html" target="_blank">
+      <iframe class="preview-frame" src="preview/shadows-vs-borders.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Shadows vs Borders</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/iconography.html" target="_blank">
+      <iframe class="preview-frame" src="preview/iconography.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Iconography</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/link-states.html" target="_blank">
+      <iframe class="preview-frame" src="preview/link-states.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Link States</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+    <a class="preview-card" href="preview/toast-tooltip.html" target="_blank">
+      <iframe class="preview-frame" src="preview/toast-tooltip.html" scrolling="no" tabindex="-1"></iframe>
+      <div class="preview-label"><span class="preview-label-text">Toast & Tooltip</span><span class="preview-label-arrow">↗</span></div>
+    </a>
+
+  </div>
+</div>
+
+<!-- ── TOKEN TABLE ── -->
+<hr class="divider-full" />
+<div style="background:var(--ex-grey-50);padding:64px 40px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header">
+      <span class="section-eyebrow">Token Reference</span>
+      <h2 class="section-title">Design Tokens</h2>
+      <hr class="section-divider" />
+    </div>
+    <div class="tokens-grid">
+      <div>
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>--ex-navy</td><td><div class="swatch-cell"><div class="swatch-sm" style="background:#0B1929;"></div>#0B1929</div></td></tr>
+            <tr><td>--ex-amber</td><td><div class="swatch-cell"><div class="swatch-sm" style="background:#F5A623;"></div>#F5A623</div></td></tr>
+            <tr><td>--ex-white</td><td><div class="swatch-cell"><div class="swatch-sm" style="background:#fff;"></div>#FFFFFF</div></td></tr>
+            <tr><td>--ex-grey</td><td><div class="swatch-cell"><div class="swatch-sm" style="background:#6B7280;"></div>#6B7280</div></td></tr>
+            <tr><td>--ex-grey-50</td><td><div class="swatch-cell"><div class="swatch-sm" style="background:#F7F8FA;"></div>#F7F8FA</div></td></tr>
+            <tr><td>--ex-grey-100</td><td><div class="swatch-cell"><div class="swatch-sm" style="background:#EEF0F3;"></div>#EEF0F3</div></td></tr>
+            <tr><td>--ex-grey-200</td><td><div class="swatch-cell"><div class="swatch-sm" style="background:#D8DCE2;"></div>#D8DCE2</div></td></tr>
+            <tr><td>--font-display</td><td>Plus Jakarta Sans</td></tr>
+            <tr><td>--font-body</td><td>Inter</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>--fs-display</td><td>60px</td></tr>
+            <tr><td>--fs-h1</td><td>40px</td></tr>
+            <tr><td>--fs-h2</td><td>32px</td></tr>
+            <tr><td>--fs-h3</td><td>24px</td></tr>
+            <tr><td>--fs-body</td><td>18px</td></tr>
+            <tr><td>--fs-caption</td><td>14px</td></tr>
+            <tr><td>--radius-md</td><td>8px — buttons, inputs</td></tr>
+            <tr><td>--radius-lg</td><td>12px — cards</td></tr>
+            <tr><td>--radius-pill</td><td>999px — tags</td></tr>
+            <tr><td>--space-6</td><td>24px — default card pad</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER — dark transparent logo on navy ── -->
+<footer class="footer">
+  <img src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Dark Removed Background.png"
+       height="28" style="width:auto;display:block;" alt="EDURYX" />
+  <div class="footer-text">Design System v1.0 · © 2026 EDURYX · — Learn AI. Build the Future. —</div>
+</footer>
+
+</body>
+</html>

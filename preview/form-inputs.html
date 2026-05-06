@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EDURYX — Form Inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .wrap { padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .group { display: flex; flex-direction: column; gap: 6px; }
+  .section-label { font-family: Inter; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6B7280; grid-column: 1 / -1; margin-top: 8px; }
+
+  label { font-family: Inter; font-size: 14px; font-weight: 500; color: #0B1929; }
+  .hint { font-family: Inter; font-size: 12px; color: #6B7280; }
+  .error-text { font-family: Inter; font-size: 12px; color: #dc2626; }
+
+  input[type="text"], input[type="email"], select, textarea {
+    font-family: Inter;
+    font-size: 15px;
+    color: #0B1929;
+    background: #fff;
+    border: 1px solid #D8DCE2;
+    border-radius: 8px;
+    padding: 11px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 160ms cubic-bezier(.2,0,0,1), box-shadow 160ms cubic-bezier(.2,0,0,1);
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #0B1929;
+    box-shadow: 0 0 0 3px rgba(11,25,41,0.08);
+  }
+  input.error { border-color: #dc2626; }
+  input.error:focus { box-shadow: 0 0 0 3px rgba(220,38,38,0.10); }
+  input.success { border-color: #22c55e; }
+  input::placeholder { color: #9CA3AF; }
+
+  textarea { resize: vertical; min-height: 96px; }
+
+  .checkbox-row { display: flex; gap: 10px; align-items: flex-start; }
+  .checkbox-row input[type="checkbox"] {
+    width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid #D8DCE2;
+    background: #fff; cursor: pointer; margin: 1px 0 0; flex-shrink: 0;
+    accent-color: #0B1929;
+  }
+  .checkbox-row label { font-size: 14px; cursor: pointer; }
+
+  /* Select custom arrow */
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="section-label">Text inputs</div>
+
+  <div class="group">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Arjun Mehta" />
+  </div>
+  <div class="group">
+    <label for="email">Email Address</label>
+    <input type="email" id="email" placeholder="arjun@example.com" />
+    <span class="hint">We'll send your enrollment confirmation here.</span>
+  </div>
+  <div class="group">
+    <label for="error-ex">Email (error state)</label>
+    <input type="email" id="error-ex" class="error" value="not-an-email" />
+    <span class="error-text">Please enter a valid email address.</span>
+  </div>
+  <div class="group">
+    <label for="success-ex">Phone (success state)</label>
+    <input type="text" id="success-ex" class="success" value="+91 98765 43210" />
+  </div>
+
+  <div class="section-label">Select & Textarea</div>
+
+  <div class="group">
+    <label for="batch">Select Batch</label>
+    <select id="batch">
+      <option value="">Choose a start date…</option>
+      <option>Batch 07 — Jun 14, 2025</option>
+      <option>Batch 08 — Jul 12, 2025</option>
+    </select>
+  </div>
+  <div class="group">
+    <label for="bg">Your background</label>
+    <textarea id="bg" placeholder="Tell us briefly about your current role and why you want to learn AI…"></textarea>
+  </div>
+
+  <div class="section-label">Checkbox & toggle</div>
+
+  <div class="group">
+    <div class="checkbox-row">
+      <input type="checkbox" id="agree" checked />
+      <label for="agree">I agree to the Terms of Service and Privacy Policy</label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="news" />
+      <label for="news">Notify me about future batches and AI resources</label>
+    </div>
+  </div>
+  <div class="group" style="justify-content:center;">
+    <label style="margin-bottom:8px;">Toggle</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+      <div style="width:44px;height:24px;background:#F5A623;border-radius:999px;position:relative;flex-shrink:0;">
+        <div style="width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:3px;right:3px;"></div>
+      </div>
+      <span style="font-family:Inter;font-size:14px;color:#0B1929;">Weekend classes</span>
+    </label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;margin-top:8px;">
+      <div style="width:44px;height:24px;background:#EEF0F3;border-radius:999px;position:relative;flex-shrink:0;">
+        <div style="width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:3px;left:3px;box-shadow:0 1px 3px rgba(0,0,0,0.12);"></div>
+      </div>
+      <span style="font-family:Inter;font-size:14px;color:#6B7280;">Weekday classes</span>
+    </label>
+  </div>
+</div>
+</body>
+</html>
