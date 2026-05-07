@@ -235,6 +235,146 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
 .footer-contact a { color: rgba(255,255,255,.45); text-decoration: none; transition: color .15s; }
 .footer-contact a:hover { color: rgba(255,255,255,.8); }
 
+/* ════ INDUSTRY STATS ════════════════════════════════════ */
+.ind-stats { background: var(--navy); padding: 56px 0; }
+.ind-stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+@media (max-width: 700px) { .ind-stats-grid { grid-template-columns: 1fr; } }
+.ind-stat-card { border: 1px solid rgba(255,255,255,.08); border-radius: var(--r-lg); padding: 28px 24px; position: relative; overflow: hidden; }
+.ind-stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.ind-stat-pct { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 52px; font-weight: 800; color: var(--gold-light); letter-spacing: -.04em; line-height: 1; margin-bottom: 10px; }
+.ind-stat-desc { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; margin-bottom: 12px; }
+.ind-stat-source { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.25); letter-spacing: .06em; text-transform: uppercase; }
+.ind-quote { margin-top: 36px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: var(--r-lg); padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start; }
+.ind-quote-mark { font-size: 48px; line-height: 1; color: var(--gold); opacity: .5; font-family: Georgia, serif; flex-shrink: 0; margin-top: -8px; }
+.ind-quote-text { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.7; font-style: italic; }
+.ind-quote-attr { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 8px; font-style: normal; font-weight: 600; }
+
+/* ════ PROBLEM + SOLUTION ════════════════════════════════ */
+.prob-sol-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+@media (max-width: 760px) { .prob-sol-wrap { grid-template-columns: 1fr; } }
+.prob-col, .sol-col { border-radius: var(--r-lg); padding: 28px 24px; }
+.prob-col { background: #fff; border: 1px solid var(--g100); }
+.sol-col { background: var(--navy); border: 1px solid rgba(212,160,23,.2); }
+.ps-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.ps-badge { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px; border-radius: var(--r-pill); }
+.ps-badge-prob { background: rgba(239,68,68,.1); color: #dc2626; }
+.ps-badge-sol { background: rgba(212,160,23,.15); color: var(--gold); }
+.ps-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 800; }
+.ps-title-prob { color: var(--navy); }
+.ps-title-sol { color: #fff; }
+.ps-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.ps-list li { font-size: 13px; line-height: 1.5; display: flex; gap: 9px; align-items: flex-start; }
+.ps-list li::before { flex-shrink: 0; margin-top: 1px; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.prob-col .ps-list li { color: var(--grey); }
+.prob-col .ps-list li::before { content: '✕'; background: rgba(239,68,68,.08); color: #dc2626; font-weight: 700; }
+.sol-col .ps-list li { color: rgba(255,255,255,.7); }
+.sol-col .ps-list li::before { content: '✓'; background: rgba(212,160,23,.12); color: var(--gold); font-weight: 700; }
+
+/* ════ TOOLS GRID ════════════════════════════════════════ */
+.tools-section { background: var(--g50); padding: 64px 0; }
+.tools-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+@media (max-width: 860px) { .tools-grid { grid-template-columns: repeat(2,1fr); } }
+.tool-category { background: #fff; border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 20px 18px; }
+.tool-cat-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.tool-names { display: flex; flex-direction: column; gap: 6px; }
+.tool-name { font-size: 13px; font-weight: 500; color: var(--navy); padding: 5px 0; border-bottom: 1px solid var(--g100); }
+.tool-name:last-child { border-bottom: none; }
+
+/* ════ TRAINING MODES ════════════════════════════════════ */
+.modes { background: #fff; }
+.modes-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+@media (max-width: 760px) { .modes-grid { grid-template-columns: 1fr; } }
+.mode-card { border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 30px 24px; transition: border-color .2s, transform .2s; }
+.mode-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.mode-icon { width: 44px; height: 44px; border-radius: var(--r-md); background: rgba(212,160,23,.08); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
+.mode-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+.mode-sub { font-size: 12px; color: var(--grey); margin-bottom: 16px; }
+.mode-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.mode-list li { font-size: 13px; color: var(--grey); display: flex; gap: 8px; align-items: flex-start; }
+.mode-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
+
+/* ════ ASSESSMENT ════════════════════════════════════════ */
+.assess { background: var(--g50); }
+.assess-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media (max-width: 760px) { .assess-inner { grid-template-columns: 1fr; } }
+.assess-box { background: #fff; border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 28px 24px; }
+.assess-box-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 18px; }
+.score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.score-label { font-size: 13px; color: var(--grey); flex: 1; }
+.score-bar-wrap { width: 120px; height: 6px; background: var(--g100); border-radius: 99px; flex-shrink: 0; }
+.score-bar { height: 6px; border-radius: 99px; background: var(--gold); }
+.score-pts { font-size: 12px; font-weight: 700; color: var(--navy); width: 28px; text-align: right; flex-shrink: 0; }
+.assess-weightage { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--g100); font-size: 12px; color: var(--grey); line-height: 1.8; }
+.assess-weightage strong { color: var(--navy); }
+.diff-levels { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.diff-level { padding: 12px 16px; border-radius: var(--r-md); border-left: 3px solid; }
+.diff-level-1 { background: rgba(74,222,128,.06); border-color: #4ade80; }
+.diff-level-2 { background: rgba(251,191,36,.06); border-color: #fbbf24; }
+.diff-level-3 { background: rgba(239,68,68,.06); border-color: #ef4444; }
+.diff-level-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.diff-level-desc { font-size: 12px; color: var(--grey); }
+.leaderboard-box { background: var(--navy); border: 1px solid rgba(212,160,23,.2); border-radius: var(--r-lg); padding: 24px; margin-top: 20px; }
+.lb-title { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+.lb-desc { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; }
+
+/* ════ GUEST TRAINERS ════════════════════════════════════ */
+.guests { background: #fff; }
+.guests-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+@media (max-width: 760px) { .guests-grid { grid-template-columns: 1fr; } }
+.guest-card { background: var(--g50); border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 24px 20px; transition: border-color .2s; }
+.guest-card:hover { border-color: var(--gold); }
+.guest-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: var(--gold); margin-bottom: 14px; flex-shrink: 0; }
+.guest-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 3px; }
+.guest-role { font-size: 12px; color: var(--grey); margin-bottom: 12px; line-height: 1.5; }
+.guest-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.guest-tag { font-size: 11px; font-weight: 500; background: var(--g100); color: var(--grey); padding: 3px 9px; border-radius: var(--r-pill); }
+
+/* ════ CERTIFICATION ═════════════════════════════════════ */
+.cert-section { background: var(--navy); }
+.cert-partners { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; margin-bottom: 48px; }
+.cert-partner { text-align: center; padding: 0 36px; }
+.cert-partner-plus { font-size: 24px; color: rgba(255,255,255,.2); font-weight: 300; }
+.cert-partner-icon { width: 56px; height: 56px; border-radius: 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 22px; }
+.cert-partner-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+.cert-partner-role { font-size: 11px; color: rgba(255,255,255,.35); letter-spacing: .06em; text-transform: uppercase; }
+.cert-tiers { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+@media (max-width: 680px) { .cert-tiers { grid-template-columns: 1fr; } }
+.cert-tier { border-radius: var(--r-lg); padding: 24px 20px; border: 1px solid rgba(255,255,255,.08); text-align: center; }
+.cert-tier-bronze { background: rgba(205,127,50,.06); border-color: rgba(205,127,50,.2); }
+.cert-tier-silver { background: rgba(192,192,192,.06); border-color: rgba(192,192,192,.2); }
+.cert-tier-gold { background: rgba(212,160,23,.07); border-color: rgba(212,160,23,.3); }
+.cert-medal { font-size: 32px; margin-bottom: 10px; }
+.cert-tier-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.cert-tier-desc { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.6; }
+.cert-tier-tag { display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: var(--r-pill); }
+.cert-tier-bronze .cert-tier-tag { background: rgba(205,127,50,.15); color: #cd7f32; }
+.cert-tier-silver .cert-tier-tag { background: rgba(192,192,192,.15); color: #c0c0c0; }
+.cert-tier-gold .cert-tier-tag { background: rgba(212,160,23,.15); color: var(--gold-light); }
+
+/* ════ TESTIMONIALS ══════════════════════════════════════ */
+.testimonials { background: var(--g50); }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+@media (max-width: 760px) { .testi-grid { grid-template-columns: 1fr; } }
+.testi-card { background: #fff; border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 26px 22px; display: flex; flex-direction: column; gap: 14px; }
+.testi-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; }
+.testi-text { font-size: 13px; color: var(--grey); line-height: 1.7; flex: 1; }
+.testi-author { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--g100); }
+.testi-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; color: var(--gold); flex-shrink: 0; }
+.testi-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+.testi-role { font-size: 11px; color: var(--grey); margin-top: 1px; }
+
+/* ════ FAQ ═══════════════════════════════════════════════ */
+.faq { background: #fff; }
+.faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.faq-item { border: 1px solid var(--g100); border-radius: var(--r-lg); overflow: hidden; }
+.faq-q { width: 100%; text-align: left; padding: 18px 22px; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); transition: background .15s; }
+.faq-q:hover { background: var(--g50); }
+.faq-arrow { width: 20px; height: 20px; border-radius: 50%; background: var(--g100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform .2s, background .2s; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--navy); }
+.faq-item.open .faq-arrow svg { stroke: #fff; }
+.faq-a { display: none; padding: 0 22px 18px; font-size: 14px; color: var(--grey); line-height: 1.7; }
+.faq-item.open .faq-a { display: block; }
+
 /* ════ CHATBOT ═══════════════════════════════════════════ */
 .chat-fab { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: var(--navy); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(11,25,41,.35); transition: transform .2s, box-shadow .2s; }
 .chat-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(11,25,41,.45); }
@@ -283,8 +423,10 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
       <ul class="nav-links">
         <li><a href="#programs">Programs</a></li>
         <li><a href="#build">Projects</a></li>
-        <li><a href="#instructor">Instructor</a></li>
+        <li><a href="#instructors">Trainers</a></li>
+        <li><a href="#certification">Certification</a></li>
         <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#enroll">Enroll</a></li>
       </ul>
       <a href="#enroll" class="btn btn-amber btn-sm">Apply Now →</a>
@@ -330,6 +472,40 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
   </div>
 </section>
 
+<!-- INDUSTRY STATS -->
+<section class="ind-stats" id="stats">
+  <div class="container">
+    <div class="section-header fade-up" style="margin-bottom:36px;">
+      <span class="label" style="color:rgba(255,255,255,.35);">The AI Opportunity</span>
+      <h2 class="section-title" style="color:#fff;">Why AI Skills Are Non-Negotiable in 2026</h2>
+    </div>
+    <div class="ind-stats-grid fade-up">
+      <div class="ind-stat-card">
+        <div class="ind-stat-pct">78%</div>
+        <div class="ind-stat-desc">of organisations already use AI in at least one function, with 71% using Generative AI regularly</div>
+        <div class="ind-stat-source">McKinsey Global Survey</div>
+      </div>
+      <div class="ind-stat-card">
+        <div class="ind-stat-pct">93%</div>
+        <div class="ind-stat-desc">of IT Executives are interested in Agentic AI, with 45% investing now and 79% planning adoption</div>
+        <div class="ind-stat-source">UiPath &amp; PwC Study</div>
+      </div>
+      <div class="ind-stat-card">
+        <div class="ind-stat-pct">62%</div>
+        <div class="ind-stat-desc">expect more than 100% ROI from AI investments, with 43% allocating over 50% of AI budget to agentic solutions</div>
+        <div class="ind-stat-source">Gartner Research</div>
+      </div>
+    </div>
+    <div class="ind-quote fade-up">
+      <div class="ind-quote-mark">"</div>
+      <div>
+        <div class="ind-quote-text">Every job will be affected, and immediately. It is unquestionable. You're not going to lose your job to an AI, but you're going to lose your job to someone who uses AI.</div>
+        <div class="ind-quote-attr">Jensen Huang — CEO &amp; Founder, NVIDIA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TICKER -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
@@ -364,22 +540,32 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
       <h2 class="section-title">Your Degree Won't Get You the Job. This Will.</h2>
       <p class="section-sub">90% of graduates leave college with zero portfolio. Companies don't care about your GPA — they care what you've built.</p>
     </div>
-    <div class="problem-grid fade-up">
-      <div class="problem-card">
-        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="#D4A017"/></svg></div>
-        <h3>No Practical Skills</h3><p>Theory without hands-on experience with real tools</p>
+    <div class="prob-sol-wrap fade-up">
+      <div class="prob-col">
+        <div class="ps-header">
+          <span class="ps-badge ps-badge-prob">❌ The Problem</span>
+        </div>
+        <div class="ps-title ps-title-prob" style="margin-bottom:16px;">What Most Courses Give You</div>
+        <ul class="ps-list">
+          <li>Pure theory with no hands-on building</li>
+          <li>Outdated curriculum not matching market demand</li>
+          <li>No portfolio or GitHub projects to show employers</li>
+          <li>No real industry use cases or business context</li>
+          <li>Graduates struggle to get hired despite certification</li>
+        </ul>
       </div>
-      <div class="problem-card">
-        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <h3>No Real Projects</h3><p>Graduate without a portfolio demonstrating skills</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v4l3 3"/></svg></div>
-        <h3>No AI Exposure</h3><p>Missing AI/ML knowledge essential in every industry</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg></div>
-        <h3>Not Job-Ready</h3><p>Lacks industry-relevant skills employers want</p>
+      <div class="sol-col">
+        <div class="ps-header">
+          <span class="ps-badge ps-badge-sol">✅ The Solution — EDURYX</span>
+        </div>
+        <div class="ps-title ps-title-sol" style="margin-bottom:16px;">What We Give You</div>
+        <ul class="ps-list">
+          <li>Build real AI products — RAG, Agents, Automation</li>
+          <li>Hands-on with the latest AI tools &amp; frameworks</li>
+          <li>4+ projects on GitHub — interview-ready portfolio</li>
+          <li>Industry use cases: Healthcare, Enterprise, Finance</li>
+          <li>Placement support: LinkedIn, resume, referrals</li>
+        </ul>
       </div>
     </div>
     <div class="problem-stat fade-up">
@@ -519,6 +705,137 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
   </div>
 </section>
 
+<!-- TOOLS & TECHNOLOGIES -->
+<section class="tools-section" id="tools">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Tools &amp; Technologies</span>
+      <h2 class="section-title">Industry Stack You'll Master</h2>
+      <p class="section-sub">Every tool used in the AI Engineer Track — the same stack top companies hire for.</p>
+    </div>
+    <div class="tools-grid fade-up">
+      <div class="tool-category">
+        <div class="tool-cat-label">LLM APIs</div>
+        <div class="tool-names">
+          <div class="tool-name">OpenAI GPT</div>
+          <div class="tool-name">Google Gemini</div>
+          <div class="tool-name">Anthropic Claude</div>
+          <div class="tool-name">Mistral AI</div>
+        </div>
+      </div>
+      <div class="tool-category">
+        <div class="tool-cat-label">AI Agents</div>
+        <div class="tool-names">
+          <div class="tool-name">CrewAI</div>
+          <div class="tool-name">LangChain</div>
+          <div class="tool-name">LangGraph</div>
+          <div class="tool-name">OpenAI Agents SDK</div>
+        </div>
+      </div>
+      <div class="tool-category">
+        <div class="tool-cat-label">Vector DB</div>
+        <div class="tool-names">
+          <div class="tool-name">Pinecone</div>
+          <div class="tool-name">Qdrant</div>
+          <div class="tool-name">Chroma</div>
+          <div class="tool-name">Supabase pgVector</div>
+        </div>
+      </div>
+      <div class="tool-category">
+        <div class="tool-cat-label">Local AI</div>
+        <div class="tool-names">
+          <div class="tool-name">Ollama</div>
+          <div class="tool-name">LM Studio</div>
+          <div class="tool-name">Hugging Face</div>
+        </div>
+      </div>
+      <div class="tool-category">
+        <div class="tool-cat-label">Workflow</div>
+        <div class="tool-names">
+          <div class="tool-name">n8n</div>
+          <div class="tool-name">Make.com</div>
+        </div>
+      </div>
+      <div class="tool-category">
+        <div class="tool-cat-label">Cloud</div>
+        <div class="tool-names">
+          <div class="tool-name">AWS Bedrock</div>
+          <div class="tool-name">Azure AI Foundry</div>
+          <div class="tool-name">GCP Vertex AI</div>
+        </div>
+      </div>
+      <div class="tool-category">
+        <div class="tool-cat-label">AI Coding</div>
+        <div class="tool-names">
+          <div class="tool-name">Cursor</div>
+          <div class="tool-name">Windsurf</div>
+          <div class="tool-name">Claude Code</div>
+        </div>
+      </div>
+      <div class="tool-category">
+        <div class="tool-cat-label">MLOps</div>
+        <div class="tool-names">
+          <div class="tool-name">AgentOps</div>
+          <div class="tool-name">Giskard</div>
+          <div class="tool-name">Phoenix – Arize AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING MODES -->
+<section class="modes" id="modes">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Flexible Learning</span>
+      <h2 class="section-title">Training Modes</h2>
+      <p class="section-sub">Choose the format that fits your schedule and learning style.</p>
+    </div>
+    <div class="modes-grid fade-up">
+      <div class="mode-card">
+        <div class="mode-icon">🏫</div>
+        <div class="mode-title">Classroom Training</div>
+        <div class="mode-sub">Face-to-face sessions · Hyderabad</div>
+        <ul class="mode-list">
+          <li>Interactive face-to-face teaching</li>
+          <li>Instant feedback &amp; collaboration</li>
+          <li>Hands-on industry projects</li>
+          <li>Guest trainers from industry</li>
+          <li>Hackathons &amp; capstone in-person</li>
+          <li>Research programs with AI Anytime</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">💻</div>
+        <div class="mode-title">Live Online Training</div>
+        <div class="mode-sub">Global · Virtual sessions with live Q&amp;A</div>
+        <ul class="mode-list">
+          <li>Virtual interactive sessions</li>
+          <li>Daily session recordings</li>
+          <li>Instructor support on demand</li>
+          <li>Online practical labs</li>
+          <li>Digital learning modules</li>
+          <li>Flexible learning schedules</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">🏢</div>
+        <div class="mode-title">Corporate Training</div>
+        <div class="mode-sub">Customised for your organisation</div>
+        <ul class="mode-list">
+          <li>Customized training programs</li>
+          <li>Interactive team development</li>
+          <li>Industry-relevant content</li>
+          <li>Performance monitoring</li>
+          <li>On-site workshops</li>
+          <li>Limited batch (up to 25 people)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BUILD -->
 <section class="build" id="build">
   <div class="container">
@@ -551,6 +868,69 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
         <h3>Automation Workflows</h3>
         <p>Intelligent agents that automate repetitive business tasks end-to-end using Python, Celery and Docker.</p>
         <div class="build-stack"><span class="stack-tag">Python</span><span class="stack-tag">Celery</span><span class="stack-tag">Docker</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT SYSTEM -->
+<section class="assess" id="assessment">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Rigorous &amp; Fair</span>
+      <h2 class="section-title">Assessment System</h2>
+      <p class="section-sub">Every week is evaluated. Your score determines your certification level and placement priority.</p>
+    </div>
+    <div class="assess-inner fade-up">
+      <div>
+        <div class="assess-box">
+          <div class="assess-box-title">Scoring Criteria (out of 100)</div>
+          <div class="score-row"><span class="score-label">Problem Understanding</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
+          <div class="score-row"><span class="score-label">Solution Design</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
+          <div class="score-row"><span class="score-label">Implementation</span><div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div><span class="score-pts">30</span></div>
+          <div class="score-row"><span class="score-label">Optimisation</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
+          <div class="score-row"><span class="score-label">Presentation</span><div class="score-bar-wrap"><div class="score-bar" style="width:20%"></div></div><span class="score-pts">10</span></div>
+          <div class="assess-weightage">
+            <strong>Final Weightage:</strong><br>
+            Assessments 25% · Hackathon 20% · Capstone 35% · Participation 20%
+          </div>
+        </div>
+        <div class="leaderboard-box">
+          <div class="lb-title">🏆 Leaderboard</div>
+          <div class="lb-desc">Weekly rankings published for all students. Top performers get placement priority and Distinction certification — your effort is publicly rewarded.</div>
+        </div>
+      </div>
+      <div>
+        <div class="assess-box" style="margin-bottom:16px;">
+          <div class="assess-box-title">Difficulty Levels</div>
+          <div class="diff-levels">
+            <div class="diff-level diff-level-1">
+              <div class="diff-level-title">Level 1 — Basic</div>
+              <div class="diff-level-desc">Guided tasks with step-by-step support. Build confidence with structured milestones.</div>
+            </div>
+            <div class="diff-level diff-level-2">
+              <div class="diff-level-title">Level 2 — Intermediate</div>
+              <div class="diff-level-desc">Partial guidance. Independent thinking required to complete the deliverable.</div>
+            </div>
+            <div class="diff-level diff-level-3">
+              <div class="diff-level-title">Level 3 — Advanced</div>
+              <div class="diff-level-desc">Fully independent build. Real-world problem with no scaffolding — just like the job.</div>
+            </div>
+          </div>
+        </div>
+        <div class="assess-box">
+          <div class="assess-box-title">Weekly Evaluation Schedule</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 1</span><span style="font-weight:600;color:var(--navy);">Prompt Engineering</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 2</span><span style="font-weight:600;color:var(--navy);">AI Workflow</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 3</span><span style="font-weight:600;color:var(--navy);">API &amp; Tools</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 4</span><span style="font-weight:600;color:var(--navy);">RAG Chatbot</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 5</span><span style="font-weight:600;color:var(--navy);">AI Agent</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 6</span><span style="font-weight:600;color:var(--navy);">Automation System</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 7</span><span style="font-weight:600;color:var(--navy);">Deployment</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;"><span>Week 8</span><span style="font-weight:600;color:var(--gold);">Capstone Project</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -614,6 +994,148 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
           <span class="i-tag">GenAI Solutions</span><span class="i-tag">AI Agents</span><span class="i-tag">RAG</span>
           <span class="i-tag">LLM Fine-tuning</span><span class="i-tag">LangChain</span><span class="i-tag">AWS Bedrock</span>
           <span class="i-tag">PyCon Lithuania '25</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUEST TRAINERS -->
+<section class="guests" id="instructors">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Guest Trainers &amp; Mentors</span>
+      <h2 class="section-title">Learn from Industry Practitioners</h2>
+      <p class="section-sub">Alongside Sonu Kumar, you'll hear from active practitioners working in AI at leading organisations.</p>
+    </div>
+    <div class="guests-grid fade-up">
+      <div class="guest-card">
+        <div class="guest-avatar">E</div>
+        <div class="guest-name">Ekshith</div>
+        <div class="guest-role">AI Educator &amp; Academia Collaborations Lead, AI Anytime · Generative AI Specialist</div>
+        <div class="guest-tags">
+          <span class="guest-tag">AI Education</span>
+          <span class="guest-tag">Generative AI</span>
+          <span class="guest-tag">Academia Partnerships</span>
+          <span class="guest-tag">Community Building</span>
+        </div>
+      </div>
+      <div class="guest-card">
+        <div class="guest-avatar">KP</div>
+        <div class="guest-name">Kalyan Prasad</div>
+        <div class="guest-role">Data Science &amp; Analytics Leader · Grayradiant Data Services · 10+ Years</div>
+        <div class="guest-tags">
+          <span class="guest-tag">Data Science</span>
+          <span class="guest-tag">Databricks</span>
+          <span class="guest-tag">Python &amp; APIs</span>
+          <span class="guest-tag">Fintech AI</span>
+        </div>
+      </div>
+      <div class="guest-card">
+        <div class="guest-avatar">VP</div>
+        <div class="guest-name">Vyluru Perumallu</div>
+        <div class="guest-role">AI Consultant, Deloitte · LinkedIn Top AI &amp; ML Voice</div>
+        <div class="guest-tags">
+          <span class="guest-tag">Generative AI</span>
+          <span class="guest-tag">Machine Learning</span>
+          <span class="guest-tag">Azure &amp; AWS AI</span>
+          <span class="guest-tag">Responsible AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATION -->
+<section class="cert-section" id="certification">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label" style="color:rgba(255,255,255,.35);">Industry Recognised</span>
+      <h2 class="section-title" style="color:#fff;">Certification</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.45);">Earn credentials valued by employers — issued jointly by three recognised bodies.</p>
+    </div>
+    <div class="cert-partners fade-up">
+      <div class="cert-partner">
+        <div class="cert-partner-icon">🎓</div>
+        <div class="cert-partner-name">KODRYX AI</div>
+        <div class="cert-partner-role">Program Issuer</div>
+      </div>
+      <div class="cert-partner-plus">+</div>
+      <div class="cert-partner">
+        <div class="cert-partner-icon">🤖</div>
+        <div class="cert-partner-name">AI Anytime</div>
+        <div class="cert-partner-role">Research Partner</div>
+      </div>
+      <div class="cert-partner-plus">+</div>
+      <div class="cert-partner">
+        <div class="cert-partner-icon">🏛️</div>
+        <div class="cert-partner-name">NASSCOM</div>
+        <div class="cert-partner-role">Aligned Certification</div>
+      </div>
+    </div>
+    <div class="cert-tiers fade-up">
+      <div class="cert-tier cert-tier-bronze">
+        <div class="cert-medal">🥉</div>
+        <div class="cert-tier-name">Completion Certificate</div>
+        <div class="cert-tier-desc">Awarded for attendance and basic participation throughout the program</div>
+        <span class="cert-tier-tag">Completion</span>
+      </div>
+      <div class="cert-tier cert-tier-silver">
+        <div class="cert-medal">🥈</div>
+        <div class="cert-tier-name">AI Builder Certificate</div>
+        <div class="cert-tier-desc">All weekly assessments completed + projects submitted + portfolio ready</div>
+        <span class="cert-tier-tag">AI Builder</span>
+      </div>
+      <div class="cert-tier cert-tier-gold">
+        <div class="cert-medal">🥇</div>
+        <div class="cert-tier-name">Advanced AI Builder</div>
+        <div class="cert-tier-desc">Top 10–20% performers in leaderboard, hackathon, and capstone project</div>
+        <span class="cert-tier-tag">With Distinction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Student Success</span>
+      <h2 class="section-title">What Our Students Say</h2>
+      <p class="section-sub">Real outcomes from real learners who built, deployed, and got hired.</p>
+    </div>
+    <div class="testi-grid fade-up">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"This program completely changed my understanding of AI. The hands-on projects and real-world use cases helped me gain confidence and land a role in AI. Building an actual RAG chatbot was the turning point for me."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">AS</div>
+          <div>
+            <div class="testi-name">Aditi Sharma</div>
+            <div class="testi-role">Data Scientist · Placed in AI role after graduation</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"The best part was building real AI applications — chatbots, automation systems, agents. This is not just theory, it is real skills. The GitHub portfolio got me noticed by three companies before I even started applying."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">RP</div>
+          <div>
+            <div class="testi-name">Rajesh Patel</div>
+            <div class="testi-role">Software Engineer · Transitioned to AI Engineer</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"The mentorship and capstone project gave me practical exposure I couldn't have got anywhere else. I was able to showcase my portfolio within weeks and secured my first AI engineering role."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">AM</div>
+          <div>
+            <div class="testi-name">Arjun Mehta</div>
+            <div class="testi-role">AI Engineer · Hired via EDURYX placement network</div>
+          </div>
         </div>
       </div>
     </div>
@@ -704,6 +1226,51 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Got Questions?</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Everything you need to know before enrolling — answered clearly.</p>
+    </div>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need prior coding or AI experience to join?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">No prior AI experience is required. The program starts from foundations — AI basics, Prompt Engineering, and tool usage — before gradually moving to Python, APIs, RAG, and Agents. A basic familiarity with computers is sufficient. We also teach Python basics specifically for AI use, so you do not need to be a programmer.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the fee and are there EMI or instalment options?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">Programs start at ₹3,000 for the 4-Week Graduation Program, ₹8,000 for the B.Tech AI Program, and ₹20,000 for the 8-Week AI Engineer Track — all 50% off. Please contact us to discuss instalment plans. We work with students to make the program accessible.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is the training online or available as classroom?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">We offer both. Classroom training is available in Hyderabad with face-to-face sessions and in-person hackathons. Live online training is available globally — all sessions are live with interactive Q&amp;A, and recordings are provided so you never miss a class. Both modes follow the same curriculum and receive the same certification.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if I miss a session or fall behind?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">All sessions are recorded and made available to enrolled students. Additionally, our 1-on-1 support ensures that if you fall behind or need help with a concept, a trainer or teaching assistant is available to get you back on track. We do not leave any student behind.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What certificate will I receive and is it recognised by employers?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">You receive certification issued jointly by KODRYX AI, AI Anytime Community, and NASSCOM (aligned certification). There are three levels: Completion Certificate, AI Builder Certificate, and Advanced AI Builder with Distinction. The portfolio of real projects you build is what most employers value even more than the certificate itself.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What kind of projects will I build and will they be on GitHub?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">You will build 4 real, deployable AI projects: a RAG Chatbot, a Resume Analyzer, a Healthcare AI System, and an Automation Workflow. All projects are uploaded to your personal GitHub profile with proper documentation and live demo links. By the end you will have a recruiter-ready portfolio demonstrating real-world skills.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is this program suitable for working professionals?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">Absolutely. We offer weekend batches and recorded sessions to accommodate full-time work schedules. The format is intensive but manageable alongside a job. Many professionals use the program to upskill and move into AI-focused roles within their current companies.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How does placement support work?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a">Our placement support includes LinkedIn profile optimisation, professional AI-focused resume preparation, portfolio review, mock interview sessions, and direct job referrals to our hiring partner network. Students who complete the full portfolio are prioritised for placement. Note: placement support is a referral and preparation service — outcomes depend on your performance and the market.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ENROLLMENT FORM -->
 <section class="enroll" id="enroll">
   <div class="container">
@@ -788,8 +1355,10 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
       <div class="footer-right">
         <div class="footer-links">
           <a href="#programs">Programs</a>
-          <a href="#instructor">Instructor</a>
+          <a href="#instructors">Trainers</a>
+          <a href="#certification">Certification</a>
           <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
           <a href="#enroll">Enroll</a>
         </div>
         <div class="footer-copy">© 2026 EDURYX · A KODRYX AI Initiative · All rights reserved</div>
@@ -874,6 +1443,14 @@ function submitForm(e) {
   e.preventDefault();
   document.getElementById('enrollForm').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
+}
+
+/* ── FAQ accordion ────────────────────────────────────── */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
 }
 
 /* ── Chatbot ──────────────────────────────────────────── */
