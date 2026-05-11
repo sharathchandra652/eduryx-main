@@ -57,21 +57,61 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.92);
 .nav-links a:hover { color: var(--navy); background: var(--g50); }
 @media (max-width: 680px) { .nav-links { display: none; } }
 
-/* ════ HERO ══════════════════════════════════════════════ */
-.hero { background: #fff; padding: 76px 0 68px; text-align: center; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -5%, rgba(212,160,23,.05), transparent 70%); pointer-events: none; }
-.hero-logo { margin: 0 auto 28px; display: block; height: 68px; width: auto; }
-.hero-headline { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; font-size: clamp(40px, 6.5vw, 70px); color: var(--navy); margin-bottom: 10px; position: relative; }
-.hero-headline::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 60%; background: radial-gradient(circle, rgba(212,160,23,0.08), transparent 70%); z-index: -1; filter: blur(40px); }
-.hero-headline span { color: var(--gold); position: relative; }
-.hero-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(16px, 2.2vw, 22px); font-weight: 700; color: var(--navy); opacity: .6; letter-spacing: -.01em; margin-bottom: 14px; }
-.hero-desc { font-size: 15px; color: var(--grey); max-width: 500px; margin: 0 auto 32px; line-height: 1.65; }
-.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-.hero-price-row { display: inline-flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
-.hero-price-main { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
-.hero-price-old { font-size: 16px; color: var(--grey); text-decoration: line-through; }
+/* ════ HERO SPLIT ════════════════════════════════════════ */
+.hero { background: #fff; padding: 0; position: relative; overflow: hidden; }
+.hero-mesh { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 5% 50%, rgba(212,160,23,.04), transparent 55%), radial-gradient(ellipse 50% 70% at 95% 20%, rgba(10,20,35,.03), transparent 55%); pointer-events: none; }
+.hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--g100) 1px, transparent 1px), linear-gradient(90deg, var(--g100) 1px, transparent 1px); background-size: 44px 44px; opacity: .28; pointer-events: none; }
+.hero-glow { position: absolute; top: 50%; right: 0; transform: translateY(-50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,160,23,.07), transparent 70%); pointer-events: none; z-index: 0; filter: blur(50px); }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 100px 0 88px; position: relative; z-index: 2; }
+@media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 72px 0 60px; text-align: center; } .hero-right { display: none; } .trust-row { justify-content: center; } }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,160,23,.08); border: 1px solid rgba(212,160,23,.2); border-radius: var(--r-pill); padding: 6px 16px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8B6914; margin-bottom: 22px; }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: #ef4444; animation: blink 1.2s ease-in-out infinite; flex-shrink: 0; }
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+.hero-h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(36px, 4.8vw, 62px); font-weight: 800; line-height: 1.06; letter-spacing: -.03em; color: var(--navy); margin-bottom: 20px; }
+.hero-h1 .accent { color: var(--gold); display: inline-block; position: relative; }
+.hero-h1 .accent::after { content: ''; position: absolute; bottom: 1px; left: 0; right: 0; height: 3px; background: var(--gold); opacity: .2; border-radius: 2px; }
+.hero-p { font-size: 16px; color: var(--grey); line-height: 1.7; margin-bottom: 32px; max-width: 440px; }
+.hero-p strong { color: var(--navy); font-weight: 600; }
+.hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+.trust-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.trust-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--navy); }
+.trust-icon { width: 22px; height: 22px; border-radius: 50%; background: rgba(212,160,23,.1); border: 1.5px solid rgba(212,160,23,.25); display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+.trust-divider { width: 1px; height: 18px; background: var(--g200); }
+.hero-price-main { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
 .hero-price-badge { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-pill); letter-spacing: .06em; }
-.hero-meta { font-size: 12px; color: var(--grey); margin-bottom: 44px; }
+.hero-meta { font-size: 12px; color: var(--grey); margin-top: 4px; }
+/* Hero Right Dashboard */
+.hero-right { position: relative; height: 480px; }
+.hero-dashboard { position: relative; width: 100%; height: 100%; }
+.h-card { background: #fff; border: 1px solid var(--g100); border-radius: 16px; padding: 20px; position: absolute; box-shadow: 0 8px 32px rgba(10,20,35,.07); }
+.h-main { top: 0; left: 0; right: 0; bottom: 64px; display: flex; flex-direction: column; }
+.h-code-header { display: flex; align-items: center; gap: 7px; padding-bottom: 14px; border-bottom: 1px solid var(--g100); margin-bottom: 14px; flex-shrink: 0; }
+.h-dot { width: 10px; height: 10px; border-radius: 50%; }
+.h-dot-r { background: #ef4444; } .h-dot-y { background: #f59e0b; } .h-dot-g { background: #22c55e; }
+.h-file { font-size: 11px; font-weight: 600; color: var(--grey); margin-left: 4px; }
+.code-block { font-family: 'Courier New', monospace; font-size: 11.5px; line-height: 1.75; flex: 1; overflow: hidden; }
+.code-line { display: flex; gap: 14px; }
+.c-num { color: rgba(102,112,133,.35); user-select: none; width: 16px; flex-shrink: 0; text-align: right; }
+.c-kw { color: #7c3aed; } .c-fn { color: #0ea5e9; } .c-str { color: #16a34a; } .c-cm { color: rgba(102,112,133,.5); font-style: italic; } .c-plain { color: var(--navy); }
+.cursor-blink { display: inline-block; width: 2px; height: 13px; background: var(--gold); animation: cursorBlink .85s step-end infinite; margin-left: 1px; vertical-align: middle; }
+@keyframes cursorBlink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+.h-float1 { bottom: 14px; left: -24px; width: 168px; padding: 16px; animation: flt1 4s ease-in-out infinite; z-index: 10; }
+.h-float2 { top: 30px; right: -28px; width: 152px; padding: 14px; animation: flt2 5s ease-in-out infinite; z-index: 10; }
+.h-float3 { bottom: 110px; right: -24px; width: 148px; padding: 14px; animation: flt3 4.5s ease-in-out infinite; z-index: 10; }
+@keyframes flt1 { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+@keyframes flt2 { 0%,100% { transform:translateY(0); } 50% { transform:translateY(8px); } }
+@keyframes flt3 { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-12px); } }
+.fl-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); margin-bottom: 5px; }
+.fl-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+.fl-sub { font-size: 11px; color: var(--grey); margin-top: 2px; }
+.fl-bar-wrap { height: 4px; background: var(--g100); border-radius: 2px; margin-top: 9px; }
+.fl-bar { height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; }
+.fl-tag-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.fl-tag { font-size: 10px; font-weight: 600; background: var(--g50); border: 1px solid var(--g100); color: var(--grey); padding: 2px 7px; border-radius: var(--r-pill); }
+.fl-tag.on { background: rgba(212,160,23,.1); border-color: rgba(212,160,23,.3); color: #8B6914; }
+.fl-status { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11px; font-weight: 600; color: #16a34a; }
+.fl-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 1.5s ease-in-out infinite; flex-shrink: 0; }
+/* Stats strip kept for reuse */
 .stats-strip { display: flex; justify-content: center; border: 1px solid var(--g100); border-radius: var(--r-lg); overflow: hidden; max-width: 620px; margin: 0 auto; }
 .stat-item { flex: 1; padding: 18px 12px; text-align: center; border-right: 1px solid var(--g100); }
 .stat-item:last-child { border-right: 0; }
@@ -599,6 +639,45 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
   border: 1px solid #FECACA;
 }
 
+/* ════ HOW IT WORKS ═══════════════════════════════════════ */
+.how-works { background: var(--navy); padding: 80px 0; }
+.steps-flow { display: flex; position: relative; padding-top: 8px; }
+.steps-flow::before { content: ''; position: absolute; top: 36px; left: 8%; right: 8%; height: 2px; background: linear-gradient(90deg, rgba(212,160,23,0), rgba(212,160,23,.4), rgba(212,160,23,0)); }
+@media (max-width: 760px) { .steps-flow { flex-direction: column; gap: 28px; } .steps-flow::before { display: none; } }
+.step-item { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 10px; }
+.step-num { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.04); border: 1.5px solid rgba(212,160,23,.3); display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 800; color: var(--gold); margin-bottom: 16px; position: relative; z-index: 2; transition: all .3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.step-item:hover .step-num { background: var(--gold); color: var(--navy); border-color: var(--gold); transform: scale(1.12); }
+.step-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.step-sub { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.55; }
+
+/* ════ COMPARISON ════════════════════════════════════════ */
+.compare { background: var(--g50); }
+.compare-table { width: 100%; max-width: 800px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid var(--g100); }
+.compare-head { display: grid; grid-template-columns: 1fr 1fr 1fr; background: var(--navy); }
+.compare-head-cell { padding: 16px 20px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: rgba(255,255,255,.4); text-align: center; }
+.compare-head-cell.hi { color: var(--gold); }
+.compare-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid var(--g100); background: #fff; transition: background .15s; }
+.compare-row:last-child { border-bottom: none; }
+.compare-row:hover { background: var(--g50); }
+.compare-cell { padding: 14px 20px; font-size: 13px; color: var(--grey); display: flex; align-items: center; gap: 8px; }
+.compare-cell.topic { font-weight: 600; color: var(--navy); }
+.cx { color: #dc2626; font-weight: 700; }
+.ck { color: #16a34a; font-weight: 700; }
+
+/* ════ STICKY MOBILE CTA ════════════════════════════════ */
+.sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 996; background: var(--navy); border-top: 1px solid rgba(255,255,255,.08); padding: 10px 16px; display: none; gap: 10px; backdrop-filter: blur(12px); }
+@media (max-width: 680px) { .sticky-cta { display: flex; } }
+.sticky-wa { flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px; background: #25D366; color: #fff; font-weight: 700; font-size: 13px; padding: 12px 16px; border-radius: var(--r-lg); text-decoration: none; }
+.sticky-enroll { flex: 1; display: flex; align-items: center; justify-content: center; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 13px; padding: 12px 16px; border-radius: var(--r-lg); text-decoration: none; }
+
+/* ════ STAGGER ANIMATION ════════════════════════════════ */
+.stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .45s ease, transform .45s ease; }
+.stagger > *:nth-child(2) { transition-delay: .07s; }
+.stagger > *:nth-child(3) { transition-delay: .14s; }
+.stagger > *:nth-child(4) { transition-delay: .21s; }
+.stagger > *:nth-child(5) { transition-delay: .28s; }
+.stagger > *:nth-child(6) { transition-delay: .35s; }
+.stagger.visible > * { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
@@ -624,38 +703,100 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
 
 <!-- HERO -->
 <section class="hero" id="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
   <div class="container">
-    <img class="hero-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png" alt="EDURYX" />
-    <div class="fade-up" style="margin-bottom:10px;">
-      <span style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);">An AI Education Initiative by <span style="color:var(--navy);font-weight:700;">KODRYX AI</span></span>
-    </div>
-    <div class="fade-up" style="margin-bottom:18px;margin-top:10px;">
-      <span class="pill pill-amber"><span class="dot"></span>🔥 Next Batch · June 2026 · Only 25 Seats Left</span>
-    </div>
-    <h1 class="hero-headline fade-up" style="transition-delay:.05s">Learn AI.<br><span>Build the Future.</span></h1>
-    <p class="hero-sub fade-up" style="transition-delay:.1s">Go from student → AI Engineer. No gatekeeping.</p>
-    <p class="hero-desc fade-up" style="transition-delay:.15s">
-      Real skills. Real projects. Real results. Built for B.Tech &amp; graduation students who want to actually <em>build</em> with AI — not just sit through lectures about it.
-    </p>
-    <div class="hero-ctas fade-up" style="transition-delay:.2s">
-      <a href="#enroll" class="btn btn-amber" style="font-size:15px;padding:14px 30px;">
-        Claim My Seat — Free
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#programs" class="btn btn-ghost">Explore Programs ↓</a>
-    </div>
-    <div class="fade-up" style="transition-delay:.25s">
-      <div class="hero-price-row">
-        <span class="hero-price-main">Starting ₹3,000</span>
-        <span class="hero-price-badge">50% OFF</span>
+    <div class="hero-inner">
+
+      <!-- LEFT -->
+      <div class="hero-left">
+        <div class="hero-eyebrow fade-up">
+          <span class="live-dot"></span>
+          Next Batch · June 2026 · Only 25 Seats Left
+        </div>
+        <h1 class="hero-h1 fade-up" style="transition-delay:.05s">
+          Learn AI.<br><span class="accent">Build the Future.</span>
+        </h1>
+        <p class="hero-p fade-up" style="transition-delay:.1s">
+          Go from <strong>student → AI Engineer</strong> in 4–8 weeks.<br>
+          Real projects. Real stack. Real outcomes.
+        </p>
+        <div class="hero-cta-row fade-up" style="transition-delay:.15s">
+          <a href="#enroll" class="btn btn-amber" style="font-size:15px;padding:14px 30px;">
+            Claim My Seat — Free
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#programs" class="btn btn-ghost">Explore Programs ↓</a>
+        </div>
+        <div class="trust-row fade-up" style="transition-delay:.2s">
+          <div class="trust-item"><div class="trust-icon">✓</div>500+ Students</div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><div class="trust-icon">🤖</div>Real AI Projects</div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><div class="trust-icon">🏆</div>NASSCOM Certified</div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><div class="trust-icon">💼</div>Internship Support</div>
+        </div>
+        <div class="fade-up" style="transition-delay:.25s;margin-top:28px;">
+          <span class="hero-price-main">Starting ₹3,000</span>
+          <span class="hero-price-badge" style="margin-left:10px;">50% OFF</span>
+          <p class="hero-meta">3 Programs · All Levels · Certification Included</p>
+        </div>
       </div>
-      <p class="hero-meta">3 Programs · All Levels · Certification Included</p>
-    </div>
-    <div class="stats-strip fade-up" style="transition-delay:.3s">
-      <div class="stat-item"><div class="stat-num">100K+</div><div class="stat-label">Learners Trained</div></div>
-      <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
-      <div class="stat-item"><div class="stat-num">56K+</div><div class="stat-label">Subscribers</div></div>
-      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Programs</div></div>
+
+      <!-- RIGHT: Animated AI Dashboard -->
+      <div class="hero-right fade-up" style="transition-delay:.15s">
+        <div class="hero-dashboard">
+          <!-- Main code card -->
+          <div class="h-card h-main">
+            <div class="h-code-header">
+              <span class="h-dot h-dot-r"></span>
+              <span class="h-dot h-dot-y"></span>
+              <span class="h-dot h-dot-g"></span>
+              <span class="h-file">ai_agent.py — EDURYX Project</span>
+            </div>
+            <div class="code-block">
+              <div class="code-line"><span class="c-num">1</span><span class="c-cm"># Week 5: Build Your AI Agent</span></div>
+              <div class="code-line"><span class="c-num">2</span><span class="c-kw">from</span> <span class="c-plain">langchain</span> <span class="c-kw">import</span> <span class="c-fn">AgentExecutor</span><span class="c-plain">, </span><span class="c-fn">OpenAI</span></div>
+              <div class="code-line"><span class="c-num">3</span><span class="c-kw">from</span> <span class="c-plain">langchain.tools</span> <span class="c-kw">import</span> <span class="c-fn">DuckDuckGoSearchRun</span></div>
+              <div class="code-line"><span class="c-num">4</span><span class="c-plain">&nbsp;</span></div>
+              <div class="code-line"><span class="c-num">5</span><span class="c-kw">def</span> <span class="c-fn">create_agent</span><span class="c-plain">(model=</span><span class="c-str">"gpt-4o"</span><span class="c-plain">):</span></div>
+              <div class="code-line"><span class="c-num">6</span><span class="c-plain">&nbsp;&nbsp;&nbsp;&nbsp;llm = </span><span class="c-fn">OpenAI</span><span class="c-plain">(model=model)</span></div>
+              <div class="code-line"><span class="c-num">7</span><span class="c-plain">&nbsp;&nbsp;&nbsp;&nbsp;tools = [</span><span class="c-fn">DuckDuckGoSearchRun</span><span class="c-plain">()]</span></div>
+              <div class="code-line"><span class="c-num">8</span><span class="c-plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="c-kw">return</span> <span class="c-fn">AgentExecutor</span><span class="c-plain">(llm=llm, tools=tools)</span></div>
+              <div class="code-line"><span class="c-num">9</span><span class="c-plain">&nbsp;</span></div>
+              <div class="code-line"><span class="c-num">10</span><span class="c-plain">agent = </span><span class="c-fn">create_agent</span><span class="c-plain">()</span></div>
+              <div class="code-line"><span class="c-num">11</span><span class="c-plain">result = agent.</span><span class="c-fn">run</span><span class="c-plain">(</span><span class="c-str">"Latest AI trends 2026"</span><span class="c-plain">)</span></div>
+              <div class="code-line"><span class="c-num">12</span><span class="c-cm"># ✅ Deployed · GitHub portfolio-ready</span><span class="cursor-blink"></span></div>
+            </div>
+          </div>
+          <!-- Float 1: Accuracy metric -->
+          <div class="h-card h-float1">
+            <div class="fl-label">Model Accuracy</div>
+            <div class="fl-value">94.2%</div>
+            <div class="fl-sub">RAG + GPT-4o</div>
+            <div class="fl-bar-wrap"><div class="fl-bar" style="width:94%"></div></div>
+          </div>
+          <!-- Float 2: Stack tags -->
+          <div class="h-card h-float2">
+            <div class="fl-label">Your Stack</div>
+            <div class="fl-tag-row">
+              <span class="fl-tag on">LangChain</span>
+              <span class="fl-tag on">OpenAI</span>
+              <span class="fl-tag">Pinecone</span>
+              <span class="fl-tag on">Python</span>
+            </div>
+          </div>
+          <!-- Float 3: Live status -->
+          <div class="h-card h-float3">
+            <div class="fl-label">Project Status</div>
+            <div class="fl-status"><span class="fl-dot"></span>Live on GitHub</div>
+            <div style="font-size:11px;color:var(--grey);margin-top:4px;">portfolio-ready ✓</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1563,6 +1704,102 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
+<section class="how-works" id="how">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label" style="color:rgba(255,255,255,.35);">The Process</span>
+      <h2 class="section-title" style="color:#fff;">How EDURYX Works</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.45);">A clear, proven path from enrollment to your first AI job.</p>
+    </div>
+    <div class="steps-flow stagger">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-title">Enroll</div>
+        <div class="step-sub">Fill the form. Seat confirmed within 24 hrs.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-title">Live Sessions</div>
+        <div class="step-sub">Join live online or classroom sessions with AI experts.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-title">Build Projects</div>
+        <div class="step-sub">Hands-on AI apps. Real code. Real deployment.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div class="step-title">Get Mentored</div>
+        <div class="step-sub">Weekly guidance from industry practitioners.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">05</div>
+        <div class="step-title">GitHub Portfolio</div>
+        <div class="step-sub">4+ interview-ready AI projects live on GitHub.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">06</div>
+        <div class="step-title">Get Certified</div>
+        <div class="step-sub">NASSCOM cert + placement &amp; career support.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare" id="compare">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Why EDURYX</span>
+      <h2 class="section-title">Traditional Courses vs EDURYX</h2>
+      <p class="section-sub">We built what we wish existed when we were students.</p>
+    </div>
+    <div class="compare-table fade-up">
+      <div class="compare-head">
+        <div class="compare-head-cell">Feature</div>
+        <div class="compare-head-cell">Other Courses</div>
+        <div class="compare-head-cell hi">✦ EDURYX</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell topic">Learning Style</div>
+        <div class="compare-cell"><span class="cx">✕</span> Theory &amp; slides</div>
+        <div class="compare-cell"><span class="ck">✓</span> Build real AI products</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell topic">Curriculum</div>
+        <div class="compare-cell"><span class="cx">✕</span> Outdated syllabus</div>
+        <div class="compare-cell"><span class="ck">✓</span> Latest AI stack 2026</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell topic">Portfolio</div>
+        <div class="compare-cell"><span class="cx">✕</span> No projects to show</div>
+        <div class="compare-cell"><span class="ck">✓</span> 4+ GitHub AI projects</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell topic">Mentorship</div>
+        <div class="compare-cell"><span class="cx">✕</span> No industry access</div>
+        <div class="compare-cell"><span class="ck">✓</span> Active AI practitioners</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell topic">Deployment</div>
+        <div class="compare-cell"><span class="cx">✕</span> Never ship anything</div>
+        <div class="compare-cell"><span class="ck">✓</span> Live AI apps deployed</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell topic">Certification</div>
+        <div class="compare-cell"><span class="cx">✕</span> Generic certificate</div>
+        <div class="compare-cell"><span class="ck">✓</span> NASSCOM-aligned cert</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell topic">Career Support</div>
+        <div class="compare-cell"><span class="cx">✕</span> You're on your own</div>
+        <div class="compare-cell"><span class="ck">✓</span> Resume + internship + referrals</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ENROLLMENT FORM -->
 <section class="enroll" id="enroll">
   <div class="container">
@@ -1718,6 +1955,15 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
 const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
+/* ── Stagger animation ────────────────────────────────── */
+const obsS = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obsS.unobserve(e.target); } }), { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('.stagger').forEach(el => obsS.observe(el));
+
+/* ── Sticky CTA: hide near enroll form ────────────────── */
+const stickyEl = document.getElementById('stickyCta');
+if(stickyEl){ const enrollEl = document.getElementById('enroll'); window.addEventListener('scroll', () => { if(!enrollEl) return; const t = enrollEl.getBoundingClientRect().top; stickyEl.style.opacity = t < 200 ? '0' : '1'; stickyEl.style.pointerEvents = t < 200 ? 'none' : 'all'; }, {passive:true}); }
+
+
 /* ── Program tabs ─────────────────────────────────────── */
 function switchProgram(id, btn) {
   document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
@@ -1837,5 +2083,15 @@ function sendQuick(text) {
   setTimeout(() => { removeTyping(); addMsg(getBotReply(text), 'bot'); }, 700 + Math.random() * 400);
 }
 </script>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta" style="transition:opacity .3s;">
+  <a href="https://wa.me/917337222775?text=Hi%20EDURYX%2C%20I%20have%20a%20question" target="_blank" class="sticky-wa">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.12-1.604a11.803 11.803 0 005.925 1.585h.005c6.634 0 12.046-5.412 12.049-12.048a11.811 11.811 0 00-3.526-8.514z"/></svg>
+    WhatsApp
+  </a>
+  <a href="#enroll" class="sticky-enroll">Enroll Now →</a>
+</div>
+
 </body>
 </html>
