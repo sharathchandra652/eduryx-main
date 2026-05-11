@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>EDURYX — Learn AI. Build the Future.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
 <style>
 /* ── Reset ────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: #fff; color: #0A1423; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-::selection { background: var(--navy); color: var(--gold); }
+body { font-family: "Inter", "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #fff; color: #0A1423; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: var(--navy); color: #fff; }
 
 /* ── Custom Scrollbar ─────────────────────────────────── */
 ::-webkit-scrollbar { width: 8px; }
@@ -21,9 +21,13 @@ body { font-family: 'Inter', sans-serif; background: #fff; color: #0A1423; -webk
 
 /* ── Tokens ───────────────────────────────────────────── */
 :root {
-  --navy: #0A1423;
+  --navy: #12355B; /* Premium Blue */
+  --navy-dark: #0D2948;
   --gold: #D4A017;
   --gold-light: #F4C542;
+  --card-bg: #F8FBFF;
+  --text-on-blue: #FFFFFF;
+  --muted-on-blue: #DCE8F7;
   --g50: #F8FAFC; --g100: #EEF2F7; --g200: #D7DEE7; --grey: #667085;
   --r-md: 8px; --r-lg: 12px; --r-pill: 999px;
 }
@@ -34,18 +38,22 @@ body { font-family: 'Inter', sans-serif; background: #fff; color: #0A1423; -webk
 .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: var(--r-pill); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
 .pill-amber { background: rgba(212,160,23,.1); color: #8B6914; }
 .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: var(--r-lg); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: opacity .15s, transform .15s; white-space: nowrap; }
-.btn:hover { opacity: .88; transform: translateY(-1px); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: var(--r-lg); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; transition: all 250ms ease; white-space: nowrap; }
+.btn:hover { transform: translateY(-2px); }
 .btn-primary { background: var(--navy); color: #fff; }
+.btn-primary:hover { box-shadow: 0 8px 20px rgba(18, 53, 91, 0.2); }
 .btn-amber   { background: var(--gold); color: var(--navy); box-shadow: 0 8px 24px rgba(212,160,23,.22); }
+.btn-amber:hover { box-shadow: 0 10px 28px rgba(212,160,23,0.35); }
 .btn-ghost   { background: transparent; color: var(--navy); border: 1.5px solid var(--g200); }
+.btn-ghost:hover { border-color: var(--navy); background: var(--g50); transform: translateY(-1px); }
 .btn-ghost-inv { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.25); }
+.btn-ghost-inv:hover { border-color: #fff; background: rgba(255,255,255,.05); }
 .btn-sm { padding: 9px 18px; font-size: 13px; }
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 section { padding: 80px 0; }
 .section-header { text-align: center; margin-bottom: 48px; }
-.section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(26px, 3.5vw, 36px); font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-top: 10px; }
+.section-title { font-family: 'Sora', sans-serif; font-size: clamp(26px, 3.5vw, 36px); font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-top: 10px; }
 .section-sub { font-size: 15px; color: var(--grey); margin-top: 8px; line-height: 1.65; }
 
 /* ════ NAV ═══════════════════════════════════════════════ */
@@ -70,13 +78,21 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.92);
 .hero-h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(36px, 4.8vw, 62px); font-weight: 800; line-height: 1.06; letter-spacing: -.03em; color: var(--navy); margin-bottom: 20px; }
 .hero-h1 .accent { color: var(--gold); display: inline-block; position: relative; }
 .hero-h1 .accent::after { content: ''; position: absolute; bottom: 1px; left: 0; right: 0; height: 3px; background: var(--gold); opacity: .2; border-radius: 2px; }
-.hero-p { font-size: 16px; color: var(--grey); line-height: 1.7; margin-bottom: 32px; max-width: 440px; }
-.hero-p strong { color: var(--navy); font-weight: 600; }
+.hero-p { font-size: 16px; color: var(--grey); line-height: 1.7; margin-bottom: 32px; max-width: 440px; font-weight: 700; }
+.hero-p strong { color: var(--navy); }
 .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
-.trust-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
-.trust-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--navy); }
-.trust-icon { width: 22px; height: 22px; border-radius: 50%; background: rgba(212,160,23,.1); border: 1.5px solid rgba(212,160,23,.25); display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
-.trust-divider { width: 1px; height: 18px; background: var(--g200); }
+.trust-row { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 24px; align-items: center; }
+.trust-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; color: var(--navy); }
+.trust-item.full-width { grid-column: 1 / -1; justify-self: center; margin-top: 4px; }
+.trust-icon { width: 22px; height: 22px; border-radius: 50%; background: rgba(212,160,23,.1); border: 1.5px solid rgba(212,160,23,.25); display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; color: var(--gold); }
+@media (max-width: 900px) {
+  .trust-row { grid-template-columns: repeat(2, 1fr); justify-content: center; gap: 16px; }
+  .trust-item.full-width { grid-column: span 2; }
+}
+@media (max-width: 480px) {
+  .trust-row { grid-template-columns: 1fr; }
+  .trust-item.full-width { grid-column: span 1; }
+}
 .hero-price-main { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 800; color: var(--navy); letter-spacing: -.02em; }
 .hero-price-badge { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-pill); letter-spacing: .06em; }
 .hero-meta { font-size: 12px; color: var(--grey); margin-top: 4px; }
@@ -277,18 +293,35 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.92);
 .form-success p { font-size: 14px; color: var(--grey); }
 
 /* ════ FOOTER ════════════════════════════════════════════ */
-footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); padding: 36px 0 28px; }
-.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.footer-logo { display: block; height: 28px; width: auto; flex-shrink: 0; }
-.footer-tagline { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: 5px; }
-.footer-right { text-align: right; }
-.footer-links { display: flex; gap: 18px; margin-bottom: 6px; justify-content: flex-end; }
-.footer-links a { font-size: 12px; color: rgba(255,255,255,.4); text-decoration: none; transition: color .15s; }
-.footer-links a:hover { color: rgba(255,255,255,.8); }
-.footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
-.footer-contact { margin-top: 10px; font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.7; }
-.footer-contact a { color: rgba(255,255,255,.45); text-decoration: none; transition: color .15s; }
-.footer-contact a:hover { color: rgba(255,255,255,.8); }
+footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); padding: 80px 0 30px; color: var(--muted-on-blue); }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px; }
+@media (max-width: 1024px) { .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; } }
+@media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } footer { padding: 60px 0 100px; } } /* Extra bottom padding for mobile sticky CTA */
+
+.footer-brand { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+.footer-logo { height: 32px; width: auto; display: block; object-fit: contain; image-rendering: -webkit-optimize-contrast; }
+@media (max-width: 640px) { .footer-logo { height: 28px; } }
+.footer-brand-desc { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.45); max-width: 280px; }
+.footer-socials { display: flex; gap: 12px; margin-top: 8px; }
+.footer-social-link { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.04); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); transition: all .2s ease; border: 1px solid rgba(255,255,255,.05); }
+.footer-social-link:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); border-color: var(--gold); }
+
+.footer-col-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 24px; }
+.footer-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.footer-list a { color: rgba(255,255,255,.45); text-decoration: none; font-size: 14px; transition: color .2s; display: inline-block; }
+.footer-list a:hover { color: var(--gold); }
+
+.footer-contact-list { display: flex; flex-direction: column; gap: 18px; }
+.footer-contact-item { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,.45); }
+.footer-contact-item svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.footer-contact-item a { color: inherit; text-decoration: none; transition: color .2s; }
+.footer-contact-item a:hover { color: #fff; }
+
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,.3); }
+@media (max-width: 768px) { .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom-links a { color: inherit; text-decoration: none; transition: color .2s; }
+.footer-bottom-links a:hover { color: rgba(255,255,255,.6); }
 
 /* ════ INDUSTRY STATS ════════════════════════════════════ */
 .ind-stats { background: var(--navy); padding: 56px 0; }
@@ -298,11 +331,13 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
 .ind-stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
 .ind-stat-pct { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 52px; font-weight: 800; color: var(--gold-light); letter-spacing: -.04em; line-height: 1; margin-bottom: 10px; }
 .ind-stat-desc { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; margin-bottom: 12px; }
-.ind-stat-source { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.25); letter-spacing: .06em; text-transform: uppercase; }
-.ind-quote { margin-top: 36px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: var(--r-lg); padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start; }
-.ind-quote-mark { font-size: 48px; line-height: 1; color: var(--gold); opacity: .5; font-family: Georgia, serif; flex-shrink: 0; margin-top: -8px; }
-.ind-quote-text { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.7; font-style: italic; }
-.ind-quote-attr { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 8px; font-style: normal; font-weight: 600; }
+.ind-stat-source { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; background: rgba(212,160,23,.1); padding: 4px 12px; border-radius: var(--r-pill); transition: all 0.3s ease; border: 1px solid rgba(212,160,23,0.1); }
+.ind-stat-source:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(212,160,23,0.2); background: rgba(212,160,23,.15); border-color: rgba(212,160,23,0.3); }
+.ind-quote { margin-top: 48px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r-lg); padding: 32px; display: flex; gap: 24px; align-items: flex-start; }
+.ind-quote-mark { font-size: 48px; line-height: 1; color: var(--gold); opacity: .5; font-family: 'Sora', serif; flex-shrink: 0; margin-top: -8px; }
+.ind-quote-text { font-size: 16px; color: rgba(255,255,255,.85); line-height: 1.7; font-style: italic; }
+.ind-quote-attr { display: inline-flex; margin-top: 16px; font-size: 13px; color: var(--gold-light); font-style: normal; font-weight: 700; background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: var(--r-pill); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; }
+.ind-quote-attr:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255,255,255,0.1); border-color: var(--gold); }
 
 /* ════ PROBLEM + SOLUTION ════════════════════════════════ */
 .prob-sol-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
@@ -349,28 +384,52 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
 .mode-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
 
 /* ════ ASSESSMENT ════════════════════════════════════════ */
-.assess { background: var(--g50); }
-.assess-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-@media (max-width: 760px) { .assess-inner { grid-template-columns: 1fr; } }
-.assess-box { background: #fff; border: 1px solid var(--g100); border-radius: var(--r-lg); padding: 28px 24px; }
-.assess-box-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 18px; }
-.score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.score-label { font-size: 13px; color: var(--grey); flex: 1; }
-.score-bar-wrap { width: 120px; height: 6px; background: var(--g100); border-radius: 99px; flex-shrink: 0; }
-.score-bar { height: 6px; border-radius: 99px; background: var(--gold); }
-.score-pts { font-size: 12px; font-weight: 700; color: var(--navy); width: 28px; text-align: right; flex-shrink: 0; }
-.assess-weightage { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--g100); font-size: 12px; color: var(--grey); line-height: 1.8; }
-.assess-weightage strong { color: var(--navy); }
-.diff-levels { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-.diff-level { padding: 12px 16px; border-radius: var(--r-md); border-left: 3px solid; }
-.diff-level-1 { background: rgba(74,222,128,.06); border-color: #4ade80; }
-.diff-level-2 { background: rgba(251,191,36,.06); border-color: #fbbf24; }
-.diff-level-3 { background: rgba(239,68,68,.06); border-color: #ef4444; }
-.diff-level-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
-.diff-level-desc { font-size: 12px; color: var(--grey); }
-.leaderboard-box { background: var(--navy); border: 1px solid rgba(212,160,23,.2); border-radius: var(--r-lg); padding: 24px; margin-top: 20px; }
-.lb-title { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
-.lb-desc { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; }
+.assess { background: #fff; position: relative; }
+.assess-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
+@media (max-width: 900px) { .assess-inner { grid-template-columns: 1fr; } }
+.assess-box { 
+  background: var(--card-bg); 
+  border: 1px solid var(--g100); 
+  border-radius: var(--r-lg); 
+  padding: 36px; 
+  height: 100%; 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(18, 53, 91, 0.03);
+}
+.assess-box:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(18, 53, 91, 0.08); border-color: var(--gold); }
+.assess-box-title { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 24px; }
+.score-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.score-label { font-size: 14px; color: var(--grey); flex: 1; font-weight: 500; }
+.score-bar-wrap { width: 140px; height: 8px; background: var(--g100); border-radius: 99px; flex-shrink: 0; overflow: hidden; }
+.score-bar { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.score-pts { font-size: 14px; font-weight: 700; color: var(--navy); width: 32px; text-align: right; flex-shrink: 0; }
+.assess-weightage { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--g100); font-size: 13px; color: var(--grey); line-height: 1.8; }
+.assess-weightage strong { color: var(--navy); font-weight: 700; }
+.diff-levels { display: flex; flex-direction: column; gap: 12px; }
+.diff-level { padding: 16px 20px; border-radius: var(--r-md); border-left: 4px solid; transition: transform 0.2s ease; }
+.diff-level:hover { transform: translateX(5px); }
+.diff-level-1 { background: rgba(74,222,128,.08); border-color: #4ade80; }
+.diff-level-2 { background: rgba(251,191,36,.08); border-color: #fbbf24; }
+.diff-level-3 { background: rgba(239,68,68,.08); border-color: #ef4444; }
+.diff-level-title { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+.diff-level-desc { font-size: 13px; color: var(--grey); line-height: 1.5; }
+.leaderboard-box { 
+  grid-column: 1 / -1; 
+  justify-self: center; 
+  max-width: 800px; 
+  width: 100%;
+  background: #F8FBFF; 
+  border: 1.5px solid rgba(18, 53, 91, 0.1); 
+  border-radius: var(--r-lg); 
+  padding: 40px; 
+  margin-top: 40px; 
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(18, 53, 91, 0.03);
+}
+.leaderboard-box:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(18, 53, 91, 0.08); border-color: var(--gold); }
+.lb-title { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.lb-desc { font-size: 15px; color: var(--grey); line-height: 1.7; max-width: 600px; margin: 0 auto; }
 
 /* ════ GUEST TRAINERS ════════════════════════════════════ */
 .guests { background: #fff; }
@@ -731,12 +790,9 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
         </div>
         <div class="trust-row fade-up" style="transition-delay:.2s">
           <div class="trust-item"><div class="trust-icon">✓</div>500+ Students</div>
-          <div class="trust-divider"></div>
           <div class="trust-item"><div class="trust-icon">🤖</div>Real AI Projects</div>
-          <div class="trust-divider"></div>
-          <div class="trust-item"><div class="trust-icon">🏆</div>NASSCOM Certified</div>
-          <div class="trust-divider"></div>
-          <div class="trust-item"><div class="trust-icon">💼</div>Internship Support</div>
+          <div class="trust-item"><div class="trust-icon">🏆</div>NASSCOM Certificate</div>
+          <div class="trust-item full-width"><div class="trust-icon">💼</div>Internship Support</div>
         </div>
         <div class="fade-up" style="transition-delay:.25s;margin-top:28px;">
           <span class="hero-price-main">Starting ₹3,000</span>
@@ -812,17 +868,17 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
       <div class="ind-stat-card">
         <div class="ind-stat-pct">78%</div>
         <div class="ind-stat-desc">of organisations already use AI in at least one function, with 71% using Generative AI regularly</div>
-        <div class="ind-stat-source">McKinsey Global Survey</div>
+        <div class="ind-stat-source">MCKINSEY GLOBAL SURVEY</div>
       </div>
       <div class="ind-stat-card">
         <div class="ind-stat-pct">93%</div>
         <div class="ind-stat-desc">of IT Executives are interested in Agentic AI, with 45% investing now and 79% planning adoption</div>
-        <div class="ind-stat-source">UiPath &amp; PwC Study</div>
+        <div class="ind-stat-source">UIPATH &amp; PWC STUDY</div>
       </div>
       <div class="ind-stat-card">
         <div class="ind-stat-pct">62%</div>
         <div class="ind-stat-desc">expect more than 100% ROI from AI investments, with 43% allocating over 50% of AI budget to agentic solutions</div>
-        <div class="ind-stat-source">Gartner Research</div>
+        <div class="ind-stat-source">GARTNER RESEARCH</div>
       </div>
     </div>
     <div class="ind-quote fade-up">
@@ -1235,55 +1291,43 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
       <p class="section-sub">Every week is evaluated. Your score determines your certification level and placement priority.</p>
     </div>
     <div class="assess-inner fade-up">
-      <div>
-        <div class="assess-box">
-          <div class="assess-box-title">Scoring Criteria (out of 100)</div>
-          <div class="score-row"><span class="score-label">Problem Understanding</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
-          <div class="score-row"><span class="score-label">Solution Design</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
-          <div class="score-row"><span class="score-label">Implementation</span><div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div><span class="score-pts">30</span></div>
-          <div class="score-row"><span class="score-label">Optimisation</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
-          <div class="score-row"><span class="score-label">Presentation</span><div class="score-bar-wrap"><div class="score-bar" style="width:20%"></div></div><span class="score-pts">10</span></div>
-          <div class="assess-weightage">
-            <strong>Final Weightage:</strong><br>
-            Assessments 25% · Hackathon 20% · Capstone 35% · Participation 20%
-          </div>
-        </div>
-        <div class="leaderboard-box">
-          <div class="lb-title">🏆 Leaderboard</div>
-          <div class="lb-desc">Weekly rankings published for all students. Top performers get placement priority and Distinction certification — your effort is publicly rewarded.</div>
+      <!-- Scoring Criteria -->
+      <div class="assess-box">
+        <div class="assess-box-title">Scoring Criteria (out of 100)</div>
+        <div class="score-row"><span class="score-label">Problem Understanding</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
+        <div class="score-row"><span class="score-label">Solution Design</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
+        <div class="score-row"><span class="score-label">Implementation</span><div class="score-bar-wrap"><div class="score-bar" style="width:60%"></div></div><span class="score-pts">30</span></div>
+        <div class="score-row"><span class="score-label">Optimisation</span><div class="score-bar-wrap"><div class="score-bar" style="width:40%"></div></div><span class="score-pts">20</span></div>
+        <div class="score-row"><span class="score-label">Presentation</span><div class="score-bar-wrap"><div class="score-bar" style="width:20%"></div></div><span class="score-pts">10</span></div>
+        <div class="assess-weightage">
+          <strong>Final Weightage:</strong><br>
+          Assessments 25% · Hackathon 20% · Capstone 35% · Participation 20%
         </div>
       </div>
-      <div>
-        <div class="assess-box" style="margin-bottom:16px;">
-          <div class="assess-box-title">Difficulty Levels</div>
-          <div class="diff-levels">
-            <div class="diff-level diff-level-1">
-              <div class="diff-level-title">Level 1 — Basic</div>
-              <div class="diff-level-desc">Guided tasks with step-by-step support. Build confidence with structured milestones.</div>
-            </div>
-            <div class="diff-level diff-level-2">
-              <div class="diff-level-title">Level 2 — Intermediate</div>
-              <div class="diff-level-desc">Partial guidance. Independent thinking required to complete the deliverable.</div>
-            </div>
-            <div class="diff-level diff-level-3">
-              <div class="diff-level-title">Level 3 — Advanced</div>
-              <div class="diff-level-desc">Fully independent build. Real-world problem with no scaffolding — just like the job.</div>
-            </div>
+
+      <!-- Difficulty Levels -->
+      <div class="assess-box">
+        <div class="assess-box-title">Difficulty Levels</div>
+        <div class="diff-levels">
+          <div class="diff-level diff-level-1">
+            <div class="diff-level-title">Level 1 — Basic</div>
+            <div class="diff-level-desc">Guided tasks with step-by-step support. Build confidence with structured milestones.</div>
+          </div>
+          <div class="diff-level diff-level-2">
+            <div class="diff-level-title">Level 2 — Intermediate</div>
+            <div class="diff-level-desc">Partial guidance. Independent thinking required to complete the deliverable.</div>
+          </div>
+          <div class="diff-level diff-level-3">
+            <div class="diff-level-title">Level 3 — Advanced</div>
+            <div class="diff-level-desc">Fully independent build. Real-world problem with no scaffolding — just like the job.</div>
           </div>
         </div>
-        <div class="assess-box">
-          <div class="assess-box-title">Weekly Evaluation Schedule</div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 1</span><span style="font-weight:600;color:var(--navy);">Prompt Engineering</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 2</span><span style="font-weight:600;color:var(--navy);">AI Workflow</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 3</span><span style="font-weight:600;color:var(--navy);">API &amp; Tools</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 4</span><span style="font-weight:600;color:var(--navy);">RAG Chatbot</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 5</span><span style="font-weight:600;color:var(--navy);">AI Agent</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 6</span><span style="font-weight:600;color:var(--navy);">Automation System</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--g100);"><span>Week 7</span><span style="font-weight:600;color:var(--navy);">Deployment</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--grey);padding:6px 0;"><span>Week 8</span><span style="font-weight:600;color:var(--gold);">Capstone Project</span></div>
-          </div>
-        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="leaderboard-box">
+        <div class="lb-title">🏆 Leaderboard</div>
+        <div class="lb-desc">Weekly rankings published for all students. Top performers get placement priority and Distinction certification — your effort is publicly rewarded.</div>
       </div>
     </div>
   </div>
@@ -1882,32 +1926,82 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); p
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
-      <div>
-        <img class="footer-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Dark Removed Background.png" alt="EDURYX" />
-        <div class="footer-tagline">Education &amp; Skilling by KODRYX AI · Built for the AI Generation</div>
+    <div class="footer-grid">
+      <!-- Column 1: Brand & Social -->
+      <div class="footer-brand">
+        <img class="footer-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png" alt="EDURYX" />
+        <p class="footer-brand-desc">Empowering the next generation with industry-first AI skills. Build real-world projects and launch your career in the AI era.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.14 1 12 1 12s0 3.86.42 5.58a2.78 2.78 0 0 0 1.94 2c1.71.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.86 23 12 23 12s0-3.86-.42-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-right">
-        <div class="footer-links">
-          <a href="#programs">Programs</a>
-          <a href="#instructors">Trainers</a>
-          <a href="#certification">Certification</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-          <a href="#enroll">Enroll</a>
+
+      <!-- Column 2: Programs -->
+      <div>
+        <h4 class="footer-col-title">Programs</h4>
+        <ul class="footer-list">
+          <li><a href="#pricing" onclick="preselectProgram('4-Week Graduation Program (BA/BSc/BCom)')">Graduation AI Program</a></li>
+          <li><a href="#pricing" onclick="preselectProgram('4-Week B.Tech AI Program')">B.Tech AI Program</a></li>
+          <li><a href="#pricing" onclick="preselectProgram('8-Week AI Engineer Program')">AI Engineer Track</a></li>
+          <li><a href="#certification">Certification Path</a></li>
+          <li><a href="#curriculum">Full Curriculum</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Quick Links -->
+      <div>
+        <h4 class="footer-col-title">Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="#instructors">Our Trainers</a></li>
+          <li><a href="#reviews">Student Success</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact Support</a></li>
+          <li><a href="#enroll">Enroll Now</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact -->
+      <div>
+        <h4 class="footer-col-title">Contact Us</h4>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>
+              <strong>Hyderabad (HQ):</strong><br>
+              3rd Floor, Jubilee Hills, Road No. 36,<br>
+              Hyderabad, Telangana 500033
+            </span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.19-2.19a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+917337222775">+91 7337 222 775</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contact@eduryx.com">contact@eduryx.com</a>
+          </div>
         </div>
-        <div class="footer-copy">© 2026 EDURYX · A KODRYX AI Initiative · All rights reserved</div>
-        <div class="footer-contact">
-          <strong style="color:rgba(255,255,255,.55);font-size:10px;letter-spacing:.1em;text-transform:uppercase;">Hyderabad (HQ)</strong><br>
-          EDURYX, 3rd Floor, 8-2-293/82/A/790, Road No. 36, opp. Metro Pillar No. 1676,<br>
-          CBI Colony, Jubilee Hills, Hyderabad, Telangana 500033<br>
-          Phone: <a href="tel:+917337222775">+91 7337 222 775</a> &nbsp;·&nbsp;
-          Voice Agent: <a href="tel:+911171366826">+91 1171 366 826</a> &nbsp;·&nbsp;
-          Email: <a href="mailto:contact@eduryx.com">contact@eduryx.com</a><br><br>
-          <strong style="color:rgba(255,255,255,.55);font-size:10px;letter-spacing:.1em;text-transform:uppercase;">Jaipur &nbsp;<span style="background:var(--cyan);color:#0a0f1e;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;letter-spacing:.08em;vertical-align:middle;">COMING SOON</span></strong><br>
-          New Office · Jaipur, Rajasthan
-          <!-- WHATSAPP_NUMBER_PLACEHOLDER -->
-        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="footer-bottom">
+      <div>© 2026 EDURYX. All rights reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Sitemap</a>
       </div>
     </div>
   </div>
