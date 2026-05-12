@@ -1,1 +1,7 @@
 .vercel
+
+# Backend
+server/node_modules/
+server/.env
+node_modules/
+.env
