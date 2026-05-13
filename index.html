@@ -1,12 +1,5831 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=./website.html" />
-    <title>Redirecting...</title>
-    <script>window.location.replace("./website.html");</script>
-  </head>
-  <body>
-    <p>Redirecting to <a href="./website.html">website.html</a>...</p>
-  </body>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EDURYX — Learn AI. Build the Future.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <style>
+    /* Lenis Smooth Scroll CSS */
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    .lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis-scrolling iframe {
+      pointer-events: none;
+    }
+
+    /* ── Reset ────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fff;
+      color: #0A1423;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* ── Custom Scrollbar ─────────────────────────────────── */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--g50);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--g200);
+      border-radius: 4px;
+      border: 2px solid var(--g50);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--grey);
+    }
+
+    /* ── Tokens ───────────────────────────────────────────── */
+    :root {
+      --navy: #12355B;
+      /* Premium Blue */
+      --navy-dark: #0D2948;
+      --gold: #D4A017;
+      --gold-light: #F4C542;
+      --card-bg: #F8FBFF;
+      --text-on-blue: #FFFFFF;
+      --muted-on-blue: #DCE8F7;
+      --g50: #F8FAFC;
+      --g100: #EEF2F7;
+      --g200: #D7DEE7;
+      --grey: #667085;
+      --r-md: 8px;
+      --r-lg: 12px;
+      --r-pill: 999px;
+    }
+
+    /* ── Helpers ──────────────────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: var(--r-pill);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .pill-amber {
+      background: rgba(212, 160, 23, .1);
+      color: #8B6914;
+    }
+
+    .pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: var(--r-lg);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 250ms ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 20px rgba(18, 53, 91, 0.2);
+    }
+
+    .btn-amber {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 8px 24px rgba(212, 160, 23, .22);
+    }
+
+    .btn-amber:hover {
+      box-shadow: 0 10px 28px rgba(212, 160, 23, 0.35);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--g200);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--navy);
+      background: var(--g50);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost-inv {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, .25);
+    }
+
+    .btn-ghost-inv:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .btn-sm {
+      padding: 9px 18px;
+      font-size: 13px;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-top: 10px;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--grey);
+      margin-top: 8px;
+      line-height: 1.65;
+    }
+
+    /* ════ NAV ═══════════════════════════════════════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--g100);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      display: block;
+      height: 32px;
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--grey);
+      text-decoration: none;
+      padding: 6px 11px;
+      border-radius: var(--r-md);
+      transition: color .15s, background .15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+      background: var(--g50);
+    }
+
+    @media (max-width: 680px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ════ HERO SPLIT ════════════════════════════════════════ */
+    .hero {
+      background: #fff;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 5% 50%, rgba(212, 160, 23, .04), transparent 55%), radial-gradient(ellipse 50% 70% at 95% 20%, rgba(10, 20, 35, .03), transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--g100) 1px, transparent 1px), linear-gradient(90deg, var(--g100) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212, 160, 23, .07), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(50px);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 100px 0 88px;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 72px 0 60px;
+        text-align: center;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .trust-row {
+        justify-content: center;
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 160, 23, .08);
+      border: 1px solid rgba(212, 160, 23, .2);
+      border-radius: var(--r-pill);
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #8B6914;
+      margin-bottom: 22px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ef4444;
+      animation: blink 1.2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .3;
+      }
+    }
+
+    .hero-h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(36px, 4.8vw, 62px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -.03em;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .hero-h1 .accent {
+      color: var(--gold);
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-h1 .accent::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+      opacity: .2;
+      border-radius: 2px;
+    }
+
+    .hero-p {
+      font-size: 16px;
+      color: var(--grey);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 440px;
+      font-weight: 700;
+    }
+
+    .hero-p strong {
+      color: var(--navy);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: start;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .trust-item.full-width {
+      grid-column: 1 / -1;
+      justify-self: center;
+      margin-top: 4px;
+    }
+
+    .trust-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(212, 160, 23, .1);
+      border: 1.5px solid rgba(212, 160, 23, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    @media (max-width: 900px) {
+      .trust-row {
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .trust-item.full-width {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .trust-row {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-item.full-width {
+        grid-column: span 1;
+      }
+    }
+
+    .hero-price-main {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.02em;
+    }
+
+    .hero-price-badge {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--r-pill);
+      letter-spacing: .06em;
+    }
+
+    .hero-meta {
+      font-size: 12px;
+      color: var(--grey);
+      margin-top: 4px;
+    }
+
+    /* Hero Right Dashboard */
+    .hero-right {
+      position: relative;
+      height: 480px;
+    }
+
+    .hero-dashboard {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .h-card {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: 16px;
+      padding: 20px;
+      position: absolute;
+      box-shadow: 0 8px 32px rgba(10, 20, 35, .07);
+    }
+
+    .h-main {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 64px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .h-code-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--g100);
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+
+    .h-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .h-dot-r {
+      background: #ef4444;
+    }
+
+    .h-dot-y {
+      background: #f59e0b;
+    }
+
+    .h-dot-g {
+      background: #22c55e;
+    }
+
+    .h-file {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--grey);
+      margin-left: 4px;
+    }
+
+    .code-block {
+      font-family: 'Courier New', monospace;
+      font-size: 11.5px;
+      line-height: 1.75;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .code-line {
+      display: flex;
+      gap: 14px;
+    }
+
+    .c-num {
+      color: rgba(102, 112, 133, .35);
+      user-select: none;
+      width: 16px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .c-kw {
+      color: #7c3aed;
+    }
+
+    .c-fn {
+      color: #0ea5e9;
+    }
+
+    .c-str {
+      color: #16a34a;
+    }
+
+    .c-cm {
+      color: rgba(102, 112, 133, .5);
+      font-style: italic;
+    }
+
+    .c-plain {
+      color: var(--navy);
+    }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 2px;
+      height: 13px;
+      background: var(--gold);
+      animation: cursorBlink .85s step-end infinite;
+      margin-left: 1px;
+      vertical-align: middle;
+    }
+
+    @keyframes cursorBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .h-float1 {
+      bottom: 14px;
+      left: -24px;
+      width: 168px;
+      padding: 16px;
+      animation: flt1 4s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .h-float2 {
+      top: 30px;
+      right: -28px;
+      width: 152px;
+      padding: 14px;
+      animation: flt2 5s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .h-float3 {
+      bottom: 110px;
+      right: -24px;
+      width: 148px;
+      padding: 14px;
+      animation: flt3 4.5s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    @keyframes flt1 {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes flt2 {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(8px);
+      }
+    }
+
+    @keyframes flt3 {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .fl-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 5px;
+    }
+
+    .fl-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+
+    .fl-sub {
+      font-size: 11px;
+      color: var(--grey);
+      margin-top: 2px;
+    }
+
+    .fl-bar-wrap {
+      height: 4px;
+      background: var(--g100);
+      border-radius: 2px;
+      margin-top: 9px;
+    }
+
+    .fl-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+    }
+
+    .fl-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .fl-tag {
+      font-size: 10px;
+      font-weight: 600;
+      background: var(--g50);
+      border: 1px solid var(--g100);
+      color: var(--grey);
+      padding: 2px 7px;
+      border-radius: var(--r-pill);
+    }
+
+    .fl-tag.on {
+      background: rgba(212, 160, 23, .1);
+      border-color: rgba(212, 160, 23, .3);
+      color: #8B6914;
+    }
+
+    .fl-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #16a34a;
+    }
+
+    .fl-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    /* Stats strip kept for reuse */
+    .stats-strip {
+      display: flex;
+      justify-content: center;
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 18px 12px;
+      text-align: center;
+      border-right: 1px solid var(--g100);
+    }
+
+    .stat-item:last-child {
+      border-right: 0;
+    }
+
+    .stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -.02em;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--grey);
+    }
+
+    /* ════ TICKER ════════════════════════════════════════════ */
+    .ticker-wrap {
+      background: var(--navy);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 32px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .65);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .ticker-item .sep {
+      color: var(--gold);
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ════ PROBLEM ═══════════════════════════════════════════ */
+    .problem {
+      background: var(--g50);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .problem-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .problem-card {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--r-lg);
+      padding: 22px 18px;
+    }
+
+    .problem-icon {
+      width: 34px;
+      height: 34px;
+      background: rgba(212, 160, 23, .08);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .problem-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .problem-card p {
+      font-size: 13px;
+      color: var(--grey);
+      line-height: 1.5;
+    }
+
+    .problem-stat {
+      margin-top: 36px;
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .problem-stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -.03em;
+      white-space: nowrap;
+    }
+
+    .problem-stat-text {
+      font-size: 15px;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.55;
+    }
+
+    .problem-stat-text strong {
+      color: #fff;
+    }
+
+    /* ════ PROGRAMS ══════════════════════════════════════════ */
+    .programs {
+      background: #fff;
+    }
+
+    .prog-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .prog-tab {
+      padding: 9px 20px;
+      border-radius: var(--r-pill);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--g200);
+      color: var(--grey);
+      background: #fff;
+      transition: all .2s;
+    }
+
+    .prog-tab.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    .prog-panel {
+      display: none;
+    }
+
+    .prog-panel.active {
+      display: block;
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .bento {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .bento {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .bento-card {
+      background: var(--g50);
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 30px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .bento-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(10, 20, 35, 0.04);
+    }
+
+    .bento-card.featured {
+      background: linear-gradient(135deg, rgba(212, 160, 23, .08), rgba(212, 160, 23, .02));
+      border-color: rgba(212, 160, 23, .3);
+    }
+
+    .bento-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--navy);
+      opacity: 0.05;
+      line-height: 1;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      letter-spacing: -.04em;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .bento-card.featured .bento-num {
+      color: var(--gold);
+      opacity: 0.08;
+    }
+
+    .bento-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .bento-week {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 14px;
+    }
+
+    .bento-card.featured .bento-week {
+      color: rgba(212, 160, 23, .7);
+    }
+
+    .bento-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: -.01em;
+      line-height: 1.3;
+      max-width: 85%;
+    }
+
+    .bento-card.featured .bento-title {
+      color: var(--navy);
+    }
+
+    .bento-card p {
+      font-size: 13px;
+      color: var(--grey);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .bento-card.featured p {
+      color: var(--grey);
+    }
+
+    .bento-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 14px;
+    }
+
+    .bento-tag {
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--g100);
+      color: var(--grey);
+      padding: 3px 8px;
+      border-radius: var(--r-pill);
+    }
+
+    .bento-card.featured .bento-tag {
+      background: rgba(212, 160, 23, .12);
+      color: #8B6914;
+      border: 1px solid rgba(212, 160, 23, .2);
+    }
+
+    /* Responsive adjustments for background numbers */
+    @media (max-width: 600px) {
+      .bento-num {
+        font-size: 42px;
+        opacity: 0.04;
+        top: 15px;
+        right: 15px;
+      }
+
+      .bento-title {
+        max-width: 100%;
+      }
+    }
+
+    /* ════ BUILD ══════════════════════════════════════════════ */
+    .build {
+      background: var(--g50);
+    }
+
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 580px) {
+      .build-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .build-card {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 26px 22px;
+      transition: border-color .2s;
+    }
+
+    .build-card:hover {
+      border-color: var(--gold);
+    }
+
+    .build-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .build-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 7px;
+      letter-spacing: -.01em;
+    }
+
+    .build-card p {
+      font-size: 13px;
+      color: var(--grey);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .build-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--navy);
+      background: var(--g50);
+      border: 1px solid var(--g100);
+      padding: 3px 8px;
+      border-radius: var(--r-pill);
+    }
+
+    /* ════ WHAT YOU GET ══════════════════════════════════════ */
+    .get {
+      background: var(--navy);
+    }
+
+    .get-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 680px) {
+      .get-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .get-card {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--r-lg);
+      padding: 22px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .get-check {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(212, 160, 23, .12);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .get-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .get-card-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.5;
+    }
+
+    /* ════ WHY ════════════════════════════════════════════════ */
+    .why {
+      background: #fff;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 680px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .why-card {
+      background: var(--g50);
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 26px 22px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .why-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .why-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--grey);
+      letter-spacing: .1em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .why-num::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--g100);
+    }
+
+    .why-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+
+    .why-card p {
+      font-size: 13px;
+      color: var(--grey);
+      line-height: 1.65;
+    }
+
+    /* ════ INSTRUCTOR ════════════════════════════════════════ */
+    .instructor {
+      background: var(--g50);
+    }
+
+    .instructor-inner {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .instructor-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .instructor-avatar {
+        margin: 0 auto;
+      }
+
+      .instructor-tags {
+        justify-content: center;
+      }
+
+      .instructor-stats {
+        justify-content: center;
+      }
+    }
+
+    .instructor-avatar {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 3px solid var(--g200);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .instructor-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .instructor-avatar-ring {
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212, 160, 23, .35);
+      pointer-events: none;
+    }
+
+    .instructor-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.02em;
+      margin: 8px 0 4px;
+    }
+
+    .instructor-role {
+      font-size: 14px;
+      color: var(--grey);
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+
+    .instructor-stats {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .i-stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+
+    .i-stat-lbl {
+      font-size: 11px;
+      color: var(--grey);
+      margin-top: 2px;
+    }
+
+    .instructor-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .i-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--navy);
+      background: #fff;
+      border: 1px solid var(--g100);
+      padding: 4px 11px;
+      border-radius: var(--r-pill);
+    }
+
+    /* ════ PRICING ═══════════════════════════════════════════ */
+    .pricing {
+      background: var(--navy);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 860px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+    }
+
+    .price-card {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .price-card.featured {
+      background: linear-gradient(160deg, rgba(212, 160, 23, .08), rgba(212, 160, 23, .02));
+      border-color: rgba(212, 160, 23, .4);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: var(--r-pill);
+      letter-spacing: .06em;
+      white-space: nowrap;
+    }
+
+    .price-who {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: 8px;
+    }
+
+    .price-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+      letter-spacing: -.01em;
+    }
+
+    .price-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .45);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .price-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .price-main {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+
+    .price-strike {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .2);
+      text-decoration: line-through;
+    }
+
+    .price-off {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--r-pill);
+    }
+
+    .price-includes {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .45);
+      margin-bottom: 4px;
+    }
+
+    .price-includes strong {
+      color: rgba(255, 255, 255, .75);
+      font-weight: 500;
+    }
+
+    .price-list {
+      list-style: none;
+      margin: 16px 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .price-list li {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .6);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price-list li::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(212, 160, 23, .12);
+      border: 1px solid rgba(212, 160, 23, .35);
+      display: flex;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23D4A017' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .price-seats {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .35);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .seats-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(.8);
+      }
+    }
+
+    .price-btn {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      border-radius: var(--r-lg);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: auto;
+      transition: opacity .15s, transform .15s;
+    }
+
+    .price-btn:hover {
+      opacity: .88;
+      transform: translateY(-1px);
+    }
+
+    .price-btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 8px 24px rgba(212, 160, 23, .22);
+    }
+
+    .price-btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, .2);
+    }
+
+    /* ════ ENROLLMENT FORM ═══════════════════════════════════ */
+    .enroll {
+      background: var(--g50);
+    }
+
+    .enroll-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    @media (max-width: 760px) {
+      .enroll-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .enroll-left h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.02em;
+      margin: 10px 0 12px;
+      line-height: 1.15;
+    }
+
+    .enroll-left p {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .enroll-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .enroll-perk {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .enroll-perk-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .enroll-form {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: 16px;
+      padding: 32px 28px;
+    }
+
+    .enroll-form h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .enroll-form .form-sub {
+      font-size: 13px;
+      color: var(--grey);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: .03em;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--r-md);
+      border: 1.5px solid var(--g200);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--navy);
+      background: #fff;
+      outline: none;
+      transition: border-color .15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--navy);
+    }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--r-lg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+      transition: opacity .15s, transform .15s;
+      letter-spacing: -.01em;
+    }
+
+    .form-submit:hover {
+      opacity: .88;
+      transform: translateY(-1px);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .form-success .success-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(212, 160, 23, .1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      border: 2px solid var(--gold);
+    }
+
+    .form-success h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-success p {
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    /* ════ FOOTER ════════════════════════════════════════════ */
+    footer {
+      background: #143e6c; /* Exact match from the reference image */
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      padding: 80px 0 30px;
+      color: var(--muted-on-blue);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      footer {
+        padding: 60px 0 100px;
+      }
+    }
+
+    /* Extra bottom padding for mobile sticky CTA */
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .footer-logo {
+      height: 42px; /* Slightly larger for perfect clarity */
+      width: auto;
+      display: block;
+      object-fit: contain;
+      image-rendering: -webkit-optimize-contrast;
+      filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 10px rgba(255,255,255,0.15));
+    }
+
+    @media (max-width: 640px) {
+      .footer-logo {
+        height: 28px;
+      }
+    }
+
+    .footer-brand-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .45);
+      max-width: 280px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .footer-social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, .6);
+      transition: all .2s ease;
+      border: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .footer-social-link:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+
+    .footer-col-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 24px;
+    }
+
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-list a {
+      color: rgba(255, 255, 255, .45);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+      display: inline-block;
+    }
+
+    .footer-list a:hover {
+      color: var(--gold);
+    }
+
+    .footer-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, .45);
+    }
+
+    .footer-contact-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-contact-item a {
+      color: inherit;
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-contact-item a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, .3);
+    }
+
+    @media (max-width: 768px) {
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    /* ════ INDUSTRY STATS ════════════════════════════════════ */
+    .ind-stats {
+      background: var(--navy);
+      padding: 56px 0;
+    }
+
+    .ind-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .ind-stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ind-stat-card {
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--r-lg);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ind-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .ind-stat-pct {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -.04em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .ind-stat-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .55);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .ind-stat-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: rgba(212, 160, 23, .1);
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(212, 160, 23, 0.1);
+    }
+
+    .ind-stat-source:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 160, 23, 0.2);
+      background: rgba(212, 160, 23, .15);
+      border-color: rgba(212, 160, 23, 0.3);
+    }
+
+    .ind-quote {
+      margin-top: 48px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--r-lg);
+      padding: 32px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .ind-quote-mark {
+      font-size: 48px;
+      line-height: 1;
+      color: var(--gold);
+      opacity: .5;
+      font-family: 'Sora', serif;
+      flex-shrink: 0;
+      margin-top: -8px;
+    }
+
+    .ind-quote-text {
+      font-size: 16px;
+      color: rgba(255, 255, 255, .85);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .ind-quote-attr {
+      display: inline-flex;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--gold-light);
+      font-style: normal;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 14px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .ind-quote-attr:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      border-color: var(--gold);
+    }
+
+    /* ════ PROBLEM + SOLUTION ════════════════════════════════ */
+    .prob-sol-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 760px) {
+      .prob-sol-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .prob-col,
+    .sol-col {
+      border-radius: var(--r-lg);
+      padding: 28px 24px;
+    }
+
+    .prob-col {
+      background: #fff;
+      border: 1px solid var(--g100);
+    }
+
+    .sol-col {
+      background: var(--navy);
+      border: 1px solid rgba(212, 160, 23, .2);
+    }
+
+    .ps-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .ps-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+    }
+
+    .ps-badge-prob {
+      background: rgba(239, 68, 68, .1);
+      color: #dc2626;
+    }
+
+    .ps-badge-sol {
+      background: rgba(212, 160, 23, .15);
+      color: var(--gold);
+    }
+
+    .ps-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .ps-title-prob {
+      color: var(--navy);
+    }
+
+    .ps-title-sol {
+      color: #fff;
+    }
+
+    .ps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ps-list li {
+      font-size: 13px;
+      line-height: 1.5;
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .ps-list li::before {
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .prob-col .ps-list li {
+      color: var(--grey);
+    }
+
+    .prob-col .ps-list li::before {
+      content: '✕';
+      background: rgba(239, 68, 68, .08);
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    .sol-col .ps-list li {
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .sol-col .ps-list li::before {
+      content: '✓';
+      background: rgba(212, 160, 23, .12);
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ════ TOOLS GRID ════════════════════════════════════════ */
+    .tools-section {
+      background: var(--g50);
+      padding: 64px 0;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .tool-category {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 20px 18px;
+    }
+
+    .tool-cat-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .tool-names {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tool-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--g100);
+    }
+
+    .tool-name:last-child {
+      border-bottom: none;
+    }
+
+    /* ════ TRAINING MODES ════════════════════════════════════ */
+    .modes {
+      background: #fff;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 760px) {
+      .modes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mode-card {
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 30px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .mode-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .mode-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-md);
+      background: rgba(212, 160, 23, .08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .mode-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .mode-sub {
+      font-size: 12px;
+      color: var(--grey);
+      margin-bottom: 16px;
+    }
+
+    .mode-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mode-list li {
+      font-size: 13px;
+      color: var(--grey);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .mode-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* ════ ASSESSMENT ════════════════════════════════════════ */
+    .assess {
+      background: #fff;
+      position: relative;
+    }
+
+    .assess-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 900px) {
+      .assess-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .assess-box {
+      background: var(--card-bg);
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 36px;
+      height: 100%;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(18, 53, 91, 0.03);
+    }
+
+    .assess-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(18, 53, 91, 0.08);
+      border-color: var(--gold);
+    }
+
+    .assess-box-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .score-label {
+      font-size: 14px;
+      color: var(--grey);
+      flex: 1;
+      font-weight: 500;
+    }
+
+    .score-bar-wrap {
+      width: 140px;
+      height: 8px;
+      background: var(--g100);
+      border-radius: 99px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .score-bar {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .score-pts {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      width: 32px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .assess-weightage {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--g100);
+      font-size: 13px;
+      color: var(--grey);
+      line-height: 1.8;
+    }
+
+    .assess-weightage strong {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .diff-levels {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .diff-level {
+      padding: 16px 20px;
+      border-radius: var(--r-md);
+      border-left: 4px solid;
+      transition: transform 0.2s ease;
+    }
+
+    .diff-level:hover {
+      transform: translateX(5px);
+    }
+
+    .diff-level-1 {
+      background: rgba(74, 222, 128, .08);
+      border-color: #4ade80;
+    }
+
+    .diff-level-2 {
+      background: rgba(251, 191, 36, .08);
+      border-color: #fbbf24;
+    }
+
+    .diff-level-3 {
+      background: rgba(239, 68, 68, .08);
+      border-color: #ef4444;
+    }
+
+    .diff-level-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .diff-level-desc {
+      font-size: 13px;
+      color: var(--grey);
+      line-height: 1.5;
+    }
+
+    .leaderboard-box {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: 800px;
+      width: 100%;
+      background: #F8FBFF;
+      border: 1.5px solid rgba(18, 53, 91, 0.1);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      margin-top: 40px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(18, 53, 91, 0.03);
+    }
+
+    .leaderboard-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(18, 53, 91, 0.08);
+      border-color: var(--gold);
+    }
+
+    .lb-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .lb-desc {
+      font-size: 15px;
+      color: var(--grey);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ════ GUEST TRAINERS ════════════════════════════════════ */
+    .guests {
+      background: #fff;
+    }
+
+    .guests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 760px) {
+      .guests-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .guest-card {
+      background: var(--g50);
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 24px 20px;
+      transition: border-color .2s;
+    }
+
+    .guest-card:hover {
+      border-color: var(--gold);
+    }
+
+    .guest-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+
+    .guest-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .guest-role {
+      font-size: 12px;
+      color: var(--grey);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .guest-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .guest-tag {
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--g100);
+      color: var(--grey);
+      padding: 3px 9px;
+      border-radius: var(--r-pill);
+    }
+
+    /* ════ CERTIFICATION ═════════════════════════════════════ */
+    .cert-section {
+      background: var(--navy);
+    }
+
+    .cert-partners {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .cert-partner {
+      text-align: center;
+      padding: 0 36px;
+    }
+
+    .cert-partner-plus {
+      font-size: 24px;
+      color: rgba(255, 255, 255, .2);
+      font-weight: 300;
+    }
+
+    .cert-partner-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-size: 22px;
+    }
+
+    .cert-partner-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .cert-partner-role {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .35);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .cert-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 680px) {
+      .cert-tiers {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cert-tier {
+      border-radius: var(--r-lg);
+      padding: 24px 20px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      text-align: center;
+    }
+
+    .cert-tier-bronze {
+      background: rgba(205, 127, 50, .06);
+      border-color: rgba(205, 127, 50, .2);
+    }
+
+    .cert-tier-silver {
+      background: rgba(192, 192, 192, .06);
+      border-color: rgba(192, 192, 192, .2);
+    }
+
+    .cert-tier-gold {
+      background: rgba(212, 160, 23, .07);
+      border-color: rgba(212, 160, 23, .3);
+    }
+
+    .cert-medal {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .cert-tier-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .cert-tier-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .45);
+      line-height: 1.6;
+    }
+
+    .cert-tier-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: var(--r-pill);
+    }
+
+    .cert-tier-bronze .cert-tier-tag {
+      background: rgba(205, 127, 50, .15);
+      color: #cd7f32;
+    }
+
+    .cert-tier-silver .cert-tier-tag {
+      background: rgba(192, 192, 192, .15);
+      color: #c0c0c0;
+    }
+
+    .cert-tier-gold .cert-tier-tag {
+      background: rgba(212, 160, 23, .15);
+      color: var(--gold-light);
+    }
+
+    /* ════ TESTIMONIALS ══════════════════════════════════════ */
+    .testimonials {
+      background: var(--g50);
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 760px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .testi-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--g100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .testi-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .testi-card {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .testi-stars {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .testi-text {
+      font-size: 13px;
+      color: var(--grey);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--g100);
+    }
+
+    .testi-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .testi-role {
+      font-size: 11px;
+      color: var(--grey);
+      margin-top: 1px;
+    }
+
+    /* ════ FAQ ═══════════════════════════════════════════════ */
+    .faq {
+      background: #fff;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--g100);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      padding: 18px 22px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      transition: background .15s;
+    }
+
+    .faq-q:hover {
+      background: var(--g50);
+    }
+
+    .faq-arrow {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--g100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform .2s, background .2s;
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+      background: var(--navy);
+    }
+
+    .faq-item.open .faq-arrow svg {
+      stroke: #fff;
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 22px 18px;
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    /* ════ CHATBOT ═══════════════════════════════════════════ */
+    .chat-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(11, 25, 41, .35);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .chat-fab:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(11, 25, 41, .45);
+    }
+
+    .chat-fab-ring {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 2px solid rgba(212, 160, 23, .4);
+      animation: fabring 2s ease-in-out infinite;
+    }
+
+    @keyframes fabring {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.12);
+        opacity: .5;
+      }
+    }
+
+    .chat-panel {
+      position: fixed;
+      bottom: 98px;
+      right: 28px;
+      z-index: 998;
+      width: 340px;
+      max-height: 520px;
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(11, 25, 41, .18);
+      display: flex;
+      flex-direction: column;
+      transform: scale(.92) translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .chat-panel.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .chat-header {
+      background: var(--navy);
+      border-radius: 14px 14px 0 0;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-header-logo {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
+
+    .chat-header-info {
+      flex: 1;
+    }
+
+    .chat-header-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .chat-header-status {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .5);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 1px;
+    }
+
+    .chat-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      flex-shrink: 0;
+    }
+
+    .chat-close {
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      color: rgba(255, 255, 255, .7);
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+
+    .chat-close:hover {
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--g200);
+      border-radius: 4px;
+    }
+
+    .msg {
+      max-width: 88%;
+      line-height: 1.5;
+    }
+
+    .msg-bot {
+      background: var(--g50);
+      border: 1px solid var(--g100);
+      border-radius: 4px 12px 12px 12px;
+      padding: 10px 13px;
+      font-size: 13px;
+      color: var(--navy);
+      align-self: flex-start;
+    }
+
+    .msg-user {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 12px 12px 4px 12px;
+      padding: 10px 13px;
+      font-size: 13px;
+      align-self: flex-end;
+    }
+
+    .chat-quick {
+      padding: 8px 14px 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      border-top: 1px solid var(--g100);
+    }
+
+    .quick-btn {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: var(--r-pill);
+      border: 1.5px solid var(--g200);
+      background: #fff;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .quick-btn:hover {
+      border-color: var(--navy);
+      background: var(--g50);
+    }
+
+    .chat-input-row {
+      padding: 10px 14px 14px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 9px 13px;
+      border-radius: var(--r-pill);
+      border: 1.5px solid var(--g200);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--navy);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .chat-input:focus {
+      border-color: var(--navy);
+    }
+
+    .chat-send {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: opacity .15s;
+    }
+
+    .chat-send:hover {
+      opacity: .8;
+    }
+
+    .typing {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 12px 14px;
+    }
+
+    .typing span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--g200);
+      animation: bounce .9s ease-in-out infinite;
+    }
+
+    .typing span:nth-child(2) {
+      animation-delay: .15s;
+    }
+
+    .typing span:nth-child(3) {
+      animation-delay: .3s;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+      }
+
+      30% {
+        transform: translateY(-5px);
+        background: var(--grey);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .chat-panel {
+        width: calc(100vw - 32px);
+        right: 16px;
+      }
+
+      .chat-fab {
+        right: 16px;
+        bottom: 20px;
+      }
+    }
+
+    /* ── WHATSAPP FAB ────────────────────────────────────────── */
+    .wa-fab {
+      position: fixed;
+      bottom: 100px;
+      right: 28px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(37, 211, 102, 0.25);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      text-decoration: none;
+    }
+
+    .wa-fab:hover {
+      transform: scale(1.1) translateY(-4px);
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.35);
+    }
+
+    .wa-tooltip {
+      position: absolute;
+      right: 74px;
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: var(--r-md);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      transform: translateX(10px);
+    }
+
+    .wa-fab:hover .wa-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .wa-tooltip::after {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 6px solid var(--navy);
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+    }
+
+    /* ── COMMUNICATION SECTION ────────────────────────────────── */
+    .contact-section {
+      background: var(--g50);
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--g200), transparent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .comm-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .comm-card {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
+    }
+
+    .comm-card:hover {
+      transform: translateX(8px);
+      border-color: var(--gold);
+    }
+
+    .comm-card::after {
+      content: '→';
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--gold);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .comm-card:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(4px);
+    }
+
+    .comm-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .comm-card:hover .comm-icon {
+      transform: scale(1.05);
+    }
+
+    .comm-icon.wa {
+      background: rgba(37, 211, 102, 0.1);
+      color: #25D366;
+    }
+
+    .comm-icon.mail {
+      background: rgba(10, 20, 35, 0.05);
+      color: var(--navy);
+    }
+
+    .comm-info h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .comm-info p {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.5;
+    }
+
+    .contact-form-wrap {
+      background: #fff;
+      border: 1px solid var(--g100);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+    }
+
+    .contact-form-wrap h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .contact-form-wrap .form-sub {
+      font-size: 15px;
+      color: var(--grey);
+      margin-bottom: 32px;
+    }
+
+    .form-error {
+      display: none;
+      background: #FEF2F2;
+      color: #DC2626;
+      padding: 14px;
+      border-radius: var(--r-md);
+      font-size: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #FECACA;
+    }
+
+    /* ════ HOW IT WORKS ═══════════════════════════════════════ */
+    .how-works {
+      background: var(--navy);
+      padding: 80px 0;
+    }
+
+    .steps-flow {
+      display: flex;
+      position: relative;
+      padding-top: 8px;
+    }
+
+    .steps-flow::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 8%;
+      right: 8%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(212, 160, 23, 0), rgba(212, 160, 23, .4), rgba(212, 160, 23, 0));
+    }
+
+    @media (max-width: 760px) {
+      .steps-flow {
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .steps-flow::before {
+        display: none;
+      }
+    }
+
+    .step-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .04);
+      border: 1.5px solid rgba(212, 160, 23, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+      transition: all .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .step-item:hover .step-num {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+      transform: scale(1.12);
+    }
+
+    .step-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .step-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.55;
+    }
+
+    /* ════ COMPARISON ════════════════════════════════════════ */
+    .compare {
+      background: var(--g50);
+    }
+
+    .compare-table {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--g100);
+    }
+
+    .compare-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--navy);
+    }
+
+    .compare-head-cell {
+      padding: 16px 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .4);
+      text-align: center;
+    }
+
+    .compare-head-cell.hi {
+      color: var(--gold);
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--g100);
+      background: #fff;
+      transition: background .15s;
+    }
+
+    .compare-row:last-child {
+      border-bottom: none;
+    }
+
+    .compare-row:hover {
+      background: var(--g50);
+    }
+
+    .compare-cell {
+      padding: 14px 20px;
+      font-size: 13px;
+      color: var(--grey);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .compare-cell.topic {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .cx {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    .ck {
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    /* ════ STICKY MOBILE CTA ════════════════════════════════ */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 996;
+      background: var(--navy);
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding: 10px 16px;
+      display: none;
+      gap: 10px;
+      backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 680px) {
+      .sticky-cta {
+        display: flex;
+      }
+    }
+
+    .sticky-wa {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: #25D366;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 12px 16px;
+      border-radius: var(--r-lg);
+      text-decoration: none;
+    }
+
+    .sticky-enroll {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 12px 16px;
+      border-radius: var(--r-lg);
+      text-decoration: none;
+    }
+
+    /* ════ STAGGER ANIMATION ════════════════════════════════ */
+    .stagger>* {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .stagger>*:nth-child(2) {
+      transition-delay: .07s;
+    }
+
+    .stagger>*:nth-child(3) {
+      transition-delay: .14s;
+    }
+
+    .stagger>*:nth-child(4) {
+      transition-delay: .21s;
+    }
+
+    .stagger>*:nth-child(5) {
+      transition-delay: .28s;
+    }
+
+    .stagger>*:nth-child(6) {
+      transition-delay: .35s;
+    }
+
+    .stagger.visible>* {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Branding Section ─────────────────────────────────── */
+    /* ── Branding Section ─────────────────────────────────── */
+    .branding-section {
+      background: var(--navy);
+      /* Precise footer color match */
+      padding: 160px 0 60px;
+      position: relative;
+      overflow: visible;
+      color: #fff;
+    }
+
+    .branding-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+    }
+
+    .branding-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .branding-tagline {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.8em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 60px;
+      animation: taglineFade 2.5s ease-out forwards;
+    }
+
+    @keyframes taglineFade {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(10px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    .giant-wordmark {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(120px, 26vw, 450px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.02) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      user-select: none;
+      margin: 0;
+      padding: 20px 0;
+      /* Extra vertical space to prevent cutting */
+      position: relative;
+      animation: wordmarkReveal 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes wordmarkReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.98) translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .branding-glow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 300px;
+      background: radial-gradient(circle at center, rgba(16, 68, 144, 0.1) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .branding-visuals {
+      position: absolute;
+      inset: 0;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .neural-lines {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 80px 80px, 40px 40px, 40px 40px;
+      mask-image: radial-gradient(circle at center, black, transparent 90%);
+    }
+
+    .branding-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 0;
+      margin-top: 120px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .branding-bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .branding-bottom-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .branding-bottom-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.05em;
+    }
+
+    .branding-bottom-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .branding-section {
+        padding-top: 100px;
+      }
+
+      .branding-tagline {
+        margin-bottom: 60px;
+        letter-spacing: 0.4em;
+      }
+
+      .branding-bottom-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .branding-bottom-links {
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .giant-wordmark {
+        margin-bottom: -30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <img class="nav-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png"
+          alt="EDURYX" />
+        <ul class="nav-links">
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#build">Projects</a></li>
+          <li><a href="#instructors">Trainers</a></li>
+          <li><a href="#certification">Certification</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#enroll">Enroll</a></li>
+        </ul>
+        <a href="#enroll" class="btn btn-amber btn-sm">Apply Now →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-mesh"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- LEFT -->
+        <div class="hero-left">
+          <div class="hero-eyebrow fade-up">
+            <span class="live-dot"></span>
+            Next Batch · June 2026 · Only 25 Seats Left
+          </div>
+          <h1 class="hero-h1 fade-up" style="transition-delay:.05s">
+            Learn AI.<br><span class="accent">Build the Future.</span>
+          </h1>
+          <p class="hero-p fade-up" style="transition-delay:.1s">
+            Go from <strong>student → AI Engineer</strong> in 4–8 weeks.<br>
+            Real projects. Real stack. Real outcomes.
+          </p>
+          <div class="hero-cta-row fade-up" style="transition-delay:.15s">
+            <a href="#enroll" class="btn btn-amber" style="font-size:15px;padding:14px 30px;">
+              Claim My Seat — Free
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#programs" class="btn btn-ghost">Explore Programs ↓</a>
+          </div>
+          <div class="trust-row fade-up" style="transition-delay:.2s">
+            <div class="trust-item">
+              <div class="trust-icon">✓</div>500+ Students
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🤖</div>Real AI Projects
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🏆</div>NASSCOM Certificate
+            </div>
+            <div class="trust-item full-width">
+              <div class="trust-icon">💼</div>Internship Support
+            </div>
+          </div>
+          <div class="fade-up" style="transition-delay:.25s;margin-top:28px;">
+            <span class="hero-price-main">Starting ₹3,000</span>
+            <span class="hero-price-badge" style="margin-left:10px;">50% OFF</span>
+            <p class="hero-meta">3 Programs · All Levels · Certification Included</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Animated AI Dashboard -->
+        <div class="hero-right fade-up" style="transition-delay:.15s">
+          <div class="hero-dashboard">
+            <!-- Main code card -->
+            <div class="h-card h-main">
+              <div class="h-code-header">
+                <span class="h-dot h-dot-r"></span>
+                <span class="h-dot h-dot-y"></span>
+                <span class="h-dot h-dot-g"></span>
+                <span class="h-file">ai_agent.py — EDURYX Project</span>
+              </div>
+              <div class="code-block">
+                <div class="code-line"><span class="c-num">1</span><span class="c-cm"># Week 5: Build Your AI
+                    Agent</span></div>
+                <div class="code-line"><span class="c-num">2</span><span class="c-kw">from</span> <span
+                    class="c-plain">langchain</span> <span class="c-kw">import</span> <span
+                    class="c-fn">AgentExecutor</span><span class="c-plain">, </span><span class="c-fn">OpenAI</span>
+                </div>
+                <div class="code-line"><span class="c-num">3</span><span class="c-kw">from</span> <span
+                    class="c-plain">langchain.tools</span> <span class="c-kw">import</span> <span
+                    class="c-fn">DuckDuckGoSearchRun</span></div>
+                <div class="code-line"><span class="c-num">4</span><span class="c-plain">&nbsp;</span></div>
+                <div class="code-line"><span class="c-num">5</span><span class="c-kw">def</span> <span
+                    class="c-fn">create_agent</span><span class="c-plain">(model=</span><span
+                    class="c-str">"gpt-4o"</span><span class="c-plain">):</span></div>
+                <div class="code-line"><span class="c-num">6</span><span class="c-plain">&nbsp;&nbsp;&nbsp;&nbsp;llm =
+                  </span><span class="c-fn">OpenAI</span><span class="c-plain">(model=model)</span></div>
+                <div class="code-line"><span class="c-num">7</span><span class="c-plain">&nbsp;&nbsp;&nbsp;&nbsp;tools =
+                    [</span><span class="c-fn">DuckDuckGoSearchRun</span><span class="c-plain">()]</span></div>
+                <div class="code-line"><span class="c-num">8</span><span
+                    class="c-plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="c-kw">return</span> <span
+                    class="c-fn">AgentExecutor</span><span class="c-plain">(llm=llm, tools=tools)</span></div>
+                <div class="code-line"><span class="c-num">9</span><span class="c-plain">&nbsp;</span></div>
+                <div class="code-line"><span class="c-num">10</span><span class="c-plain">agent = </span><span
+                    class="c-fn">create_agent</span><span class="c-plain">()</span></div>
+                <div class="code-line"><span class="c-num">11</span><span class="c-plain">result = agent.</span><span
+                    class="c-fn">run</span><span class="c-plain">(</span><span class="c-str">"Latest AI trends
+                    2026"</span><span class="c-plain">)</span></div>
+                <div class="code-line"><span class="c-num">12</span><span class="c-cm"># ✅ Deployed · GitHub
+                    portfolio-ready</span><span class="cursor-blink"></span></div>
+              </div>
+            </div>
+            <!-- Float 1: Accuracy metric -->
+            <div class="h-card h-float1">
+              <div class="fl-label">Model Accuracy</div>
+              <div class="fl-value">94.2%</div>
+              <div class="fl-sub">RAG + GPT-4o</div>
+              <div class="fl-bar-wrap">
+                <div class="fl-bar" style="width:94%"></div>
+              </div>
+            </div>
+            <!-- Float 2: Stack tags -->
+            <div class="h-card h-float2">
+              <div class="fl-label">Your Stack</div>
+              <div class="fl-tag-row">
+                <span class="fl-tag on">LangChain</span>
+                <span class="fl-tag on">OpenAI</span>
+                <span class="fl-tag">Pinecone</span>
+                <span class="fl-tag on">Python</span>
+              </div>
+            </div>
+            <!-- Float 3: Live status -->
+            <div class="h-card h-float3">
+              <div class="fl-label">Project Status</div>
+              <div class="fl-status"><span class="fl-dot"></span>Live on GitHub</div>
+              <div style="font-size:11px;color:var(--grey);margin-top:4px;">portfolio-ready ✓</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRY STATS -->
+  <section class="ind-stats" id="stats">
+    <div class="container">
+      <div class="section-header fade-up" style="margin-bottom:36px;">
+        <span class="label" style="color:rgba(255,255,255,.35);">The AI Opportunity</span>
+        <h2 class="section-title" style="color:#fff;">Why AI Skills Are Non-Negotiable in 2026</h2>
+      </div>
+      <div class="ind-stats-grid fade-up">
+        <div class="ind-stat-card">
+          <div class="ind-stat-pct">78%</div>
+          <div class="ind-stat-desc">of organisations already use AI in at least one function, with 71% using Generative
+            AI regularly</div>
+          <div class="ind-stat-source">MCKINSEY GLOBAL SURVEY</div>
+        </div>
+        <div class="ind-stat-card">
+          <div class="ind-stat-pct">93%</div>
+          <div class="ind-stat-desc">of IT Executives are interested in Agentic AI, with 45% investing now and 79%
+            planning adoption</div>
+          <div class="ind-stat-source">UIPATH &amp; PWC STUDY</div>
+        </div>
+        <div class="ind-stat-card">
+          <div class="ind-stat-pct">62%</div>
+          <div class="ind-stat-desc">expect more than 100% ROI from AI investments, with 43% allocating over 50% of AI
+            budget to agentic solutions</div>
+          <div class="ind-stat-source">GARTNER RESEARCH</div>
+        </div>
+      </div>
+      <div class="ind-quote fade-up">
+        <div class="ind-quote-mark">"</div>
+        <div>
+          <div class="ind-quote-text">Every job will be affected, and immediately. It is unquestionable. You're not
+            going to lose your job to an AI, but you're going to lose your job to someone who uses AI.</div>
+          <div class="ind-quote-attr">Jensen Huang — CEO &amp; Founder, NVIDIA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">AI Foundations <span class="sep">✦</span></span>
+      <span class="ticker-item">Prompt Engineering <span class="sep">✦</span></span>
+      <span class="ticker-item">LLMs &amp; RAG <span class="sep">✦</span></span>
+      <span class="ticker-item">Build AI Apps <span class="sep">✦</span></span>
+      <span class="ticker-item">GitHub Portfolio <span class="sep">✦</span></span>
+      <span class="ticker-item">Industry Certification <span class="sep">✦</span></span>
+      <span class="ticker-item">Career Guidance <span class="sep">✦</span></span>
+      <span class="ticker-item">NASSCOM Aligned <span class="sep">✦</span></span>
+      <span class="ticker-item">B.Tech Ready <span class="sep">✦</span></span>
+      <span class="ticker-item">Graduation Program <span class="sep">✦</span></span>
+      <span class="ticker-item">AI Foundations <span class="sep">✦</span></span>
+      <span class="ticker-item">Prompt Engineering <span class="sep">✦</span></span>
+      <span class="ticker-item">LLMs &amp; RAG <span class="sep">✦</span></span>
+      <span class="ticker-item">Build AI Apps <span class="sep">✦</span></span>
+      <span class="ticker-item">GitHub Portfolio <span class="sep">✦</span></span>
+      <span class="ticker-item">Industry Certification <span class="sep">✦</span></span>
+      <span class="ticker-item">Career Guidance <span class="sep">✦</span></span>
+      <span class="ticker-item">NASSCOM Aligned <span class="sep">✦</span></span>
+      <span class="ticker-item">B.Tech Ready <span class="sep">✦</span></span>
+      <span class="ticker-item">Graduation Program <span class="sep">✦</span></span>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="problem" id="problem">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">The Problem</span>
+        <h2 class="section-title">Your Degree Won't Get You the Job. This Will.</h2>
+        <p class="section-sub">90% of graduates leave college with zero portfolio. Companies don't care about your GPA —
+          they care what you've built.</p>
+      </div>
+      <div class="prob-sol-wrap fade-up">
+        <div class="prob-col">
+          <div class="ps-header">
+            <span class="ps-badge ps-badge-prob">❌ The Problem</span>
+          </div>
+          <div class="ps-title ps-title-prob" style="margin-bottom:16px;">What Most Courses Give You</div>
+          <ul class="ps-list">
+            <li>Pure theory with no hands-on building</li>
+            <li>Outdated curriculum not matching market demand</li>
+            <li>No portfolio or GitHub projects to show employers</li>
+            <li>No real industry use cases or business context</li>
+            <li>Graduates struggle to get hired despite certification</li>
+          </ul>
+        </div>
+        <div class="sol-col">
+          <div class="ps-header">
+            <span class="ps-badge ps-badge-sol">✅ The Solution — EDURYX</span>
+          </div>
+          <div class="ps-title ps-title-sol" style="margin-bottom:16px;">What We Give You</div>
+          <ul class="ps-list">
+            <li>Build real AI products — RAG, Agents, Automation</li>
+            <li>Hands-on with the latest AI tools &amp; frameworks</li>
+            <li>4+ projects on GitHub — interview-ready portfolio</li>
+            <li>Industry use cases: Healthcare, Enterprise, Finance</li>
+            <li>Placement support: LinkedIn, resume, referrals</li>
+          </ul>
+        </div>
+      </div>
+      <div class="problem-stat fade-up">
+        <div class="problem-stat-num">90%</div>
+        <div class="problem-stat-text"><strong>of students graduate without a portfolio.</strong><br>EDURYX gives you 4+
+          live AI projects you can show any employer, from day one.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS / CURRICULUM -->
+  <section class="programs" id="programs">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Choose Your Path</span>
+        <h2 class="section-title">3 Programs. Every Level.</h2>
+        <p class="section-sub">From first-year BTech to serious AI engineering — we have the right program for you.</p>
+      </div>
+      <div class="prog-tabs fade-up">
+        <button class="prog-tab active" onclick="switchProgram('btech',this)">4 Weeks · B.Tech Students</button>
+        <button class="prog-tab" onclick="switchProgram('grad',this)">4 Weeks · Graduation Programs</button>
+        <button class="prog-tab" onclick="switchProgram('eight',this)">8 Weeks · AI Engineer ★</button>
+      </div>
+
+      <!-- B.TECH -->
+      <div class="prog-panel active" id="panel-btech">
+        <div style="text-align:center;margin-bottom:28px;" class="fade-up">
+          <span class="pill pill-amber" style="margin-bottom:10px;"><span class="dot"></span>Get Ahead Before College
+            Starts · ₹8,000</span>
+          <p style="font-size:14px;color:var(--grey);margin-top:6px;">Ideal for incoming or current B.Tech students with
+            zero prior experience.</p>
+        </div>
+        <div class="bento fade-up">
+          <div class="bento-card">
+            <div class="bento-num">01</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 1</div>
+              <div class="bento-title">Python Fundamentals</div>
+              <p>Core programming concepts to build a strong technical foundation.</p>
+              <div class="bento-tags"><span class="bento-tag">Python</span><span class="bento-tag">Syntax</span></div>
+            </div>
+          </div>
+          <div class="bento-card featured">
+            <div class="bento-num">02</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 2</div>
+              <div class="bento-title">Logic Building &amp; Problem Solving</div>
+              <p>Develop structured thinking to solve real-world problems efficiently.</p>
+              <div class="bento-tags"><span class="bento-tag">Algorithms</span><span class="bento-tag">DSA</span></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="bento-num">03</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 3</div>
+              <div class="bento-title">Intro to AI &amp; Machine Learning</div>
+              <p>Understand how intelligent systems work in the real world.</p>
+              <div class="bento-tags"><span class="bento-tag">AI Basics</span><span class="bento-tag">ML</span></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="bento-num">04</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 4</div>
+              <div class="bento-title">Prompt Engineering</div>
+              <p>Learn to interact with AI models effectively and get accurate results.</p>
+              <div class="bento-tags"><span class="bento-tag">ChatGPT</span><span class="bento-tag">Prompts</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRADUATION -->
+      <div class="prog-panel" id="panel-grad">
+        <div style="text-align:center;margin-bottom:28px;">
+          <span class="pill pill-amber" style="margin-bottom:10px;"><span class="dot"></span>BA · BSc · BCom ·
+            ₹3,000</span>
+          <p style="font-size:14px;color:var(--grey);margin-top:6px;">Designed for regular graduation students — no
+            coding background needed.</p>
+        </div>
+        <div class="bento">
+          <div class="bento-card">
+            <div class="bento-num">01</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 1</div>
+              <div class="bento-title">Introduction to AI</div>
+              <p>Understand AI fundamentals and how it works in real-world applications.</p>
+              <div class="bento-tags"><span class="bento-tag">AI Concepts</span></div>
+            </div>
+          </div>
+          <div class="bento-card featured">
+            <div class="bento-num">02</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 2</div>
+              <div class="bento-title">Basics of Python</div>
+              <p>Core programming concepts to start building with AI — no experience needed.</p>
+              <div class="bento-tags"><span class="bento-tag">Python</span></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="bento-num">03</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 3</div>
+              <div class="bento-title">ChatGPT &amp; AI Tools</div>
+              <p>Explore powerful tools to automate tasks and boost your productivity.</p>
+              <div class="bento-tags"><span class="bento-tag">ChatGPT</span><span class="bento-tag">Tools</span></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="bento-num">04</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 4</div>
+              <div class="bento-title">Simple AI Projects</div>
+              <p>Apply your knowledge by creating practical, real-world AI projects.</p>
+              <div class="bento-tags"><span class="bento-tag">Projects</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 WEEK -->
+      <div class="prog-panel" id="panel-eight">
+        <div style="text-align:center;margin-bottom:28px;">
+          <span class="pill pill-amber" style="margin-bottom:10px;"><span class="dot"></span>AI Engineer Track · ₹20,000
+            · Most Complete</span>
+          <p style="font-size:14px;color:var(--grey);margin-top:6px;">Build production-grade AI systems using Agents,
+            RAG, Automation &amp; LLMs.</p>
+        </div>
+        <div class="bento">
+          <div class="bento-card">
+            <div class="bento-num">01</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 1–2</div>
+              <div class="bento-title">AI Foundations</div>
+              <p>Core ML, Python for AI, data pipelines and problem framing.</p>
+              <div class="bento-tags"><span class="bento-tag">Python</span><span class="bento-tag">ML Basics</span>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card featured">
+            <div class="bento-num">02</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 3–4</div>
+              <div class="bento-title">Prompt Engineering</div>
+              <p>Master LLMs, RAG architecture and advanced AI interactions.</p>
+              <div class="bento-tags"><span class="bento-tag">LLMs</span><span class="bento-tag">RAG</span></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="bento-num">03</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 5–6</div>
+              <div class="bento-title">Build AI Apps</div>
+              <p>Ship real applications using APIs, automation and multi-agent systems.</p>
+              <div class="bento-tags"><span class="bento-tag">APIs</span><span class="bento-tag">Automation</span></div>
+            </div>
+          </div>
+          <div class="bento-card">
+            <div class="bento-num">04</div>
+            <div class="bento-content">
+              <div class="bento-week">Week 7–8</div>
+              <div class="bento-title">Projects &amp; Career</div>
+              <p>Build your GitHub portfolio, interview prep and job placement support.</p>
+              <div class="bento-tags"><span class="bento-tag">Portfolio</span><span class="bento-tag">Interview</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS & TECHNOLOGIES -->
+  <section class="tools-section" id="tools">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Tools &amp; Technologies</span>
+        <h2 class="section-title">Industry Stack You'll Master</h2>
+        <p class="section-sub">Every tool used in the AI Engineer Track — the same stack top companies hire for.</p>
+      </div>
+      <div class="tools-grid fade-up">
+        <div class="tool-category">
+          <div class="tool-cat-label">LLM APIs</div>
+          <div class="tool-names">
+            <div class="tool-name">OpenAI GPT</div>
+            <div class="tool-name">Google Gemini</div>
+            <div class="tool-name">Anthropic Claude</div>
+            <div class="tool-name">Mistral AI</div>
+          </div>
+        </div>
+        <div class="tool-category">
+          <div class="tool-cat-label">AI Agents</div>
+          <div class="tool-names">
+            <div class="tool-name">CrewAI</div>
+            <div class="tool-name">LangChain</div>
+            <div class="tool-name">LangGraph</div>
+            <div class="tool-name">OpenAI Agents SDK</div>
+          </div>
+        </div>
+        <div class="tool-category">
+          <div class="tool-cat-label">Vector DB</div>
+          <div class="tool-names">
+            <div class="tool-name">Pinecone</div>
+            <div class="tool-name">Qdrant</div>
+            <div class="tool-name">Chroma</div>
+            <div class="tool-name">Supabase pgVector</div>
+          </div>
+        </div>
+        <div class="tool-category">
+          <div class="tool-cat-label">Local AI</div>
+          <div class="tool-names">
+            <div class="tool-name">Ollama</div>
+            <div class="tool-name">LM Studio</div>
+            <div class="tool-name">Hugging Face</div>
+          </div>
+        </div>
+        <div class="tool-category">
+          <div class="tool-cat-label">Workflow</div>
+          <div class="tool-names">
+            <div class="tool-name">n8n</div>
+            <div class="tool-name">Make.com</div>
+          </div>
+        </div>
+        <div class="tool-category">
+          <div class="tool-cat-label">Cloud</div>
+          <div class="tool-names">
+            <div class="tool-name">AWS Bedrock</div>
+            <div class="tool-name">Azure AI Foundry</div>
+            <div class="tool-name">GCP Vertex AI</div>
+          </div>
+        </div>
+        <div class="tool-category">
+          <div class="tool-cat-label">AI Coding</div>
+          <div class="tool-names">
+            <div class="tool-name">Cursor</div>
+            <div class="tool-name">Windsurf</div>
+            <div class="tool-name">Claude Code</div>
+          </div>
+        </div>
+        <div class="tool-category">
+          <div class="tool-cat-label">MLOps</div>
+          <div class="tool-names">
+            <div class="tool-name">AgentOps</div>
+            <div class="tool-name">Giskard</div>
+            <div class="tool-name">Phoenix – Arize AI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING MODES -->
+  <section class="modes" id="modes">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Flexible Learning</span>
+        <h2 class="section-title">Training Modes</h2>
+        <p class="section-sub">Choose the format that fits your schedule and learning style.</p>
+      </div>
+      <div class="modes-grid fade-up">
+        <div class="mode-card">
+          <div class="mode-icon">🏫</div>
+          <div class="mode-title">Classroom Training</div>
+          <div class="mode-sub">Face-to-face sessions · Hyderabad</div>
+          <ul class="mode-list">
+            <li>Interactive face-to-face teaching</li>
+            <li>Instant feedback &amp; collaboration</li>
+            <li>Hands-on industry projects</li>
+            <li>Guest trainers from industry</li>
+            <li>Hackathons &amp; capstone in-person</li>
+            <li>Research programs with AI Anytime</li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">💻</div>
+          <div class="mode-title">Live Online Training</div>
+          <div class="mode-sub">Global · Virtual sessions with live Q&amp;A</div>
+          <ul class="mode-list">
+            <li>Virtual interactive sessions</li>
+            <li>Daily session recordings</li>
+            <li>Instructor support on demand</li>
+            <li>Online practical labs</li>
+            <li>Digital learning modules</li>
+            <li>Flexible learning schedules</li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">🏢</div>
+          <div class="mode-title">Corporate Training</div>
+          <div class="mode-sub">Customised for your organisation</div>
+          <ul class="mode-list">
+            <li>Customized training programs</li>
+            <li>Interactive team development</li>
+            <li>Industry-relevant content</li>
+            <li>Performance monitoring</li>
+            <li>On-site workshops</li>
+            <li>Limited batch (up to 25 people)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILD -->
+  <section class="build" id="build">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Real Projects</span>
+        <h2 class="section-title">What You Will Build</h2>
+        <p class="section-sub">4 production-grade AI systems that go straight into your portfolio.</p>
+      </div>
+      <div class="build-grid fade-up">
+        <div class="build-card">
+          <div class="build-num">PROJECT 01</div>
+          <h3>AI Chatbot with RAG</h3>
+          <p>A smart assistant that retrieves and responds with context — the core pattern behind every enterprise AI
+            product.</p>
+          <div class="build-stack"><span class="stack-tag">Python</span><span class="stack-tag">OpenAI</span><span
+              class="stack-tag">LangChain</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-num">PROJECT 02</div>
+          <h3>Resume Analyzer for ATS</h3>
+          <p>An AI system that reads resumes, matches job descriptions and suggests improvements — real NLP in
+            production.</p>
+          <div class="build-stack"><span class="stack-tag">NLP</span><span class="stack-tag">ML</span><span
+              class="stack-tag">FastAPI</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-num">PROJECT 03</div>
+          <h3>Healthcare AI System</h3>
+          <p>Symptom triage and health insight engine — deploying ML in a high-stakes vertical with real data.</p>
+          <div class="build-stack"><span class="stack-tag">TensorFlow</span><span class="stack-tag">Flask</span><span
+              class="stack-tag">React</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-num">PROJECT 04</div>
+          <h3>Automation Workflows</h3>
+          <p>Intelligent agents that automate repetitive business tasks end-to-end using Python, Celery and Docker.</p>
+          <div class="build-stack"><span class="stack-tag">Python</span><span class="stack-tag">Celery</span><span
+              class="stack-tag">Docker</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT SYSTEM -->
+  <section class="assess" id="assessment">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Rigorous &amp; Fair</span>
+        <h2 class="section-title">Assessment System</h2>
+        <p class="section-sub">Every week is evaluated. Your score determines your certification level and placement
+          priority.</p>
+      </div>
+      <div class="assess-inner fade-up">
+        <!-- Scoring Criteria -->
+        <div class="assess-box">
+          <div class="assess-box-title">Scoring Criteria (out of 100)</div>
+          <div class="score-row"><span class="score-label">Problem Understanding</span>
+            <div class="score-bar-wrap">
+              <div class="score-bar" style="width:40%"></div>
+            </div><span class="score-pts">20</span>
+          </div>
+          <div class="score-row"><span class="score-label">Solution Design</span>
+            <div class="score-bar-wrap">
+              <div class="score-bar" style="width:40%"></div>
+            </div><span class="score-pts">20</span>
+          </div>
+          <div class="score-row"><span class="score-label">Implementation</span>
+            <div class="score-bar-wrap">
+              <div class="score-bar" style="width:60%"></div>
+            </div><span class="score-pts">30</span>
+          </div>
+          <div class="score-row"><span class="score-label">Optimisation</span>
+            <div class="score-bar-wrap">
+              <div class="score-bar" style="width:40%"></div>
+            </div><span class="score-pts">20</span>
+          </div>
+          <div class="score-row"><span class="score-label">Presentation</span>
+            <div class="score-bar-wrap">
+              <div class="score-bar" style="width:20%"></div>
+            </div><span class="score-pts">10</span>
+          </div>
+          <div class="assess-weightage">
+            <strong>Final Weightage:</strong><br>
+            Assessments 25% · Hackathon 20% · Capstone 35% · Participation 20%
+          </div>
+        </div>
+
+        <!-- Difficulty Levels -->
+        <div class="assess-box">
+          <div class="assess-box-title">Difficulty Levels</div>
+          <div class="diff-levels">
+            <div class="diff-level diff-level-1">
+              <div class="diff-level-title">Level 1 — Basic</div>
+              <div class="diff-level-desc">Guided tasks with step-by-step support. Build confidence with structured
+                milestones.</div>
+            </div>
+            <div class="diff-level diff-level-2">
+              <div class="diff-level-title">Level 2 — Intermediate</div>
+              <div class="diff-level-desc">Partial guidance. Independent thinking required to complete the deliverable.
+              </div>
+            </div>
+            <div class="diff-level diff-level-3">
+              <div class="diff-level-title">Level 3 — Advanced</div>
+              <div class="diff-level-desc">Fully independent build. Real-world problem with no scaffolding — just like
+                the job.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard-box">
+          <div class="lb-title">🏆 Leaderboard</div>
+          <div class="lb-desc">Weekly rankings published for all students. Top performers get placement priority and
+            Distinction certification — your effort is publicly rewarded.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="get" id="get">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label" style="color:rgba(255,255,255,.35);">Included</span>
+        <h2 class="section-title" style="color:#fff;">What You Get</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.45);">Everything you need to go from zero to AI engineer.
+        </p>
+      </div>
+      <div class="get-grid fade-up">
+        <div class="get-card">
+          <div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div>
+            <div class="get-card-title">Full Program Access</div>
+            <div class="get-card-sub">Live online sessions with lifetime replay access</div>
+          </div>
+        </div>
+        <div class="get-card">
+          <div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div>
+            <div class="get-card-title">4+ Real Projects</div>
+            <div class="get-card-sub">GitHub-ready portfolio that impresses recruiters</div>
+          </div>
+        </div>
+        <div class="get-card">
+          <div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div>
+            <div class="get-card-title">Industry Certification</div>
+            <div class="get-card-sub">NASSCOM-recognised — add it to LinkedIn today</div>
+          </div>
+        </div>
+        <div class="get-card">
+          <div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div>
+            <div class="get-card-title">Internship Opportunity</div>
+            <div class="get-card-sub">Top performers get direct industry placement support</div>
+          </div>
+        </div>
+        <div class="get-card">
+          <div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div>
+            <div class="get-card-title">Industry Mentorship</div>
+            <div class="get-card-sub">Direct access to AI practitioners and career coaches</div>
+          </div>
+        </div>
+        <div class="get-card">
+          <div class="get-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4A017"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div>
+            <div class="get-card-title">Career &amp; Interview Prep</div>
+            <div class="get-card-sub">Resume review, mock interviews, job-hunt strategy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Why EDURYX</span>
+        <h2 class="section-title">Not Your Usual Course. Built Different.</h2>
+        <p class="section-sub">Every other AI course gives you slides. We give you shipped projects, a GitHub, and a
+          cert that actually means something.</p>
+      </div>
+      <div class="why-grid fade-up">
+        <div class="why-card">
+          <div class="why-num">01</div>
+          <h3>Execution Over Theory</h3>
+          <p>We don't just teach AI — we build real-world AI systems. Every student graduates with live projects and
+            deployable skills, not slides.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-num">02</div>
+          <h3>Global Ecosystem</h3>
+          <p>Collaborations with AI for All Global and World AI Governance Foundation. Industry alignment through
+            NASSCOM your certificate means something.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-num">03</div>
+          <h3>Campus to Career Pipeline</h3>
+          <p>Active university partnerships across India. A direct talent funnel from your campus straight into the AI
+            industry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTOR -->
+  <section class="instructor" id="instructor">
+    <div class="container">
+      <div class="instructor-inner">
+        <div style="position:relative;width:220px;height:220px;flex-shrink:0;">
+          <div class="instructor-avatar">
+            <img src="assets/Sonu pic V1.png" alt="Sonu Kumar" />
+          </div>
+          <div class="instructor-avatar-ring"></div>
+        </div>
+        <div>
+          <span class="label">Your Instructor</span>
+          <h2 class="instructor-name">Sonu Kumar</h2>
+          <p class="instructor-role">Founder, EDURYX · Serial AI Entrepreneur · AI Researcher · Corporate AI
+            Trainer<br>Published in <em>Nature</em> &amp; <em>Frontiers</em></p>
+          <div class="instructor-stats">
+            <div>
+              <div class="i-stat-num">10+</div>
+              <div class="i-stat-lbl">Years in AI</div>
+            </div>
+            <div>
+              <div class="i-stat-num">100K+</div>
+              <div class="i-stat-lbl">Learners</div>
+            </div>
+            <div>
+              <div class="i-stat-num">56K+</div>
+              <div class="i-stat-lbl">Subscribers</div>
+            </div>
+          </div>
+          <div class="instructor-tags">
+            <span class="i-tag">GenAI Solutions</span><span class="i-tag">AI Agents</span><span class="i-tag">RAG</span>
+            <span class="i-tag">LLM Fine-tuning</span><span class="i-tag">LangChain</span><span class="i-tag">AWS
+              Bedrock</span>
+            <span class="i-tag">PyCon Lithuania '25</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUEST TRAINERS -->
+  <section class="guests" id="instructors">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Guest Trainers &amp; Mentors</span>
+        <h2 class="section-title">Learn from Industry Practitioners</h2>
+        <p class="section-sub">Alongside Sonu Kumar, you'll hear from active practitioners working in AI at leading
+          organisations.</p>
+      </div>
+      <div class="guests-grid fade-up">
+        <div class="guest-card">
+          <div class="guest-avatar">E</div>
+          <div class="guest-name">Ekshith Kolla </div>
+          <div class="guest-role">AI Educator &amp; Academia Collaborations Lead, AI Anytime · Generative AI Specialist
+          </div>
+          <div class="guest-tags">
+            <span class="guest-tag">AI Education</span>
+            <span class="guest-tag">Generative AI</span>
+            <span class="guest-tag">Academia Partnerships</span>
+            <span class="guest-tag">Community Building</span>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="guest-avatar">KP</div>
+          <div class="guest-name">Kalyan Prasad</div>
+          <div class="guest-role">Data Science &amp; Analytics Leader · Grayradiant Data Services · 10+ Years</div>
+          <div class="guest-tags">
+            <span class="guest-tag">Data Science</span>
+            <span class="guest-tag">Databricks</span>
+            <span class="guest-tag">Python &amp; APIs</span>
+            <span class="guest-tag">Fintech AI</span>
+          </div>
+        </div>
+        <div class="guest-card">
+          <div class="guest-avatar">VP</div>
+          <div class="guest-name">Vyluru Perumallu</div>
+          <div class="guest-role">AI Consultant, Deloitte · LinkedIn Top AI &amp; ML Voice</div>
+          <div class="guest-tags">
+            <span class="guest-tag">Generative AI</span>
+            <span class="guest-tag">Machine Learning</span>
+            <span class="guest-tag">Azure &amp; AWS AI</span>
+            <span class="guest-tag">Responsible AI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATION -->
+  <section class="cert-section" id="certification">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label" style="color:rgba(255,255,255,.35);">Industry Recognised</span>
+        <h2 class="section-title" style="color:#fff;">Certification</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.45);">Earn credentials valued by employers — issued
+          jointly by three recognised bodies.</p>
+      </div>
+      <div class="cert-partners fade-up">
+        <div class="cert-partner">
+          <div class="cert-partner-icon">🎓</div>
+          <div class="cert-partner-name">EDURYX AI</div>
+          <div class="cert-partner-role">Program Issuer</div>
+        </div>
+        <div class="cert-partner-plus">+</div>
+        <div class="cert-partner">
+          <div class="cert-partner-icon">🤖</div>
+          <div class="cert-partner-name">AI Anytime</div>
+          <div class="cert-partner-role">Research Partner</div>
+        </div>
+        <div class="cert-partner-plus">+</div>
+        <div class="cert-partner">
+          <div class="cert-partner-icon">🏛️</div>
+          <div class="cert-partner-name">NASSCOM</div>
+          <div class="cert-partner-role">Aligned Certification</div>
+        </div>
+      </div>
+      <div class="cert-tiers fade-up">
+        <div class="cert-tier cert-tier-bronze">
+          <div class="cert-medal">🥉</div>
+          <div class="cert-tier-name">Completion Certificate</div>
+          <div class="cert-tier-desc">Awarded for attendance and basic participation throughout the program</div>
+          <span class="cert-tier-tag">Completion</span>
+        </div>
+        <div class="cert-tier cert-tier-silver">
+          <div class="cert-medal">🥈</div>
+          <div class="cert-tier-name">AI Builder Certificate</div>
+          <div class="cert-tier-desc">All weekly assessments completed + projects submitted + portfolio ready</div>
+          <span class="cert-tier-tag">AI Builder</span>
+        </div>
+        <div class="cert-tier cert-tier-gold">
+          <div class="cert-medal">🥇</div>
+          <div class="cert-tier-name">Advanced AI Builder</div>
+          <div class="cert-tier-desc">Top 10–20% performers in leaderboard, hackathon, and capstone project</div>
+          <span class="cert-tier-tag">With Distinction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="reviews">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Student Success</span>
+        <h2 class="section-title">What Our Students Say</h2>
+        <p class="section-sub">Real outcomes from real learners who built, deployed, and got hired.</p>
+      </div>
+      <div class="testi-grid fade-up">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"This program completely changed my understanding of AI. The hands-on projects and
+            real-world use cases helped me gain confidence and land a role in AI. Building an actual RAG chatbot was the
+            turning point for me."</div>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="assets/student-1.jpg" alt="Chandu koti" />
+            </div>
+            <div>
+              <div class="testi-name">Chandu koti</div>
+              <div class="testi-role">Data Scientist · Placed in AI role after graduation</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"The best part was building real AI applications — chatbots, automation systems,
+            agents. This is not just theory, it is real skills. The GitHub portfolio got me noticed by three companies
+            before I even started applying."</div>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="assets/student-2.jpg" alt="Sai krishna" />
+            </div>
+            <div>
+              <div class="testi-name">Sai krishna</div>
+              <div class="testi-role">Software Engineer · Transitioned to AI Engineer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"The mentorship and capstone project gave me practical exposure I couldn't have got
+            anywhere else. I was able to showcase my portfolio within weeks and secured my first AI engineering role."
+          </div>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="assets/student-3.jpg" alt="Naga Reddy" />
+            </div>
+            <div>
+              <div class="testi-name">Naga Reddy</div>
+              <div class="testi-role">AI Engineer · Hired via EDURYX placement network</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label" style="color:rgba(255,255,255,.35);">Pricing</span>
+        <h2 class="section-title" style="color:#fff;">Simple, Transparent Pricing</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.45);">One-time payment. No subscription. Lifetime access.
+        </p>
+      </div>
+      <div class="pricing-grid fade-up">
+
+        <!-- GRAD -->
+        <div class="price-card">
+          <div class="price-who">BA · BSc · BCom</div>
+          <div class="price-name">Graduation Program</div>
+          <div class="price-desc">4 weeks · Perfect intro to AI for non-tech graduates</div>
+          <div class="price-amount">
+            <span class="price-main">₹3,000</span>
+            <span class="price-strike">₹6,000</span>
+            <span class="price-off">50% OFF</span>
+          </div>
+          <p class="price-includes"><strong>Full Program · Certification</strong></p>
+          <ul class="price-list">
+            <li>4-week live program</li>
+            <li>Introduction to AI</li>
+            <li>ChatGPT &amp; AI Tools</li>
+            <li>Simple AI Projects</li>
+            <li>EDURYX Certification</li>
+            <li>Lifetime access</li>
+          </ul>
+          <div class="price-seats"><span class="seats-dot"></span>25 seats · Next batch June 2026</div>
+          <a href="#enroll" class="price-btn price-btn-outline"
+            onclick="preselectProgram('4-Week Graduation Program (BA/BSc/BCom)')">Enroll Now →</a>
+        </div>
+
+        <!-- BTECH -->
+        <div class="price-card">
+          <div class="price-who">B.Tech Students</div>
+          <div class="price-name">B.Tech AI Program</div>
+          <div class="price-desc">4 weeks · Get ahead before college starts</div>
+          <div class="price-amount">
+            <span class="price-main">₹8,000</span>
+            <span class="price-strike">₹16,000</span>
+            <span class="price-off">50% OFF</span>
+          </div>
+          <p class="price-includes"><strong>Full Program · Projects · Certification</strong></p>
+          <ul class="price-list">
+            <li>4-week live program</li>
+            <li>Python Fundamentals</li>
+            <li>Intro to AI &amp; ML</li>
+            <li>Prompt Engineering</li>
+            <li>Real AI Projects</li>
+            <li>EDURYX Certification</li>
+          </ul>
+          <div class="price-seats"><span class="seats-dot"></span>25 seats · Next batch June 2026</div>
+          <a href="#enroll" class="price-btn price-btn-outline"
+            onclick="preselectProgram('4-Week B.Tech AI Program')">Enroll Now →</a>
+        </div>
+
+        <!-- 8 WEEK FEATURED -->
+        <div class="price-card featured">
+          <div class="price-badge">★ Most Complete</div>
+          <div class="price-who" style="color:rgba(255,255,255,.4);">AI Engineer Track</div>
+          <div class="price-name">8-Week AI Engineer</div>
+          <div class="price-desc" style="color:rgba(255,255,255,.4);">8 weeks · Build production AI systems + internship
+          </div>
+          <div class="price-amount">
+            <span class="price-main">₹20,000</span>
+            <span class="price-strike">₹40,000</span>
+            <span class="price-off">50% OFF</span>
+          </div>
+          <p class="price-includes" style="color:rgba(255,255,255,.45);"><strong
+              style="color:rgba(255,255,255,.8);">Full Program · 4+ Projects · Certification · Internship</strong></p>
+          <ul class="price-list">
+            <li>8-week intensive program</li>
+            <li>4+ production AI projects</li>
+            <li>GitHub portfolio</li>
+            <li>Industry mentorship</li>
+            <li>Internship opportunity</li>
+            <li>Career &amp; interview prep</li>
+          </ul>
+          <div class="price-seats" style="color:rgba(255,255,255,.35);"><span class="seats-dot"></span>25 seats · Next
+            batch June 2026</div>
+          <a href="#enroll" class="price-btn price-btn-primary"
+            onclick="preselectProgram('8-Week AI Engineer Program')">Enroll Now →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNICATION SECTION -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Support</span>
+        <h2 class="section-title">Let’s Talk</h2>
+        <p class="section-sub">Have questions? Reach us instantly through WhatsApp or email.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="comm-cards fade-up">
+          <a href="https://wa.me/917337222775?text=Hi%20EDURYX%2C%20I%20have%20a%20question%20about%20your%20AI%20programs."
+            target="_blank" class="comm-card">
+            <div class="comm-icon wa">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.12-1.604a11.803 11.803 0 005.925 1.585h.005c6.634 0 12.046-5.412 12.049-12.048a11.811 11.811 0 00-3.526-8.514z" />
+              </svg>
+            </div>
+            <div class="comm-info">
+              <h4>WhatsApp Support</h4>
+              <p>Chat instantly with our team for immediate queries.</p>
+            </div>
+          </a>
+          <a href="tel:+911171366826" class="comm-card">
+            <div class="comm-icon" style="background:rgba(212,160,23,.1); color:var(--gold);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.19-2.19a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <div class="comm-info">
+              <h4>AI Voice Agent</h4>
+              <p>Call our AI assistant for automated guidance. Available 24/7.</p>
+            </div>
+          </a>
+          <a href="mailto:contact@eduryx.com" class="comm-card">
+            <div class="comm-icon mail">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div class="comm-info">
+              <h4>Email Support</h4>
+              <p>Send your enquiry and get a detailed response within 24 hours.</p>
+            </div>
+          </a>
+        </div>
+
+
+        <div class="contact-form-wrap fade-up" style="transition-delay:.1s">
+          <h3>Send us a Message</h3>
+          <p class="form-sub">We’ll get back to you shortly.</p>
+          <div id="contactError" class="form-error">Something went wrong. Please try again.</div>
+          <form id="contactForm" onsubmit="submitContactForm(event)">
+            <div class="form-group">
+              <label class="form-label" for="cname">Name *</label>
+              <input class="form-input" id="cname" type="text" placeholder="Your Name" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cemail">Email *</label>
+                <input class="form-input" id="cemail" type="email" placeholder="email@example.com" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cphone">Phone Number *</label>
+                <input class="form-input" id="cphone" type="tel" placeholder="+91 ..." required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cmessage">Message *</label>
+              <textarea class="form-textarea" id="cmessage" placeholder="How can we help you?" required></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              Send Message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </button>
+          </form>
+          <div class="form-success" id="contactSuccess">
+            <div class="success-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h4>Thank you!</h4>
+            <p>Our team will contact you shortly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Everything you need to know before enrolling answered clearly.</p>
+      </div>
+      <div class="faq-list fade-up">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do I need prior coding or AI experience to join?<span
+              class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">No prior AI experience is required. The program starts from foundations of AI basics,
+            Prompt
+            Engineering, and tool usage before gradually moving to Python, APIs, RAG, and Agents. A basic familiarity
+            with computers is sufficient. We also teach Python basics specifically for AI use, so you do not need to be
+            a programmer.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the fee and are there EMI or instalment options?<span
+              class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">Programs start at ₹3,000 for the 4 Week Graduation Program, ₹8,000 for the B.Tech AI
+            Program, and ₹20,000 for the 8 Week AI Engineer Track all 50% off. Please contact us to discuss instalment
+            plans. We work with students to make the program accessible.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is the training online or available as classroom?<span
+              class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">We offer both. Classroom training is available in Hyderabad with face to face sessions and
+            in person hackathons. Live online training is available globally all sessions are live with interactive
+            Q&amp;A, and recordings are provided so you never miss a class. Both modes follow the same curriculum and
+            receive the same certification.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What if I miss a session or fall behind?<span
+              class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">All sessions are recorded and made available to enrolled students. Additionally, our 1 on 1
+            support ensures that if you fall behind or need help with a concept, a trainer or teaching assistant is
+            available to get you back on track. We do not leave any student behind.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What certificate will I receive and is it recognised by
+            employers?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">You receive certification issued jointly by EDURYX AI, AI Anytime Community, and NASSCOM
+            (aligned certification). There are three levels: Completion Certificate, AI Builder Certificate, and
+            Advanced AI Builder with Distinction. The portfolio of real projects you build is what most employers value
+            even more than the certificate itself.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What kind of projects will I build and will they be on
+            GitHub?<span class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">You will build 4 real, deployable AI projects: a RAG Chatbot, a Resume Analyzer, a
+            Healthcare AI System, and an Automation Workflow. All projects are uploaded to your personal GitHub profile
+            with proper documentation and live demo links. By the end you will have a recruiter ready portfolio
+            demonstrating real-world skills.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is this program suitable for working professionals?<span
+              class="faq-arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">Absolutely. We offer weekend batches and recorded sessions to accommodate full-time work
+            schedules. The format is intensive but manageable alongside a job. Many professionals use the program to
+            upskill and move into AI-focused roles within their current companies.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How does placement support work?<span class="faq-arrow"><svg
+                width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="faq-a">Our placement support includes LinkedIn profile optimisation, professional AI-focused
+            resume preparation, portfolio review, mock interview sessions, and direct job referrals to our hiring
+            partner network. Students who complete the full portfolio are prioritised for placement. Note: placement
+            support is a referral and preparation service outcomes depend on your performance and the market.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-works" id="how">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label" style="color:rgba(255,255,255,.35);">The Process</span>
+        <h2 class="section-title" style="color:#fff;">How EDURYX Works</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.45);">A clear, proven path from enrollment to your first
+          AI job.</p>
+      </div>
+      <div class="steps-flow stagger">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-title">Enroll</div>
+          <div class="step-sub">Fill the form. Seat confirmed within 24 hrs.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-title">Live Sessions</div>
+          <div class="step-sub">Join live online or classroom sessions with AI experts.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-title">Build Projects</div>
+          <div class="step-sub">Hands-on AI apps. Real code. Real deployment.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">04</div>
+          <div class="step-title">Get Mentored</div>
+          <div class="step-sub">Weekly guidance from industry practitioners.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">05</div>
+          <div class="step-title">GitHub Portfolio</div>
+          <div class="step-sub">4+ interview-ready AI projects live on GitHub.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">06</div>
+          <div class="step-title">Get Certified</div>
+          <div class="step-sub">NASSCOM cert + placement &amp; career support.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="compare" id="compare">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Why EDURYX</span>
+        <h2 class="section-title">Traditional Courses vs EDURYX</h2>
+        <p class="section-sub">We built what we wish existed when we were students.</p>
+      </div>
+      <div class="compare-table fade-up">
+        <div class="compare-head">
+          <div class="compare-head-cell">Feature</div>
+          <div class="compare-head-cell">Other Courses</div>
+          <div class="compare-head-cell hi">✦ EDURYX</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell topic">Learning Style</div>
+          <div class="compare-cell"><span class="cx">✕</span> Theory &amp; slides</div>
+          <div class="compare-cell"><span class="ck">✓</span> Build real AI products</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell topic">Curriculum</div>
+          <div class="compare-cell"><span class="cx">✕</span> Outdated syllabus</div>
+          <div class="compare-cell"><span class="ck">✓</span> Latest AI stack 2026</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell topic">Portfolio</div>
+          <div class="compare-cell"><span class="cx">✕</span> No projects to show</div>
+          <div class="compare-cell"><span class="ck">✓</span> 4+ GitHub AI projects</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell topic">Mentorship</div>
+          <div class="compare-cell"><span class="cx">✕</span> No industry access</div>
+          <div class="compare-cell"><span class="ck">✓</span> Active AI practitioners</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell topic">Deployment</div>
+          <div class="compare-cell"><span class="cx">✕</span> Never ship anything</div>
+          <div class="compare-cell"><span class="ck">✓</span> Live AI apps deployed</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell topic">Certification</div>
+          <div class="compare-cell"><span class="cx">✕</span> Generic certificate</div>
+          <div class="compare-cell"><span class="ck">✓</span> NASSCOM-aligned cert</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell topic">Career Support</div>
+          <div class="compare-cell"><span class="cx">✕</span> You're on your own</div>
+          <div class="compare-cell"><span class="ck">✓</span> Resume + internship + referrals</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENROLLMENT FORM -->
+  <section class="enroll" id="enroll">
+    <div class="container">
+      <div class="enroll-inner">
+        <div class="enroll-left fade-up">
+          <span class="label">Enrollment</span>
+          <h2>Start Your AI Journey Today.</h2>
+          <p>Fill in the form and our team will reach out within 24 hours to confirm your seat and share batch details.
+          </p>
+          <div class="enroll-perks">
+            <div class="enroll-perk"><span class="enroll-perk-dot"></span>No prior coding experience required</div>
+            <div class="enroll-perk"><span class="enroll-perk-dot"></span>Flexible timing — live + recorded sessions
+            </div>
+            <div class="enroll-perk"><span class="enroll-perk-dot"></span>Industry-recognised NASSCOM certification
+            </div>
+            <div class="enroll-perk"><span class="enroll-perk-dot"></span>Only 25 seats per batch — act fast</div>
+            <div class="enroll-perk"><span class="enroll-perk-dot"></span>EMI options available on request</div>
+          </div>
+        </div>
+
+        <div class="enroll-form fade-up" style="transition-delay:.1s">
+          <h3>Reserve Your Seat</h3>
+          <p class="form-sub">Next batch starts June 2026 · Limited to 25 students</p>
+          <form id="enrollForm" onsubmit="submitForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fname">First Name *</label>
+                <input class="form-input" id="fname" type="text" placeholder="Riya" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lname">Last Name *</label>
+                <input class="form-input" id="lname" type="text" placeholder="Sharma" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input class="form-input" id="email" type="email" placeholder="riya@gmail.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number *</label>
+              <input class="form-input" id="phone" type="tel" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="program">Select Program *</label>
+              <select class="form-select" id="program" required>
+                <option value="" disabled selected>Choose your program</option>
+                <option>4-Week Graduation Program (BA/BSc/BCom) — ₹3,000</option>
+                <option>4-Week B.Tech AI Program — ₹8,000</option>
+                <option>8-Week AI Engineer Program — ₹20,000</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="college">College / University</label>
+              <input class="form-input" id="college" type="text" placeholder="Delhi University" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Anything you'd like us to know?</label>
+              <textarea class="form-textarea" id="message"
+                placeholder="E.g. I'm a 2nd year B.Tech student with no coding background…"></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              Reserve My Seat
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h4>You're on the list!</h4>
+            <p>We'll reach out within 24 hours to confirm your seat and share batch details. Check your email.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHATSAPP FAB -->
+  <a href="https://wa.me/917337222775?text=Hi%20EDURYX%2C%20I%20have%20a%20question%20about%20your%20AI%20programs."
+    target="_blank" class="wa-fab" id="waFab" aria-label="Chat on WhatsApp">
+    <span class="wa-tooltip">Chat with us on WhatsApp</span>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.12-1.604a11.803 11.803 0 005.925 1.585h.005c6.634 0 12.046-5.412 12.049-12.048a11.811 11.811 0 00-3.526-8.514z" />
+    </svg>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Column 1: Brand & Social -->
+        <div class="footer-brand">
+          <img class="footer-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Removed background Logo.png"
+            alt="EDURYX" />
+          <p class="footer-brand-desc">Empowering the next generation with industry-first AI skills. Build real-world
+            projects and launch your career in the AI era.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+              </svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.14 1 12 1 12s0 3.86.42 5.58a2.78 2.78 0 0 0 1.94 2c1.71.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.86 23 12 23 12s0-3.86-.42-5.58z" />
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Programs -->
+        <div>
+          <h4 class="footer-col-title">Programs</h4>
+          <ul class="footer-list">
+            <li><a href="#pricing" onclick="preselectProgram('4-Week Graduation Program (BA/BSc/BCom)')">Graduation AI
+                Program</a></li>
+            <li><a href="#pricing" onclick="preselectProgram('4-Week B.Tech AI Program')">B.Tech AI Program</a></li>
+            <li><a href="#pricing" onclick="preselectProgram('8-Week AI Engineer Program')">AI Engineer Track</a></li>
+            <li><a href="#certification">Certification Path</a></li>
+            <li><a href="#curriculum">Full Curriculum</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-list">
+            <li><a href="#instructors">Our Trainers</a></li>
+            <li><a href="#reviews">Student Success</a></li>
+            <li><a href="#faq">FAQs</a></li>
+            <li><a href="#contact">Contact Support</a></li>
+            <li><a href="#enroll">Enroll Now</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div>
+          <h4 class="footer-col-title">Contact Us</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>
+                <strong>Hyderabad (HQ):</strong><br>
+                3rd Floor, Jubilee Hills, Road No. 36,<br>
+                Hyderabad, Telangana 500033
+              </span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.19-2.19a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <a href="tel:+917337222775">+91 7337 222 775</a>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              <a href="mailto:contact@eduryx.com">contact@eduryx.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ULTRA-PREMIUM BRANDING SECTION -->
+  <section class="branding-section">
+    <div class="branding-visuals">
+      <div class="neural-lines"></div>
+    </div>
+    <div class="branding-glow"></div>
+    <div class="container">
+      <div class="branding-inner">
+        <div class="branding-tagline">Building Future AI Engineers</div>
+        <h2 class="giant-wordmark">eduryx</h2>
+      </div>
+
+      <div class="branding-bottom">
+        <div class="branding-bottom-inner">
+          <div>© 2026 EDURYX. Build the future with AI.</div>
+          <div class="branding-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Careers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHATBOT FAB -->
+  <button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Open chat">
+    <div class="chat-fab-ring"></div>
+    <svg id="chatIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+    <svg id="closeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  </button>
+
+  <!-- CHATBOT PANEL -->
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header">
+      <img class="chat-header-logo" src="Logo/EDURYX - LEARN AI - BUILD THE FUTURE Dark Removed Background.png"
+        alt="EDURYX" />
+      <div class="chat-header-info">
+        <div class="chat-header-name">EDURYX AI Assistant</div>
+        <div class="chat-header-status"><span class="chat-status-dot"></span>Online · replies instantly</div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg msg-bot">Hi! 👋 I'm the EDURYX assistant. Ask me anything about our programs, fees, curriculum, or
+        how to enroll.</div>
+    </div>
+    <div class="chat-quick" id="chatQuick">
+      <button class="quick-btn" onclick="sendQuick('What programs do you offer?')">Programs</button>
+      <button class="quick-btn" onclick="sendQuick('What is the fee?')">Fees</button>
+      <button class="quick-btn" onclick="sendQuick('When does the next batch start?')">Batch dates</button>
+      <button class="quick-btn" onclick="sendQuick('Do I get a certificate?')">Certificate</button>
+      <button class="quick-btn" onclick="sendQuick('How do I enroll?')">Enroll</button>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chatInput" type="text" placeholder="Ask anything…"
+        onkeydown="if(event.key==='Enter') sendMessage()" />
+      <button class="chat-send" onclick="sendMessage()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    /* ── Scroll animation ─────────────────────────────────── */
+    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* ── Stagger animation ────────────────────────────────── */
+    const obsS = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obsS.unobserve(e.target); } }), { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
+    document.querySelectorAll('.stagger').forEach(el => obsS.observe(el));
+
+    /* ── Sticky CTA: hide near enroll form ────────────────── */
+    const stickyEl = document.getElementById('stickyCta');
+    if (stickyEl) { const enrollEl = document.getElementById('enroll'); window.addEventListener('scroll', () => { if (!enrollEl) return; const t = enrollEl.getBoundingClientRect().top; stickyEl.style.opacity = t < 200 ? '0' : '1'; stickyEl.style.pointerEvents = t < 200 ? 'none' : 'all'; }, { passive: true }); }
+
+
+    /* ── Program tabs ─────────────────────────────────────── */
+    function switchProgram(id, btn) {
+      document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.prog-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    /* ── Pre-select program in form ───────────────────────── */
+    function preselectProgram(name) {
+      const sel = document.getElementById('program');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.startsWith(name.split(' ').slice(0, 3).join(' '))) {
+          sel.selectedIndex = i; break;
+        }
+      }
+      setTimeout(() => document.getElementById('enroll').scrollIntoView({ behavior: 'smooth' }), 10);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       BACKEND URL — change this if you deploy the server
+       elsewhere (e.g. https://api.eduryx.com)
+    ══════════════════════════════════════════════════════ */
+    const API_BASE = '/api';
+
+    /* ── Toast notification system ───────────────────────── */
+    (function buildToast() {
+      const style = document.createElement('style');
+      style.textContent = `
+        #edx-toast-wrap {
+          position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+          display: flex; flex-direction: column; gap: 10px; pointer-events: none;
+        }
+        .edx-toast {
+          display: flex; align-items: center; gap: 12px;
+          background: #12355B; color: #fff;
+          padding: 14px 20px; border-radius: 10px;
+          font-size: 14px; font-weight: 500; line-height: 1.4;
+          box-shadow: 0 8px 24px rgba(0,0,0,.18);
+          transform: translateX(120%); opacity: 0;
+          transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s ease;
+          pointer-events: auto; max-width: 340px;
+        }
+        .edx-toast.show { transform: translateX(0); opacity: 1; }
+        .edx-toast.success .edx-ti { color: #4ade80; }
+        .edx-toast.error   { background: #7f1d1d; }
+        .edx-toast.error   .edx-ti { color: #fca5a5; }
+        .edx-ti { font-size: 18px; flex-shrink: 0; }
+        @media(max-width:480px){
+          #edx-toast-wrap { bottom:80px; right:12px; left:12px; }
+          .edx-toast { max-width:100%; }
+        }
+      `;
+      document.head.appendChild(style);
+      const wrap = document.createElement('div');
+      wrap.id = 'edx-toast-wrap';
+      document.body.appendChild(wrap);
+    })();
+
+    function showToast(msg, type = 'success', duration = 4500) {
+      const wrap = document.getElementById('edx-toast-wrap');
+      const t = document.createElement('div');
+      t.className = `edx-toast ${type}`;
+      t.innerHTML = `<span class="edx-ti">${type === 'success' ? '✅' : '❌'}</span><span>${msg}</span>`;
+      wrap.appendChild(t);
+      requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+      setTimeout(() => {
+        t.classList.remove('show');
+        setTimeout(() => t.remove(), 400);
+      }, duration);
+    }
+
+    /* ── Loading state helpers ───────────────────────────── */
+    function setLoading(btn, isLoading, originalHTML) {
+      if (isLoading) {
+        btn.disabled = true;
+        btn.dataset.orig = btn.innerHTML;
+        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…`;
+        if (!document.getElementById('edx-spin-style')) {
+          const s = document.createElement('style');
+          s.id = 'edx-spin-style';
+          s.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+          document.head.appendChild(s);
+        }
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = btn.dataset.orig || originalHTML;
+      }
+    }
+
+    /* ── Contact Form Submit ──────────────────────────────── */
+    async function submitContactForm(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('contactSuccess');
+      const errDiv = document.getElementById('contactError');
+      const btn = form.querySelector('button[type="submit"]');
+
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const phone = document.getElementById('cphone').value.trim();
+      const message = document.getElementById('cmessage').value.trim();
+
+      errDiv.style.display = 'none';
+      setLoading(btn, true);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, message }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          showToast('Message sent! We\'ll get back to you shortly.', 'success');
+        } else {
+          errDiv.textContent = data.message || 'Something went wrong. Please try again.';
+          errDiv.style.display = 'block';
+          showToast(data.message || 'Submission failed.', 'error');
+          setLoading(btn, false);
+        }
+      } catch (err) {
+        errDiv.textContent = 'Network error — please check your connection and try again.';
+        errDiv.style.display = 'block';
+        showToast('Could not reach server. Please try again.', 'error');
+        setLoading(btn, false);
+        console.error('Contact form error:', err);
+      }
+    }
+
+    /* ── Enrollment Form Submit ───────────────────────────── */
+    async function submitForm(e) {
+      e.preventDefault();
+      const form = document.getElementById('enrollForm');
+      const success = document.getElementById('formSuccess');
+      const btn = form.querySelector('button[type="submit"]');
+
+      const firstName = document.getElementById('fname').value.trim();
+      const lastName = document.getElementById('lname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const program = document.getElementById('program').value.trim();
+      const college = document.getElementById('college').value.trim();
+      const notes = document.getElementById('message').value.trim();
+
+      // Remove any previous inline error
+      const prevErr = form.querySelector('.enroll-inline-error');
+      if (prevErr) prevErr.remove();
+
+      setLoading(btn, true);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/enroll`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, lastName, email, phone, program, college, notes }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          showToast('Seat reserved! Check your email for confirmation.', 'success', 6000);
+        } else {
+          const errEl = document.createElement('p');
+          errEl.className = 'enroll-inline-error';
+          errEl.style.cssText = 'color:#dc2626;font-size:13px;margin-top:12px;font-weight:600;';
+          errEl.textContent = data.message || 'Submission failed. Please try again.';
+          btn.insertAdjacentElement('afterend', errEl);
+          showToast(data.message || 'Submission failed.', 'error');
+          setLoading(btn, false);
+        }
+      } catch (err) {
+        const errEl = document.createElement('p');
+        errEl.className = 'enroll-inline-error';
+        errEl.style.cssText = 'color:#dc2626;font-size:13px;margin-top:12px;font-weight:600;';
+        errEl.textContent = 'Network error — please check your connection and try again.';
+        btn.insertAdjacentElement('afterend', errEl);
+        showToast('Could not reach server. Please try again.', 'error');
+        setLoading(btn, false);
+        console.error('Enrollment form error:', err);
+      }
+    }
+
+    /* ── FAQ accordion ────────────────────────────────────── */
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    /* ── Chatbot ──────────────────────────────────────────── */
+    const KB = [
+      { q: ['program', 'offer', 'course', 'what do you', 'which program'], a: 'We offer <strong>3 programs</strong>:<br>① 4-Week Graduation Program (BA/BSc/BCom) — ₹3,000<br>② 4-Week B.Tech AI Program — ₹8,000<br>③ 8-Week AI Engineer Track — ₹20,000<br><br>All include a certification. Which one interests you?' },
+      { q: ['fee', 'price', 'cost', 'how much', '₹', 'rupee'], a: '💰 <strong>Program fees:</strong><br>• Graduation (4 wk): ₹3,000 (was ₹6,000)<br>• B.Tech (4 wk): ₹8,000 (was ₹16,000)<br>• AI Engineer (8 wk): ₹20,000 (was ₹40,000)<br><br>All 50% OFF. EMI available on request!' },
+      { q: ['batch', 'start', 'when', 'june', 'date', 'schedule'], a: '📅 The next batch starts <strong>June 2026</strong>. Only 25 seats per batch — we recommend enrolling early to secure your spot!' },
+      { q: ['certif', 'nasscom', 'certificate'], a: '✅ Yes! You receive an <strong>industry-recognised EDURYX certification</strong> aligned with NASSCOM standards. You can add it to your LinkedIn right after completing the program.' },
+      { q: ['enroll', 'apply', 'register', 'join', 'sign up'], a: 'To enroll, just scroll up to the <strong>"Reserve Your Seat"</strong> form and fill in your details. Our team will reach out within 24 hours to confirm your seat. <a href="#enroll" style="color:var(--gold);font-weight:600;">Go to form →</a>' },
+      { q: ['project', 'build', 'portfolio', 'github'], a: '🛠️ You\'ll build <strong>4+ real AI projects</strong> including an AI Chatbot with RAG, a Resume Analyzer, a Healthcare AI System and Automation Workflows — all hosted on GitHub for your portfolio.' },
+      { q: ['internship', 'job', 'placement', 'career'], a: '🎯 Top performers in the 8-Week program get <strong>internship opportunities</strong> and career placement support, including resume review and mock interviews.' },
+      { q: ['instructor', 'trainer', 'teacher', 'sonu', 'who'], a: '👨‍💻 Your instructor is <strong>Sonu Kumar</strong> — Founder of EDURYX, AI Researcher, Corporate AI Trainer with 10+ years experience, 100K+ learners, and research published in Nature & Frontiers.' },
+      { q: ['btech', 'b.tech', 'engineering student', '1st year', '2nd year'], a: 'The <strong>4-Week B.Tech AI Program</strong> (₹8,000) is perfect for you! It covers Python fundamentals, logic building, intro to AI/ML, and prompt engineering. Great way to get ahead before or during college.' },
+      { q: ['graduation', 'ba', 'bsc', 'bcom', 'arts', 'commerce', 'science'], a: 'The <strong>4-Week Graduation Program</strong> (₹3,000) is designed exactly for BA/BSc/BCom students — no coding background needed. You\'ll learn AI tools, Python basics and build simple AI projects.' },
+      { q: ['8 week', 'eight week', 'advanced', 'engineer', 'ai engineer'], a: 'The <strong>8-Week AI Engineer Track</strong> (₹20,000) is our most complete program. You\'ll master RAG, LLMs, automation, build 4+ projects, get a GitHub portfolio, mentorship and internship support.' },
+      { q: ['hi', 'hello', 'hey', 'hii', 'helo'], a: 'Hello! 👋 How can I help you today? You can ask about our programs, fees, batch dates, or anything else about EDURYX.' },
+    ];
+
+    function getBotReply(text) {
+      const t = text.toLowerCase();
+      for (const item of KB) { if (item.q.some(k => t.includes(k))) return item.a; }
+      return "I'm not sure about that, but our team can help! Please use the <a href='#enroll' style='color:var(--gold);font-weight:600;'>enrollment form</a> or email us directly. We respond within 24 hours. 😊";
+    }
+
+    let chatOpen = false;
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      document.getElementById('chatPanel').classList.toggle('open', chatOpen);
+      document.getElementById('chatIcon').style.display = chatOpen ? 'none' : 'block';
+      document.getElementById('closeIcon').style.display = chatOpen ? 'block' : 'none';
+    }
+
+    function addMsg(text, type) {
+      const box = document.getElementById('chatMessages');
+      const d = document.createElement('div');
+      d.className = 'msg msg-' + type;
+      d.innerHTML = text;
+      box.appendChild(d);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function showTyping() {
+      const box = document.getElementById('chatMessages');
+      const d = document.createElement('div');
+      d.className = 'msg msg-bot typing'; d.id = 'typing';
+      d.innerHTML = '<span></span><span></span><span></span>';
+      box.appendChild(d); box.scrollTop = box.scrollHeight;
+    }
+
+    function removeTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
+
+    function sendMessage() {
+      const inp = document.getElementById('chatInput');
+      const text = inp.value.trim();
+      if (!text) return;
+      inp.value = '';
+      addMsg(text, 'user');
+      document.getElementById('chatQuick').style.display = 'none';
+      showTyping();
+      setTimeout(() => { removeTyping(); addMsg(getBotReply(text), 'bot'); }, 700 + Math.random() * 500);
+    }
+
+    function sendQuick(text) {
+      if (!chatOpen) toggleChat();
+      addMsg(text, 'user');
+      document.getElementById('chatQuick').style.display = 'none';
+      showTyping();
+      setTimeout(() => { removeTyping(); addMsg(getBotReply(text), 'bot'); }, 700 + Math.random() * 400);
+    }
+    /* ── Smooth Scroll (Lenis) ────────────────────────────── */
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smoothHorizontal: false,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    // Ensure anchor links work with Lenis
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          lenis.scrollTo(target, { offset: -80 });
+        }
+      });
+    });
+  </script>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="sticky-cta" id="stickyCta" style="transition:opacity .3s;">
+    <a href="https://wa.me/917337222775?text=Hi%20EDURYX%2C%20I%20have%20a%20question" target="_blank"
+      class="sticky-wa">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.048c0 2.12.54 4.19 1.566 6.02L0 24l6.12-1.604a11.803 11.803 0 005.925 1.585h.005c6.634 0 12.046-5.412 12.049-12.048a11.811 11.811 0 00-3.526-8.514z" />
+      </svg>
+      WhatsApp
+    </a>
+    <a href="#enroll" class="sticky-enroll">Enroll Now →</a>
+  </div>
+
+</body>
+
 </html>
