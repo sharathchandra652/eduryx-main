@@ -2775,6 +2775,28 @@
       }
     }
 
+    .testi-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--g100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .testi-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .testi-card {
       background: #fff;
       border: 1px solid var(--g100);
@@ -3637,6 +3659,146 @@
     .stagger.visible>* {
       opacity: 1;
       transform: translateY(0);
+    }
+    /* ── Branding Section ─────────────────────────────────── */
+    /* ── Branding Section ─────────────────────────────────── */
+    .branding-section {
+      background: var(--navy); /* Precise footer color match */
+      padding: 160px 0 60px;
+      position: relative;
+      overflow: visible;
+      color: #fff;
+    }
+
+    .branding-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+    }
+
+    .branding-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .branding-tagline {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.8em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 60px;
+      animation: taglineFade 2.5s ease-out forwards;
+    }
+
+    @keyframes taglineFade {
+      0% { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    .giant-wordmark {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(120px, 26vw, 450px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.02) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      user-select: none;
+      margin: 0;
+      padding: 20px 0; /* Extra vertical space to prevent cutting */
+      position: relative;
+      animation: wordmarkReveal 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes wordmarkReveal {
+      0% { opacity: 0; transform: scale(0.98) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .branding-glow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 300px;
+      background: radial-gradient(circle at center, rgba(16, 68, 144, 0.1) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .branding-visuals {
+      position: absolute;
+      inset: 0;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .neural-lines {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 80px 80px, 40px 40px, 40px 40px;
+      mask-image: radial-gradient(circle at center, black, transparent 90%);
+    }
+
+    .branding-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 0;
+      margin-top: 120px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .branding-bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .branding-bottom-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .branding-bottom-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.05em;
+    }
+
+    .branding-bottom-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .branding-section { padding-top: 100px; }
+      .branding-tagline { margin-bottom: 60px; letter-spacing: 0.4em; }
+      .branding-bottom-inner { flex-direction: column; text-align: center; gap: 20px; }
+      .branding-bottom-links { justify-content: center; gap: 20px; }
+      .giant-wordmark { margin-bottom: -30px; }
     }
   </style>
 </head>
@@ -4570,9 +4732,11 @@
             real-world use cases helped me gain confidence and land a role in AI. Building an actual RAG chatbot was the
             turning point for me."</div>
           <div class="testi-author">
-            <div class="testi-avatar">AS</div>
+            <div class="testi-avatar">
+              <img src="assets/student-1.jpg" alt="Chandu koti" />
+            </div>
             <div>
-              <div class="testi-name">Chandhu koti</div>
+              <div class="testi-name">Chandu koti</div>
               <div class="testi-role">Data Scientist · Placed in AI role after graduation</div>
             </div>
           </div>
@@ -4583,7 +4747,9 @@
             agents. This is not just theory, it is real skills. The GitHub portfolio got me noticed by three companies
             before I even started applying."</div>
           <div class="testi-author">
-            <div class="testi-avatar">RP</div>
+            <div class="testi-avatar">
+              <img src="assets/student-2.jpg" alt="Sai krishna" />
+            </div>
             <div>
               <div class="testi-name">Sai krishna</div>
               <div class="testi-role">Software Engineer · Transitioned to AI Engineer</div>
@@ -4596,9 +4762,11 @@
             anywhere else. I was able to showcase my portfolio within weeks and secured my first AI engineering role."
           </div>
           <div class="testi-author">
-            <div class="testi-avatar">AM</div>
+            <div class="testi-avatar">
+              <img src="assets/student-3.jpg" alt="Naga Reddy" />
+            </div>
             <div>
-              <div class="testi-name">Naga Reddys</div>
+              <div class="testi-name">Naga Reddy</div>
               <div class="testi-role">AI Engineer · Hired via EDURYX placement network</div>
             </div>
           </div>
@@ -5191,18 +5359,33 @@
           </div>
         </div>
       </div>
+    </div>
+  </footer>
 
-      <!-- Bottom Row -->
-      <div class="footer-bottom">
-        <div>© 2026 EDURYX. All rights reserved.</div>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Sitemap</a>
+  <!-- ULTRA-PREMIUM BRANDING SECTION -->
+  <section class="branding-section">
+    <div class="branding-visuals">
+      <div class="neural-lines"></div>
+    </div>
+    <div class="branding-glow"></div>
+    <div class="container">
+      <div class="branding-inner">
+        <div class="branding-tagline">Building Future AI Engineers</div>
+        <h2 class="giant-wordmark">eduryx</h2>
+      </div>
+
+      <div class="branding-bottom">
+        <div class="branding-bottom-inner">
+          <div>© 2026 EDURYX. Build the future with AI.</div>
+          <div class="branding-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Careers</a>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
+  </section>
 
   <!-- CHATBOT FAB -->
   <button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Open chat">
@@ -5366,21 +5549,21 @@
     /* ── Contact Form Submit ──────────────────────────────── */
     async function submitContactForm(e) {
       e.preventDefault();
-      const form    = document.getElementById('contactForm');
+      const form = document.getElementById('contactForm');
       const success = document.getElementById('contactSuccess');
-      const errDiv  = document.getElementById('contactError');
-      const btn     = form.querySelector('button[type="submit"]');
+      const errDiv = document.getElementById('contactError');
+      const btn = form.querySelector('button[type="submit"]');
 
-      const name    = document.getElementById('cname').value.trim();
-      const email   = document.getElementById('cemail').value.trim();
-      const phone   = document.getElementById('cphone').value.trim();
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const phone = document.getElementById('cphone').value.trim();
       const message = document.getElementById('cmessage').value.trim();
 
       errDiv.style.display = 'none';
       setLoading(btn, true);
 
       try {
-        const res  = await fetch(`${API_BASE}/api/contact`, {
+        const res = await fetch(`${API_BASE}/api/contact`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, email, phone, message }),
@@ -5388,17 +5571,17 @@
         const data = await res.json();
 
         if (data.success) {
-          form.style.display    = 'none';
+          form.style.display = 'none';
           success.style.display = 'block';
           showToast('Message sent! We\'ll get back to you shortly.', 'success');
         } else {
-          errDiv.textContent    = data.message || 'Something went wrong. Please try again.';
-          errDiv.style.display  = 'block';
+          errDiv.textContent = data.message || 'Something went wrong. Please try again.';
+          errDiv.style.display = 'block';
           showToast(data.message || 'Submission failed.', 'error');
           setLoading(btn, false);
         }
       } catch (err) {
-        errDiv.textContent   = 'Network error — please check your connection and try again.';
+        errDiv.textContent = 'Network error — please check your connection and try again.';
         errDiv.style.display = 'block';
         showToast('Could not reach server. Please try again.', 'error');
         setLoading(btn, false);
@@ -5409,17 +5592,17 @@
     /* ── Enrollment Form Submit ───────────────────────────── */
     async function submitForm(e) {
       e.preventDefault();
-      const form    = document.getElementById('enrollForm');
+      const form = document.getElementById('enrollForm');
       const success = document.getElementById('formSuccess');
-      const btn     = form.querySelector('button[type="submit"]');
+      const btn = form.querySelector('button[type="submit"]');
 
       const firstName = document.getElementById('fname').value.trim();
-      const lastName  = document.getElementById('lname').value.trim();
-      const email     = document.getElementById('email').value.trim();
-      const phone     = document.getElementById('phone').value.trim();
-      const program   = document.getElementById('program').value.trim();
-      const college   = document.getElementById('college').value.trim();
-      const notes     = document.getElementById('message').value.trim();
+      const lastName = document.getElementById('lname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const program = document.getElementById('program').value.trim();
+      const college = document.getElementById('college').value.trim();
+      const notes = document.getElementById('message').value.trim();
 
       // Remove any previous inline error
       const prevErr = form.querySelector('.enroll-inline-error');
@@ -5428,7 +5611,7 @@
       setLoading(btn, true);
 
       try {
-        const res  = await fetch(`${API_BASE}/api/enroll`, {
+        const res = await fetch(`${API_BASE}/api/enroll`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ firstName, lastName, email, phone, program, college, notes }),
@@ -5436,7 +5619,7 @@
         const data = await res.json();
 
         if (data.success) {
-          form.style.display    = 'none';
+          form.style.display = 'none';
           success.style.display = 'block';
           showToast('Seat reserved! Check your email for confirmation.', 'success', 6000);
         } else {
